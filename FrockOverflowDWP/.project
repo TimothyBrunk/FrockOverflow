@@ -3,6 +3,7 @@
 	<name>FrockOverflowDWP</name>
 	<comment></comment>
 	<projects>
+		<project>FrockOverflowJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
