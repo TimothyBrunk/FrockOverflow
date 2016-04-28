@@ -7,6 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema frockoverflowdb
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `frockoverflowdb` ;
 
 -- -----------------------------------------------------
 -- Schema frockoverflowdb
