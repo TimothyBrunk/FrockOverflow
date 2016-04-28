@@ -18,11 +18,12 @@ public class Test {
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		User u = em.find(User.class, 1003);
+		User u = em.find(User.class, 1002);
 		Question a = new Question();
-		String sb = "1.  int []a = {1,2,3,4,5,6}; \n2.  int i = a.length - 1; \n3.\n4.  while(i>=0){\n5.  System.out.print(a[i]);\n6.  i--;\n7. } \n WHAT IS THE RESULT?";
+		String sb = "What is the default value of float and double datatype in Java?";
 		a.setBody(sb);
 		a.setTimestamp(new Date());
+		System.out.println(u);
 		a.setUser(u);
 		em.persist(a);
 		em.getTransaction().commit();
