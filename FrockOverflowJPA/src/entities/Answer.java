@@ -1,5 +1,8 @@
 package entities;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Answer {
 	
 	private int id;
