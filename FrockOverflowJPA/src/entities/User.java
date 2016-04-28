@@ -1,12 +1,14 @@
 package entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -23,7 +25,32 @@ public class User {
 	private Date dateCreated;
 	private String password;
 	
-	public User(){}
+	@OneToMany(mappedBy="user")
+	private List<Question> questions;
+	
+	@OneToMany(mappedBy="user")
+	private List<Answer> answers;
+	
+	public User(){
+		super();
+	}
+	
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
 
 	public String getFirstName() {
 		return firstName;

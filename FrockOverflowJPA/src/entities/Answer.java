@@ -1,30 +1,55 @@
 package entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Answer {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int userId;
 	private String body;
-	private String timestamp;
+	private Date timestamp;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+
+
+	@ManyToOne
+	@JoinColumn(name="question_id")
+	private Question question;
 
 	
-	public Answer(){}
-
-
-	public int getUserId() {
-		return userId;
+	public Answer(){
+		super();
 	}
 
-
-	public void setUser_id(int userId) {
-		this.userId = userId;
+	public User getUser() {
+		return user;
 	}
-
-
+	
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	public Question getQuestion() {
+		return question;
+	}
+	
+	
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 	public String getBody() {
 		return body;
 	}
@@ -35,12 +60,12 @@ public class Answer {
 	}
 
 
-	public String getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
 
-	public void setTimestamp(String timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -52,7 +77,7 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer= " + id + ", user_id=" + userId + ", body=" + body + ", timestamp=" + timestamp + "]";
+		return "Answer= " + id + ", body=" + body + ", timestamp=" + timestamp + "]";
 	}
 	
 	

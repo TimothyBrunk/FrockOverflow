@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS `frockoverflowdb`.`question` ;
 
 CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`question` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `time_stamp` DATE NOT NULL,
+  `timestamp` DATE NOT NULL,
   `body` VARCHAR(45) NOT NULL,
   `status` VARCHAR(45) NULL,
   `rating` INT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
   `user_id` INT NOT NULL,
   `rating` INT NULL,
   `answer_status` VARCHAR(45) NULL,
-  `time_stamp` DATETIME NULL,
+  `timestamp` DATE NULL,
   `flag` VARCHAR(45) NULL,
   `answer_id` INT NOT NULL,
   PRIMARY KEY (`id`))
@@ -79,8 +79,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `frockoverflowdb`;
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 1, 'lobes', NOW(), 'stub');
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1002, 'Tim', 'Brunk', 'timothybrunk@gmail.com', 1, 'brunky', NOW(), 'password');
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 1, 'lobes', 'NOW()', 'stub');
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1002, 'Tim', 'Brunk', 'timothybrunk@gmail.com', 1, 'brunky', 'NOW()', 'password');
 
 COMMIT;
 
