@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`question` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `timestamp` DATE NOT NULL,
-  `body` VARCHAR(45) NOT NULL,
+  `body` VARCHAR(1000) NOT NULL,
   `status` VARCHAR(45) NULL,
   `rating` INT NULL,
   `views` INT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
   `user_id` INT NOT NULL,
   `question_id` INT NOT NULL,
   `timestamp` DATE NULL,
-  `body` VARCHAR(45) NOT NULL,
+  `body` VARCHAR(1000) NOT NULL,
   `rating` INT NULL,
   `answer_status` VARCHAR(45) NULL,
   `flag` VARCHAR(45) NULL,
@@ -102,8 +102,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `frockoverflowdb`;
-INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (1, 1002, 1, NOW(), 'pending', NOW(), 'pending', 'Try turning the machine \"on\"');
-INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (2, 1001, 2, NOW(), 'pending', NOW(), 'pending', 'You forgot a semicolon ;');
+INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (1, 1002, 1, 'NOW()', 'pending', NOW(), 'pending', 'Try turning the machine \"on\"');
+INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (2, 1001, 2, 'NOW()', 'pending', NOW(), 'pending', 'You forgot a semicolon ;');
 
 COMMIT;
 
