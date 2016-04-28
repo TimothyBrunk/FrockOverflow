@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`question` (
   `user_id` INT NOT NULL,
   `timestamp` DATE NOT NULL,
   `body` VARCHAR(1000) NOT NULL,
-  `status` VARCHAR(45) NULL,
-  `rating` INT NULL,
-  `views` INT NULL,
+  `status` VARCHAR(45) NULL DEFAULT 'Pending',
+  `rating` INT NULL DEFAULT 0,
+  `views` INT NULL DEFAULT 0,
   `flag` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
   `id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `question_id` INT NOT NULL,
-  `timestamp` DATE NULL,
+  `timestamp` DATE NOT NULL,
   `body` VARCHAR(1000) NOT NULL,
-  `rating` INT NULL,
-  `answer_status` VARCHAR(45) NULL,
+  `rating` INT NULL DEFAULT 0,
+  `answer_status` VARCHAR(45) NULL DEFAULT 'Pending',
   `flag` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -82,6 +82,7 @@ START TRANSACTION;
 USE `frockoverflowdb`;
 INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 1, 'lobes', NOW(), 'stub');
 INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1002, 'Tim', 'Brunk', 'timothybrunk@gmail.com', 1, 'brunky', NOW(), 'password');
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1003, 'Brenton', 'Gumucio', 'brenton.gumucio@gmail.com', 1, 'gumi', NOW(), 'brenton');
 
 COMMIT;
 
@@ -102,8 +103,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `frockoverflowdb`;
-INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (1, 1002, 1, 'NOW()', 'pending', NOW(), 'pending', 'Try turning the machine \"on\"');
-INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (2, 1001, 2, 'NOW()', 'pending', NOW(), 'pending', 'You forgot a semicolon ;');
+INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (1, 1002, 1, NOW(), 'Try turning the machine \"on\"', 0, 'pending', '');
+INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (2, 1001, 2, NOW(), 'You forgot a semicolon ;', 0, 'pending', '');
 
 COMMIT;
 

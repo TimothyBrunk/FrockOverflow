@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.User;
+import entities.Answer;
+import entities.Question;
 
 public class TestOverflowDB {
 	private EntityManagerFactory emf;
@@ -28,6 +30,7 @@ public class TestOverflowDB {
 		User u = em.find(User.class, 1001);
 		assertEquals("Sarah", u.getFirstName());
 		assertEquals(1, u.getQuestions().size());
+		assertEquals(1, u.getAnswers().size());
 	}
 	
 	@After
