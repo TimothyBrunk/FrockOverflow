@@ -1,16 +1,27 @@
 package entities;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String type;
+	@Column(name="display_name")
 	private String displayName;
-	private String dateCreated;
+	@Column(name="date_created")
+	private Date dateCreated;
 	private String password;
-	private String securityQuestion;
-	private String securityAnswer;
 	
 	public User(){}
 
@@ -54,11 +65,11 @@ public class User {
 		this.displayName = displayName;
 	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -70,21 +81,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getSecurityQuestion() {
-		return securityQuestion;
-	}
-
-	public void setSecurityQuestion(String securityQuestion) {
-		this.securityQuestion = securityQuestion;
-	}
-
-	public String getSecurityAnswer() {
-		return securityAnswer;
-	}
-
-	public void setSecurityAnswer(String securityAnswer) {
-		this.securityAnswer = securityAnswer;
-	}
 
 	public int getId() {
 		return id;
@@ -93,8 +89,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User= " + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", type="
-				+ type + ", displayName=" + displayName + ", dateCreated=" + dateCreated + ", password=" + password
-				+ ", securityQuestion=" + securityQuestion + ", securityAnswer=" + securityAnswer;
+				+ type + ", displayName=" + displayName + ", dateCreated=" + dateCreated + ", password=" + password;
 	}
 	
 	
