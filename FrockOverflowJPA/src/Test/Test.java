@@ -17,15 +17,11 @@ public class Test {
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		User u =  new User();
-		u.setFirstName("Brenton");
-		u.setLastName("Gumucio");
-		u.setEmail("brenton.gumucio@gmail.com");
-		u.setDisplayName("BGGumucio");
-		u.setDateCreated(new Date());
-		u.setType(1);
-		em.persist(u);
+		User u =  em.find(User.class, 1003);
+		u.setPassword("brenton");
 		em.getTransaction().commit();
+		
+		
 		em.close();
 		emf.close();
 	}
