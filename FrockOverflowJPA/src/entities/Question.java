@@ -2,18 +2,18 @@ package entities;
 
 public class Question {
 	private int id;
-	private int user_id;
+	private int userId;
 	private String body;
 	private String timestamp;
 	
 	public Question(){}
 
-	public int getUser_id() {
-		return user_id;
+	public int getuserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setuserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getBody() {
@@ -38,7 +38,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question= " + id + ", user_id=" + user_id + ", body=" + body + ", timestamp=" + timestamp;
+		return "Question= " + id + ", userId=" + userId + ", body=" + body + ", timestamp=" + timestamp;
 	}
 	
 	
