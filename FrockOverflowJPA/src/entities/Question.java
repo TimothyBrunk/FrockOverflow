@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,8 +16,8 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private StringBuilder body;
-	private String timestamp;
+	private String body;
+	private Date timestamp;
 	
 
 	@ManyToOne
@@ -30,11 +31,11 @@ public class Question {
 		super();
 	}
 
-	public StringBuilder getBody() {
+	public String getBody() {
 		return body;
 	}
 
-	public void setBody(StringBuilder body) {
+	public void setBody(String body) {
 		this.body = body;
 	}
 	public User getUser() {
@@ -45,11 +46,11 @@ public class Question {
 		this.user = user;
 	}
 
-	public String getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(String timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
