@@ -16,7 +16,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String type;
+	private int type;
 	@Column(name="display_name")
 	private String displayName;
 	@Column(name="date_created")
@@ -49,11 +49,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

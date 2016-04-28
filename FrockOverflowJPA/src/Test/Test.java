@@ -1,5 +1,7 @@
 package Test;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,9 +16,16 @@ public class Test {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("frockoverflowdb");
 		EntityManager em = emf.createEntityManager();
 		
-		String query = "SELECT u FROM User u";
-		User u = em.createQuery(query, User.class).getSingleResult();
-		System.out.println(u);
+		em.getTransaction().begin();
+		User u =  new User();
+		u.setFirstName("Brenton");
+		u.setLastName("Gumucio");
+		u.setEmail("brenton.gumucio@gmail.com");
+		u.setDisplayName("BGGumucio");
+		u.setDateCreated(new Date());
+		u.setType(1);
+		em.persist(u);
+		em.getTransaction().commit();
 		em.close();
 		emf.close();
 	}
