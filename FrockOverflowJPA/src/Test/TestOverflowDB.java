@@ -33,6 +33,12 @@ public class TestOverflowDB {
 		assertEquals(1, u.getAnswers().size());
 	}
 	
+	@Test
+	public void testQuestion() {
+		Question q = em.find(Question.class, 1);
+		assertEquals(1001, q.getUser().getId());
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 		

@@ -16,17 +16,12 @@ public class Answer {
 	private int id;
 	private String body;
 	private Date timestamp;
-	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
-
-
 	@ManyToOne
 	@JoinColumn(name="question_id")
 	private Question question;
-
 	
 	public Answer(){
 		super();
@@ -36,16 +31,13 @@ public class Answer {
 		return user;
 	}
 	
-	
 	public void setUser(User user) {
 		this.user = user;
 	}
 	
-	
 	public Question getQuestion() {
 		return question;
 	}
-	
 	
 	public void setQuestion(Question question) {
 		this.question = question;
@@ -54,26 +46,20 @@ public class Answer {
 		return body;
 	}
 
-
 	public void setBody(String body) {
 		this.body = body;
 	}
-
-
 	public Date getTimestamp() {
 		return timestamp;
 	}
-
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	@Override
 	public String toString() {

@@ -18,23 +18,25 @@ public class Question {
 	private int id;
 	private String body;
 	private Date timestamp;
-	
-
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
 	@OneToMany(mappedBy="question")
 	private List<Answer> answers;
 	
 	public Question(){
 		super();
 	}
-
+	
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
 	public String getBody() {
 		return body;
 	}
-
 	public void setBody(String body) {
 		this.body = body;
 	}
