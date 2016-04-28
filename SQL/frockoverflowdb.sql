@@ -7,6 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema frockoverflowdb
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `frockoverflowdb` ;
 
 -- -----------------------------------------------------
 -- Schema frockoverflowdb
@@ -70,19 +71,6 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `frockoverflowdb`.`questiontags`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `frockoverflowdb`.`questiontags` ;
-
-CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`questiontags` (
-  `id` INT NOT NULL,
-  `question_id` VARCHAR(45) NULL,
-  `tag_id` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -92,7 +80,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `frockoverflowdb`;
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`, `answer_id`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 1, 'lobes', NOW(), 'stub', NULL);
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`, `answer_id`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 1, 'lobes', 'NOW()', 'stub', NULL);
 
 COMMIT;
 
