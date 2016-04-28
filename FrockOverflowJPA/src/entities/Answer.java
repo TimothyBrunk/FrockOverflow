@@ -3,7 +3,7 @@ package entities;
 public class Answer {
 	
 	private int id;
-	private int user_id;
+	private int userId;
 	private String body;
 	private String timestamp;
 
@@ -11,13 +11,13 @@ public class Answer {
 	public Answer(){}
 
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser_id(int userId) {
+		this.userId = userId;
 	}
 
 
@@ -48,7 +48,7 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer= " + id + ", user_id=" + user_id + ", body=" + body + ", timestamp=" + timestamp + "]";
+		return "Answer= " + id + ", user_id=" + userId + ", body=" + body + ", timestamp=" + timestamp + "]";
 	}
 	
 	
