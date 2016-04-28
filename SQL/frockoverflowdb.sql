@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS `frockoverflowdb`.`question` ;
 
 CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`question` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `time_stamp` DATE NOT NULL,
+  `timestamp` DATE NOT NULL,
   `body` VARCHAR(45) NOT NULL,
   `status` VARCHAR(45) NULL,
   `rating` INT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
   `user_id` INT NOT NULL,
   `rating` INT NULL,
   `answer_status` VARCHAR(45) NULL,
-  `time_stamp` DATETIME NULL,
+  `timestamp` DATE NULL,
   `flag` VARCHAR(45) NULL,
   `answer_id` INT NOT NULL,
   PRIMARY KEY (`id`))
