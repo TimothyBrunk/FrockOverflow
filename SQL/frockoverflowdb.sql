@@ -21,7 +21,7 @@ USE `frockoverflowdb` ;
 DROP TABLE IF EXISTS `frockoverflowdb`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`user` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NULL,
   `lastname` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
@@ -41,14 +41,14 @@ CREATE UNIQUE INDEX `email_UNIQUE` ON `frockoverflowdb`.`user` (`email` ASC);
 DROP TABLE IF EXISTS `frockoverflowdb`.`question` ;
 
 CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`question` (
-  `id` INT NOT NULL,
-  `time_stamp` DATETIME NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `time_stamp` DATE NOT NULL,
   `body` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
+  `status` VARCHAR(45) NULL,
   `rating` INT NULL,
   `views` INT NULL,
   `flag` VARCHAR(45) NULL,
-  `user_id` INT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
