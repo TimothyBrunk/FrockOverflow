@@ -32,10 +32,6 @@
 </head>
 
 <body>
-<form action="GetQuestionByID.do" method="GET">
-	What question would you like to return?<input type="text" name="id"><br>
-	<input type="submit" name="submit" value="submit"/>
-</form>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -57,16 +53,7 @@
                         <a href="index.jsp">Home</a>
                     </li>
                     <li>
-                        <a href="http://www.timothybrunk.com">Timothy Brunk</a>
-                    </li>
-                    <li>
-                        <a href="About.jsp">About</a>
-                    </li>
-                    <li>
-                        <a href="MyGrade.jsp">My Grade</a>
-                    </li>
-                   
-                </ul>
+            
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -82,12 +69,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>Top Secret Research and Design</h1>
-                        <h3>Employee Database</h3>
+                        <h1>FrockOverflow</h1>
+                        <h3>Question and Answer Forum</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                            <form action="GetAllEmployees.do" method="POST" >
+                        <!--     <form action="GetAllEmployees.do" method="POST" >
                                 <input type ="submit" value="List All Employees" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"></span>
                                </form> 
                             </li>
@@ -95,12 +82,12 @@
                             <form action="AddEmployee.do" method="POST" > 
                                 <input type="submit" value="Add New Employee" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
                                 
-                                </form>
+                                </form> -->
                             </li><br><br>
                             <li>
                             <form action="GetQuestionByID.do" method="GET">
-                        <input id="idtext" type="text" name="id" placeholder="Search By Id Number" required style="width: 200px; height: 40px;"/>
-                                <input type="submit" value="Search By Id" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
+                        <input id="idtext" type="text" name="id" placeholder="Search By Question Id" required style="width: 200px; height: 40px;"/>
+                                <input type="submit" value="Search By Question Id" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
                                 </form>
                             </li>
                             <br>

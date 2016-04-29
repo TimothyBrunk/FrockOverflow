@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Employee Database</title>
+</head>
+<body>
+<form action="GetEmployeeById.do" method="GET">
+	<br>
+	ID: <input type="text" name="id" placeholder="Example: 1123" required/>
+	<input type="submit" value="Find Employee by ID" />
+</form>
+<form action="GetEmployeeByName.do" method="GET">
+	<br>
+	Name <input type="text" name="firstname" required placeholder="FirstName" /><input type="text" name="lastname" required placeholder="LastName" />
+	<input type="submit" value="Find Employee by Name" />
+</form>
+<form action="GetAllEmployees.do" method="POST" id="inputtext">
+<br><br>
+	<input type="submit" name="Get All Employees" value="Get All Employees"/>
+	<br>
+</form>
+<form action="AddEmployee.do" method="POST" id="inputtext">
+<br><br>
+	<input type="submit" name="Add Employee" value="Add Employee"/>
+	<br>
+</form>
+
+</body>
+</html>

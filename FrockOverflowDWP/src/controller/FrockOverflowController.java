@@ -22,4 +22,12 @@ public class FrockOverflowController {
 			mv.addObject("question", q); 
 			return mv;
 		}
+		@RequestMapping("CreateQuestion.do")
+		public ModelAndView getCreateQuestion(Question question){
+			Question c = frockoverflowdao.createQuestion(question); 
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("results.jsp");
+			mv.addObject("create", c); 
+			return mv;
+		}
 }
