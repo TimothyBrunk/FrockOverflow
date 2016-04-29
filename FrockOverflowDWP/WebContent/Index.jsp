@@ -98,7 +98,7 @@
                                 </form>
                             </li><br><br>
                             <li>
-                            <form action="GetQuestionById.do" method="GET">
+                            <form action="GetQuestionByID.do" method="GET">
                         <input id="idtext" type="text" name="id" placeholder="Search By Id Number" required style="width: 200px; height: 40px;"/>
                                 <input type="submit" value="Search By Id" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
                                 </form>

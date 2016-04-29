@@ -12,11 +12,11 @@ public class FrockOverflowController {
 	    private FrockOverflowDao frockoverflowdao;
 	    
 		@RequestMapping("GetQuestionByID.do")
-		public ModelAndView getQuestionByID(int id){
-			Question q = frockoverflowdao.getQuestionById(id); 
+		public ModelAndView getQuestion(int id){
+			Question q = frockoverflowdao.getQuestion(id); 
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("resultEmpById2.jsp");
-			mv.addObject("question", id); 
+			mv.setViewName("result.jsp");
+			mv.addObject("question", q); 
 			return mv;
 		}
 }
