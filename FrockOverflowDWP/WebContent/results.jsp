@@ -7,6 +7,10 @@
 <title>Question</title>
 </head>
 <body>
+<form action="createQuestion.do" method="GET">
+<input type="text" name="body">
+<input type="text" name="user" value="${user.id}">
+</form>
 Question is:
 ${question.body}
 <br>Submitted by:
