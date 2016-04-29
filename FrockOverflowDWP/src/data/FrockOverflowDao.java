@@ -4,12 +4,17 @@ import java.util.List;
 
 import entities.Answer;
 import entities.Question;
+import entities.User;
 
-public interface FrockOverflowDao {
-	public Question getQuestion(int id);
+interface FrockOverflowDao {
+	Question getQuestion(int id);
 
-	public List <Question> createQuestion(Question q);
+	List <Question> createQuestion(Question q);
 
-	public Answer postAnswer(Answer a); 
+	Answer postAnswer(Answer a);
+
+	User createUser(User u);
+
+	User getUser(String email, String password); 
 
 }

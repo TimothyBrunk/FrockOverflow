@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Answer;
 import entities.Question;
+import entities.User;
 
 @Transactional
 public class FrockOverflowDBDAO implements FrockOverflowDao {
@@ -35,7 +36,21 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		em.persist(a);
 		return a;
 	}
-	
+	@Override
+	public User createUser(User u){
+		return u;
+	}
+	@Override
+	public User getUser(String email, String password){
+		User u = em.createQuery("SELECT u from User u WHERE email = " + email, User.class).getSingleResult();
+		User guest = em.createQuery("SELECT u from User WHERE id = 1000", User.class).getSingleResult();
+		if(u.getPassword().equals(password)){
+			return u;
+		}
+		else{
+			return guest;
+		}
+	}
 
 
 }
