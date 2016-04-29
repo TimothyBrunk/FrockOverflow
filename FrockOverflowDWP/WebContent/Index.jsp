@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="process.pattern" method="GET">
-	parameter 1<input type="text" name="param" value=""><br>
+	What question would you like to return?<input type="text" name="param" value=""><br>
 	<input type="submit" name="submit" value="submit"/>
 </form>
 
