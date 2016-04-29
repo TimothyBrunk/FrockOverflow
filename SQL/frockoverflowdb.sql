@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
   `question_id` INT NOT NULL,
   `timestamp` DATE NOT NULL,
   `body` VARCHAR(1000) NOT NULL,
-  `rating` INT NULL DEFAULT 0,
   `answer_status` VARCHAR(45) NULL DEFAULT 'Pending',
+  `rating` INT NULL DEFAULT 0,
   `flag` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -103,8 +103,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `frockoverflowdb`;
-INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (1, 1002, 1, NOW(), 'Try turning the machine \"on\"', 0, 'pending', '');
-INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `rating`, `answer_status`, `flag`) VALUES (2, 1001, 2, NOW(), 'You forgot a semicolon ;', 0, 'pending', '');
+INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `answer_status`, `rating`, `flag`) VALUES (1, 1002, 1, NOW(), 'Try turning the machine \"on\"', 'pending', 0, '');
+INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timestamp`, `body`, `answer_status`, `rating`, `flag`) VALUES (2, 1001, 2, NOW(), 'You forgot a semicolon ;', 'pending', 0, '');
 
 COMMIT;
 

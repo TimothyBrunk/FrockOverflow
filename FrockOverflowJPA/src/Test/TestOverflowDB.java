@@ -37,8 +37,16 @@ public class TestOverflowDB {
 	public void testQuestion() {
 		Question q = em.find(Question.class, 1);
 		assertEquals(1001, q.getUser().getId());
+		assertEquals(1, q.getAnswers().size());
 	}
 	
+	@Test
+	public void testAnswer() {
+		Answer a = em.find(Answer.class, 1);
+		assertEquals(1002, a.getUser().getId());
+		assertEquals("Try turning the machine \"on\"", a.getBody());
+	}
+
 	@After
 	public void tearDown() throws Exception {
 		
