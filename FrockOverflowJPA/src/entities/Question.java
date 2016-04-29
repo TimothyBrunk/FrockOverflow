@@ -34,6 +34,22 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
+	
+	public void addAnswer(Answer answer) {
+		if (!getAnswers().contains(answer)) {
+			getAnswers().add(answer);
+			if (answer.getQuestion() != null) {
+				answer.getQuestion().getAnswers().remove(answer);
+			}
+		}
+	}
+	
+	public void removeAnswer(Answer answer) {
+		if (getAnswers().contains(answer)) {
+			getAnswers().remove(answer);
+			answer.setQuestion(null);
+		}
+	}
 	public String getBody() {
 		return body;
 	}
