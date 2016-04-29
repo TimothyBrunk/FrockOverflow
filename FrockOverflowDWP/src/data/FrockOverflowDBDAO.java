@@ -1,10 +1,13 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Answer;
 import entities.Question;
 
 @Transactional
@@ -19,6 +22,20 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		em.detach(q);
 		return q;
 	}
+	@Override
+	public List<Question> createQuestion(Question q){
+		em.persist(q);
+		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
+		
+		return ql;	
+	}
+	
+	@Override
+	public Answer postAnswer(Answer a){
+		em.persist(a);
+		return a;
+	}
+	
 
 
 }
