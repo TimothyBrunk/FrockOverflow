@@ -6,7 +6,7 @@ import entities.Answer;
 import entities.Question;
 import entities.User;
 
-interface FrockOverflowDao {
+public interface FrockOverflowDao {
 	Question getQuestion(int id);
 
 	List <Question> createQuestion(Question q);
