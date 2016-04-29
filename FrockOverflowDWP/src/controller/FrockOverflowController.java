@@ -9,7 +9,14 @@ import entities.Question;
 
 public class FrockOverflowController {
 	 @Autowired    // Un-comment this section if using Autowiring.
-	    private FrockOverflowDao frockoverflowdbdao;
-	
+	    private FrockOverflowDao frockoverflowdao;
+	    
+		@RequestMapping("GetQuestionByID.do")
+		public ModelAndView getQuestion(int id){
+			Question q = frockoverflowdao.getQuestion(id); 
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("result.jsp");
+			mv.addObject("question", q); 
+			return mv;
 		}
 }

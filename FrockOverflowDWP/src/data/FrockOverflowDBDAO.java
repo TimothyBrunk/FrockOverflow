@@ -10,16 +10,15 @@ import entities.Question;
 @Transactional
 public class FrockOverflowDBDAO implements FrockOverflowDao {
 	@PersistenceContext
+	private EntityManager em;
 	
-		
-	}
 
 	@Override
 	public Question getQuestionById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Question q = em.find(Question.class, id);
+		em.detach(q);
+		return q;
 	}
-
 
 
 }
