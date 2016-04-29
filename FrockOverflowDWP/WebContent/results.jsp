@@ -9,5 +9,9 @@
 <body>
 Question is:
 ${question.body}
+<br>Submitted by:
+${question.user.displayName}
+<br>On: 
+${question.timestamp}
 </body>
 </html>

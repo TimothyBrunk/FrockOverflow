@@ -33,7 +33,7 @@
 
 <body>
 <form action="GetQuestionByID.do" method="GET">
-	What question would you like to return?<input type="text" name="id" ><br>
+	What question would you like to return?<input type="text" name="id"><br>
 	<input type="submit" name="submit" value="submit"/>
 </form>
 
