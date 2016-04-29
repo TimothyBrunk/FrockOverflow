@@ -14,7 +14,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	
 
 	@Override
-	public Question getQuestionById(int id) {
+	public Question getQuestion(int id) {
 		Question q = em.find(Question.class, id);
 		em.detach(q);
 		return q;
