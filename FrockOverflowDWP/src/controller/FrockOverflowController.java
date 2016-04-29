@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.FrockOverflowDao;
+import entities.Answer;
 import entities.Question;
 import entities.User;
 
@@ -42,4 +43,33 @@ public class FrockOverflowController {
 			mv.addObject("create", c); 
 			return mv;
 		}
+		@RequestMapping("")
+		public ModelAndView postAnswer(Answer a){
+			Answer answer = frockoverflowdao.postAnswer(a); 
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("results.jsp");
+			mv.addObject("post", answer); 
+			return mv;
+		}
+		@RequestMapping("")
+		public ModelAndView createUser(User u){
+			User user = frockoverflowdao.createUser(u); 
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("results.jsp");
+			mv.addObject("create", user); 
+			return mv;
+		}
+
+		@RequestMapping("")
+		public ModelAndView getUser(String email, String password){
+			User user = new User(); 
+			ModelAndView mv = new ModelAndView();
+			user.setEmail(email);
+			user.setPassword(password);
+			mv.setViewName("results.jsp");
+			mv.addObject("user", user); 
+			return mv;
+		}
+		
+		
 }

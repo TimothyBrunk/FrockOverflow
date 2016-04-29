@@ -97,7 +97,7 @@
                             <br>
                             <li>
                             <form action="CreateQuestion.do" method="POST" id="inputtext">
-                        <textarea class ="textbox" maxlength="1000" rows="15" form="inputtext" id="" type="text" name="questionbox" cols="55" wrap="soft"> </textarea> <br>
+                        <textarea class ="textbox" maxlength="1000" rows="15" form="inputtext" placeholder="Please Submit Your Awesome Question" id="" type="text" name="questionbox" cols="55" wrap="soft"> </textarea> <br>
                                 <input type="submit" value="Submit Question" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
                                 </form>
                             </li>
