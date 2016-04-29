@@ -60,7 +60,7 @@ public class FrockOverflowController {
 			return mv;
 		}
 
-		@RequestMapping("")
+		@RequestMapping("GetUser")
 		public ModelAndView getUser(String email, String password){
 			User user = new User(); 
 			ModelAndView mv = new ModelAndView();
