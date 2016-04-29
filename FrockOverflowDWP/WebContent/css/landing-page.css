@@ -172,3 +172,7 @@ p.copyright {
 	color:black; 
 	text-align:center; 
 }
+.textbox { 
+	color:black; 
+	rows:15;
+}

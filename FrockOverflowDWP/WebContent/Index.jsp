@@ -50,7 +50,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.jsp">Home</a>
+                        <a href="index.jsp">Home</a>                      
+                    </li>
+                    <li>
+                        <a href="index.jsp">Log In </a>                      
                     </li>
                     <li>
             
@@ -93,10 +96,9 @@
                             <br>
                             <br>
                             <li>
-                            <form action="GetEmployeeByName.do" method="GET">
-                        <input id="idtext" type="text" name="firstname" placeholder="FirstName" required style="width: 200px; height: 40px;"/>
-                        <input id="idtext" type="text" name="lastname" placeholder="LastName" required style="width: 200px; height: 40px;"/>
-                                <input type="submit" value="Search by Name" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
+                            <form action="CreateQuestion.do" method="POST" id="inputtext">
+                        <textarea class ="textbox" maxlength="1000" rows="15" form="inputtext" id="" type="text" name="questionbox" cols="55" wrap="soft"> </textarea> <br>
+                                <input type="submit" value="Submit Question" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
                                 </form>
                             </li>
                         
