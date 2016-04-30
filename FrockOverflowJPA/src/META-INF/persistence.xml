@@ -9,7 +9,6 @@
         <class>entities.User</class>
         <class>entities.Question</class>
         <class>entities.Answer</class>
-    
         
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/frockoverflowdb" />

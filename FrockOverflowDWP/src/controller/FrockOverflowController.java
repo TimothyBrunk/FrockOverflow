@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,58 +19,115 @@ import entities.User;
 @Controller
 @SessionAttributes("user")
 public class FrockOverflowController {
-	 @Autowired
-	    private FrockOverflowDao frockoverflowdao;
-	 
-	 @ModelAttribute("user")
-	 public User initUser() {
-		 return new User(); 
-	 }
-	    
-		@RequestMapping("GetQuestionByID.do")
-		public ModelAndView getQuestion(@RequestParam("id")int id){
-			Question q = frockoverflowdao.getQuestion(id); 
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("results.jsp");
-			mv.addObject("question", q); 
-			return mv;
-		}
-		
-		@RequestMapping("CreateQuestion.do")
-		public ModelAndView getCreateQuestion(Question question){
-			List <Question> c = frockoverflowdao.createQuestion(question); 
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("results.jsp");
-			mv.addObject("create", c); 
-			return mv;
-		}
-		@RequestMapping("")
-		public ModelAndView postAnswer(Answer a){
-			Answer answer = frockoverflowdao.postAnswer(a); 
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("results.jsp");
-			mv.addObject("post", answer); 
-			return mv;
-		}
-		@RequestMapping("")
-		public ModelAndView createUser(User u){
-			User user = frockoverflowdao.createUser(u); 
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("results.jsp");
-			mv.addObject("create", user); 
-			return mv;
-		}
+	@Autowired
+	private FrockOverflowDao frockoverflowdao;
 
-		@RequestMapping("GetUser")
-		public ModelAndView getUser(String email, String password){
-			User user = new User(); 
-			ModelAndView mv = new ModelAndView();
-			user.setEmail(email);
-			user.setPassword(password);
-			mv.setViewName("results.jsp");
-			mv.addObject("user", user); 
-			return mv;
+	@ModelAttribute("user")
+	public User initUser() {
+		return new User();
+	}
+
+	@RequestMapping("search.do")
+	public ModelAndView searchQuestions(@RequestParam("submit") String searchBy) {
+		List<Question> qList = new ArrayList<>();
+		switch(searchBy) {
+		case "View All Questions":
+			qList = frockoverflowdao.getAllQuestions();
+			break;
+		case "View All Posted Questions":
+			qList = frockoverflowdao.getAllPostedQuestions();
+			break;
+		case "View All Answered Questions":
+			qList = frockoverflowdao.getAllAnsweredQuestions();
+			break;
+		case "View All Resolved Questions":
+			qList = frockoverflowdao.getAllResolvedQuestions();
+			break;
 		}
+		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
+		System.out.println(qList.size());
+		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
+		return mv;
 		
+	}
+	
+	@RequestMapping("getQuestionByID.do")
+	public ModelAndView getQuestion(@ModelAttribute("user") User user, @RequestParam("id") int id) {
+		Question q = frockoverflowdao.getQuestion(id);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results.jsp");
+		mv.addObject("question", q);
+		mv.addObject("user", user);
+		return mv;
+	}
+
+	@RequestMapping("createQuestion.do")
+	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user) {
+		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results.jsp");
+		mv.addObject("updatedQuestionList", updatedQuestionList);
+		return mv;
+	}
+
+	@RequestMapping("postAnswer.do")
+	public ModelAndView postAnswer(Answer a, @ModelAttribute("user") User user,
+			@RequestParam("question_id") int q) {
+		Question question = frockoverflowdao.postAnswer(a, user, q);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results.jsp");
 		
+		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(question.getId());
+		for(Answer ans : answers) {
+			System.out.println(ans.getBody());
+		}
+		mv.addObject("answersByQ", answers);
+		mv.addObject("answeredQuestion", question);
+		return mv;
+	}
+	
+	@RequestMapping("acceptAnswer.do")
+	public ModelAndView acceptAnswer(@RequestParam("answer_id") int id) {
+		Question q = frockoverflowdao.acceptAnswer(id);
+		ModelAndView mv = new ModelAndView("results.jsp", "acceptedAnswerQuestion", q);
+		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(q.getId());
+		for(Answer ans : answers) {
+			System.out.println(ans.getBody());
+		}
+		mv.addObject("answersByQ", answers);
+		return mv;
+	}
+	
+	@RequestMapping("getAnswers.do")
+	public ModelAndView getAnswers(int id) {
+		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(id);
+		Question q = frockoverflowdao.getQuestion(id);
+		ModelAndView mv = new ModelAndView("results.jsp", "answersByQ", answers);
+		mv.addObject("answeredQuestion", q);
+		return mv;
+	}
+
+	@RequestMapping("")
+	public ModelAndView createUser(User u) {
+		User user = frockoverflowdao.createUser(u);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results.jsp");
+		mv.addObject("create", user);
+		return mv;
+	}
+
+	@RequestMapping("getUser.do")
+	public ModelAndView getUser(@ModelAttribute("user") User login, @RequestParam("email") String email,
+			@RequestParam("password") String password) {
+		ModelAndView mv = new ModelAndView();
+		login = frockoverflowdao.getUser(email, password);
+		List<Question> userQuestions = frockoverflowdao.getQuestionsByUser(login);
+		System.out.println(login);
+		mv.setViewName("results.jsp");
+		mv.addObject("user", login);
+		mv.addObject("userQuestions", userQuestions);
+		mv.addObject("updatedQuestionList", frockoverflowdao.getAllQuestions());
+		return mv;
+	}
+
 }

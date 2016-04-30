@@ -1,6 +1,7 @@
 package Test;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,30 +22,12 @@ public class Test {
 		
 		EntityTransaction et = em.getTransaction();
 		et.begin();
-		User u = em.find(User.class, 1003);
-		
-		Question q = new Question();
-		String sb = "Where does snow come from, and why can't I make it using this script?";
-		q.setBody(sb);
-		q.setTimestamp(new Date());
-		System.out.println(u);
-		q.setUser(u);
-		
-		em.persist(q);
-		
-		
-//		Question q = em.find(Question.class, 4);
-		System.out.println(q.getUser());
-		
-		Answer a = new Answer();
-		a.setBody("Take a nap");
-		a.setUser(u);
-		a.setQuestion(q);
-		
-		em.persist(a);
-		
-		em.remove(q);
-		et.commit();
+		User u = em.createQuery("SELECT u from User u WHERE email = 'sarah.lobser@gmail.com'", User.class).getSingleResult();
+		System.out.println(u.getId() + "");
+		List<Question> userQuestions = em.createQuery("SELECT q from Question q WHERE user.id = 10", Question.class).getResultList();
+		System.out.println(userQuestions.size());
+		System.out.println(userQuestions);
+//		et.commit();
 		
 //		em.persist(q);
 //		em.getTransaction().commit();

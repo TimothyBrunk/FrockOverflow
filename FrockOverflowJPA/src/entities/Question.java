@@ -3,7 +3,10 @@ package entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,10 +26,20 @@ public class Question {
 	private User user;
 	@OneToMany(mappedBy="question")
 	private List<Answer> answers;
+	@Enumerated(EnumType.STRING)
+	private QuestionStatus status;
 	
 	public Question(){
 		super();
 	}
+	public QuestionStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(QuestionStatus status) {
+		this.status = status;
+	}
+
 	
 	public List<Answer> getAnswers() {
 		return answers;
@@ -41,6 +54,7 @@ public class Question {
 			if (answer.getQuestion() != null) {
 				answer.getQuestion().getAnswers().remove(answer);
 			}
+		this.setStatus(QuestionStatus.Answered);
 		}
 	}
 	
