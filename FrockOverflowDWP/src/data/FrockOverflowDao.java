@@ -9,9 +9,23 @@ import entities.User;
 public interface FrockOverflowDao {
 	Question getQuestion(int id);
 
-	List <Question> createQuestion(Question q);
+	List <Question> createQuestion(Question q, User u);
+	
+	List<Question> getAllQuestions();
+	
+	List<Question> getAllPostedQuestions();
+	
+	List<Question> getAllAnsweredQuestions();
+	
+	List<Question> getAllResolvedQuestions();
+	
+	List<Question> getQuestionsByUser(User u);
 
-	Answer postAnswer(Answer a);
+	Question postAnswer(Answer a, User user, int q);
+	
+	Question acceptAnswer(int id);
+	
+	List<Answer> getAnswersByQuestionId(int questionId);
 
 	User createUser(User u);
 

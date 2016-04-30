@@ -12,6 +12,16 @@ html {
 body {
   margin: 0;
 }
+
+.questionBlock {
+	border: 1px;
+	background-color: #eeeeee;
+}
+
+.answerBlock {
+	background-color: #ddeeff;
+}
+
 article,
 aside,
 details,

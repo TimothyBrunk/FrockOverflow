@@ -2,7 +2,10 @@ package entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,9 +25,21 @@ public class Answer {
 	@ManyToOne
 	@JoinColumn(name="question_id")
 	private Question question;
+	@Enumerated(EnumType.STRING)
+	@Column(name="answer_status")
+	private AnswerStatus status;
 	
 	public Answer(){
 		super();
+	}
+
+	
+	public AnswerStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(AnswerStatus status) {
+		this.status = status;
 	}
 
 	public User getUser() {

@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +40,7 @@
 </head>
 
 <body>
+
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top topnav"
@@ -78,11 +83,13 @@
 		<div id="login" class="w3-container" style="display: none">
 		<span onclick="this.parentElement.style.display='none'"
 			class="w3-closebtn">&times;</span>
-		<form action="GetUser.do" method="POST" > 
-			<input type="text" name="email" placeholder="Email"> <input
-				type="text" name="password" placeholder="Password">
-
+<!-- ********************************LOGIN FORM********************************************************** -->
+		<form action="getUser.do" method="GET" > 
+			<input type="text" name="email" placeholder="Email"> 
+			<input type="text" name="password" placeholder="Password">
+			<input type="submit" name="submit">
 		</form>
+		
 	</div>
 
 			<div class="row">
@@ -95,20 +102,8 @@
 						<hr class="intro-divider">
 						<ul class="list-inline intro-social-buttons">
 							<li>
-								<!--     <form action="GetAllEmployees.do" method="POST" >
-                                <input type ="submit" value="List All Employees" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"></span>
-                               </form> 
-                            </li>
-                            <li>
-                            <form action="AddEmployee.do" method="POST" > 
-                                <input type="submit" value="Add New Employee" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span>
-                                
-                                </form> -->
-							</li>
-							<br>
-							<br>
-							<li>
-								<form action="GetQuestionByID.do" method="GET">
+<!-- *********************************************GET QUESTION BY ID FORM********************************* -->
+								<form action="getQuestionByID.do" method="GET">
 									<input id="idtext" type="text" name="id"
 										placeholder="Search By Question Id" required
 										style="width: 200px; height: 40px;" /> <input type="submit"
@@ -119,7 +114,7 @@
 							<br>
 							<br>
 							<li>
-								<form action="CreateQuestion.do" method="POST" id="inputtext">
+<!-- *******************************************CREATE QUESTION FORM***************************************-->								<form action="createQuestion.do" method="POST" id="inputtext">
 									<textarea class="textbox" maxlength="1000" rows="15"
 										form="inputtext"
 										placeholder="Please Submit Your Awesome Question" id=""
