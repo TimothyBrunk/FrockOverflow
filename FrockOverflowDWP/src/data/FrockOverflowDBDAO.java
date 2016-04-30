@@ -38,6 +38,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 	@Override
 	public User createUser(User u){
+		em.persist(u);
 		return u;
 	}
 	@Override
