@@ -20,4 +20,5 @@
 		<property name="entityManagerFactory" ref="myEntityManagerFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
+	<mvc:annotation-driven />
 </beans>

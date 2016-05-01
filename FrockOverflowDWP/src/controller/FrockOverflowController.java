@@ -3,8 +3,11 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -111,7 +114,14 @@ public class FrockOverflowController {
 	}
 
 	@RequestMapping("addUser.do")
-	public ModelAndView createUser(User u) {
+	public ModelAndView createUser(/*@Valid*/ User u/*, BindingResult result*/) {
+//		if(result.hasErrors()){
+//			ModelAndView mv = new ModelAndView();
+//			mv.setViewName("results.jsp");
+//			String returned = "FORM VALIDATED BRO"; 
+//			mv.addObject("create", returned);
+//			return mv;
+//		}
 		User user = frockoverflowdao.createUser(u);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
