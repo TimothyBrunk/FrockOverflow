@@ -65,6 +65,8 @@
 						<button class="w3-btn w3-hover-blue" type="button"
 							onclick="document.getElementById('login').style.display='block'">Log
 							In</button>
+							<button class="w3-btn w3-hover-blue" type="button"
+							onclick="document.getElementById('createuser').style.display='block'">Create User</button>
 					</li>
 					<li>
 			</div>
@@ -83,11 +85,21 @@
 		<div id="login" class="w3-container" style="display: none">
 		<span onclick="this.parentElement.style.display='none'"
 			class="w3-closebtn">&times;</span>
+			</div>
 <!-- ********************************LOGIN FORM********************************************************** -->
 		<form action="getUser.do" method="GET" > 
 			<input type="text" name="email" placeholder="Email"> 
 			<input type="text" name="password" placeholder="Password">
 			<input type="submit" name="submit">
+		</form>
+		
+		<form action="addUser.do" method = GET>
+			<input type="text" name="email" placeholder="Email"> 
+			<input type="text" name="password" placeholder="Password">
+			<input type="text" name="firstName" placeholder="First Name">
+			<input type="text" name="lastName" placeholder="Last Name">
+			<input type="text" name="displayName" placeholder="Display Name">
+			<input type="submit" name="submit" value="Create User">
 		</form>
 		
 	</div>

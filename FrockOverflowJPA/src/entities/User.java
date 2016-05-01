@@ -96,8 +96,8 @@ public class User {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	public void setDateCreated(Date l) {
+		this.dateCreated = l;
 	}
 
 	public String getPassword() {

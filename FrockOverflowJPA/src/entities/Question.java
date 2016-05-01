@@ -3,7 +3,6 @@ package entities;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -82,8 +81,8 @@ public class Question {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public void setTimestamp(Date l) {
+		this.timestamp = l;
 	}
 
 	public int getId() {

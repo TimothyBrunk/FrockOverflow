@@ -15,17 +15,7 @@
 <div>
 <h2>User Information</h2>
 <p>You are currently logged in as: <strong>${user.displayName}</strong></p>
-<c:if test="${! empty userQuestions}">
-<h2>Questions asked by ${user.displayName}</h2>
-<ul>
-<c:forEach var="question" items="${userQuestions}">
-<li>
-${question.body}
-</li>
-</c:forEach>
-</ul>
-</c:if>
-</div>
+
 
 <!-- ***********************************NAVBAR*********************************************************-->
 <form action="search.do">
@@ -37,6 +27,10 @@ ${question.body}
 <li><input type="submit" name="submit" value="View All Answered Questions">
 </li>
 <li><input type="submit" name="submit" value="View All Resolved Questions">
+</li>
+<li><input type="submit" name="submit" value="View All My Questions">
+</li>
+<li><input type="hidden" name="user" value= "${user.id}"></input>
 </li>
 </ul>
 </form>

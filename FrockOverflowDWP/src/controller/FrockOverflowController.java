@@ -28,7 +28,7 @@ public class FrockOverflowController {
 	}
 
 	@RequestMapping("search.do")
-	public ModelAndView searchQuestions(@RequestParam("submit") String searchBy) {
+	public ModelAndView searchQuestions(@ModelAttribute("user") User login, @RequestParam("submit") String searchBy) {
 		List<Question> qList = new ArrayList<>();
 		switch(searchBy) {
 		case "View All Questions":
@@ -43,6 +43,9 @@ public class FrockOverflowController {
 		case "View All Resolved Questions":
 			qList = frockoverflowdao.getAllResolvedQuestions();
 			break;
+		case "View All My Questions":
+			qList = frockoverflowdao.getQuestionsByUser(login);
+			break;	
 		}
 		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
 		System.out.println(qList.size());
@@ -107,7 +110,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 
-	@RequestMapping("")
+	@RequestMapping("addUser.do")
 	public ModelAndView createUser(User u) {
 		User user = frockoverflowdao.createUser(u);
 		ModelAndView mv = new ModelAndView();

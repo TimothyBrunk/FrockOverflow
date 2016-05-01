@@ -29,6 +29,7 @@ public interface FrockOverflowDao {
 
 	User createUser(User u);
 
-	User getUser(String email, String password); 
+	User getUser(String email, String password);
+ 
 
 }

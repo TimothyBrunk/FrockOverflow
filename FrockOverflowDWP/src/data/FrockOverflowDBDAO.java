@@ -1,5 +1,6 @@
 package data;
 
+import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -93,9 +94,10 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		System.out.println(answers.size());
 		return answers;
 	}
-	
 	@Override
 	public User createUser(User u){
+		u.setDateCreated(new Date());
+		System.out.println(u.getFirstName());
 		em.persist(u);
 		return u;
 	}
