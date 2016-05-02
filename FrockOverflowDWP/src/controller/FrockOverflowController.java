@@ -83,11 +83,14 @@ public class FrockOverflowController {
 
 	@RequestMapping("createQuestion.do")
 	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user,
+			@ModelAttribute("tags") List<Tag> tags,
 			@RequestParam("keywords") String keywords) {
 		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
 		ModelAndView mv = new ModelAndView();
+		tags = frockoverflowdao.getTags();
 		mv.setViewName("results.jsp");
 		mv.addObject("updatedQuestionList", updatedQuestionList);
+		mv.addObject("tags", tags);
 		return mv;
 	}
 

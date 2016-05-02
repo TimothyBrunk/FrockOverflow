@@ -74,7 +74,7 @@
 			</form>
 			<!--**********************************************USER INFORMATION************************************-->
 			<ul class="logged">
-				<li class="logged">You are currently logged in as: <strong>${user.displayName}</strong></li>
+				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -134,7 +134,7 @@
 									value="View Answers">
 							</form>
 						</c:if>
-					</div> <c:if test="${user.type != 0}">
+					</div> <c:if test="${sessionScope.user.type != 0}">
 						<button id="viewanswers"
 							onclick="document.getElementById('postAnswerFor${question.id}').style.display='block'">
 							Answer This Question</button>
