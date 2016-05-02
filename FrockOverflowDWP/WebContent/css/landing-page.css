@@ -176,3 +176,43 @@ p.copyright {
 	color:black; 
 	rows:15;
 }
+.adduser {
+	color:black; 
+}
+.getUser {
+	color:black;
+}
+.logged { 
+	text-align:left; 
+	list-style:none;
+	
+}
+.fullQuestionBlock {
+	list-style:none; 
+}
+
+#searchbuttons {
+	list-style:none; 
+}
+#answerBlock {
+	list-style:none;
+	text-align:center; 
+	color:white; 
+}
+#questionBlock{
+	list-style:none; 
+	color:white; 
+}
+#question{
+	list-style:none; 
+}
+body {
+		background: url(../img/intro-bg.jpg)
+		no-repeat center center;
+}
+#Question {
+	color:white;
+}
+#viewanswers{
+	color:black;
+}

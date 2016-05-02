@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,11 +62,13 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.jsp">Home</a></li>
 					<li>
+			
 						<button class="w3-btn w3-hover-blue" type="button"
 							onclick="document.getElementById('login').style.display='block'">Log
 							In</button>
-							<button class="w3-btn w3-hover-blue" type="button"
-							onclick="document.getElementById('createuser').style.display='block'">Create User</button>
+						<button class="w3-btn w3-hover-blue" type="button"
+							onclick="document.getElementById('user').style.display='block'">Create
+							User</button>
 					</li>
 					<li>
 			</div>
@@ -75,75 +77,97 @@
 		<!-- /.container -->
 	</nav>
 
-	
+
 
 
 	<!-- Header -->
 	<a name="about"></a>
 	<div class="intro-header">
-		<div class="container">
+		<div class="container"></div>
+		<!-- ********************************LOGIN FORM********************************************************** -->
 		<div id="login" class="w3-container" style="display: none">
-		<span onclick="this.parentElement.style.display='none'"
-			class="w3-closebtn">&times;</span>
-			</div>
-<!-- ********************************LOGIN FORM********************************************************** -->
-		<form action="getUser.do" method="GET" > 
-			<input type="text" name="email" placeholder="Email"> 
-			<input type="text" name="password" placeholder="Password">
-			<input type="submit" name="submit">
-		</form>
-		
-		<form action="addUser.do" method = GET>
-			<input type="text" name="email" placeholder="Email"> 
-			<input type="text" name="password" placeholder="Password">
-			<input type="text" name="firstName" placeholder="First Name">
-			<input type="text" name="lastName" placeholder="Last Name">
-			<input type="text" name="displayName" placeholder="Display Name">
-			<input type="submit" name="submit" value="Create User">
-		</form>
-		
-	</div>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="intro-message">
-						<h1>
-							<img src="FrockOF.png">
-						</h1>
-						<h3>Question and Answer Forum</h3>
-						<hr class="intro-divider">
-						<ul class="list-inline intro-social-buttons">
-							<li>
-<!-- *********************************************GET QUESTION BY ID FORM********************************* -->
-								<form action="getQuestionByID.do" method="GET">
-									<input id="idtext" type="text" name="id"
-										placeholder="Search By Question Id" required
-										style="width: 200px; height: 40px;" /> <input type="submit"
-										value="Search By Question Id" class="btn btn-default btn-lg"><i
-										class="fa fa-github fa-fw"></i> <span class="network-name"></span>
-								</form>
-							</li>
-							<br>
-							<br>
-							<li>
-<!-- *******************************************CREATE QUESTION FORM***************************************-->								<form action="createQuestion.do" method="POST" id="inputtext">
-									<textarea class="textbox" maxlength="1000" rows="15"
-										form="inputtext"
-										placeholder="Please Submit Your Awesome Question" id=""
-										type="text" name="questionbox" cols="55" wrap="soft"> </textarea>
-									<br> <input type="submit" value="Submit Question"
-										class="btn btn-default btn-lg"><i
-										class="fa fa-github fa-fw"></i> <span class="network-name"></span>
-								</form>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-			</div>
+			<span onclick="this.parentElement.style.display='none'"
+				class="w3-closebtn">&times;</span>
+			<form class="getUser" action="getUser.do" method="GET">
+				<input type="text" name="email" placeholder="Email"> <input
+					type="password" name="password" placeholder="Password"> <input
+					type="submit" name="submit">
+			</form>
+		</div>
+		<div id="user" class="w3-container" style="display: none">
+			<span onclick="this.parentElement.style.display='none'"
+				class="w3-closebtn">&times;</span>
+			<form class="adduser" action="addUser.do" method=GET>
+				<input type="text" name="email" placeholder="Email"> <input
+					type="password" name="password" placeholder="Password"> <input
+					type="text" name="firstName" placeholder="First Name"> <input
+					type="text" name="lastName" placeholder="Last Name"> <input
+					type="text" name="displayName" placeholder="Display Name">
+				<input type="submit" name="submit" value="Create User">
+			</form>
 
 		</div>
-		<!-- /.container -->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="intro-message">
+					<h1>
+						<img src="FrockOF.png">
+					</h1>
+					<h3>Question and Answer Forum</h3>
+					<hr class="intro-divider">
+					<ul class="list-inline intro-social-buttons">
+						<li>
+							<!-- *********************************************GET QUESTION BY ID FORM********************************* -->
+			<!-- 							<form action="search.do">
+			<ul id="searchbuttons">
+				<li><input type="submit" name="submit"
+					value="View All Questions"></li>
+									</li> -->
+							<form action="search.do" >
+								
+								 <input type="submit" name="submit"
+									value="Post New Question" class="btn btn-default btn-lg"><i
+									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
+							</form>
+							<form action="search.do" >
+								
+								 <input type="submit" name="submit"
+									value="View All Questions" class="btn btn-default btn-lg"><i
+									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
+							</form>
+							<br>
+						</li>
+							<form action="getQuestionByID.do" method="GET">
+								<input id="idtext" type="text" name="id"
+									placeholder="Search By Question Id" required
+									style="width: 200px; height: 40px;" /> <input type="submit"
+									value="Search By Question Id" class="btn btn-default btn-lg"><i
+									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
+							</form>
+				
+						<br>
+						<br>
+						<li>
+							<!-- *******************************************CREATE QUESTION FORM***************************************-->
+							<form action="createQuestion.do" method="GET" id="inputtext">
+								<textarea class="textbox" maxlength="1000" rows="15"
+									form="inputtext"
+									placeholder="Please Submit Your Awesome Question" id=""
+									type="text" name="questionbox" cols="55" wrap="soft"> </textarea>
+								<br> <input type="submit" value="Submit Question"
+									class="btn btn-default btn-lg"><i
+									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
+							</form>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
 
 	</div>
 

@@ -142,5 +142,21 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", frockoverflowdao.getAllQuestions());
 		return mv;
 	}
+//	@RequestMapping("voteUp.do")
+//	public ModelAndView  voteUp (int rating){
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("results.jsp");
+//		mv.addObject("updatedQuestionList", updatedQuestionList);
+//		return mv;
+//	}
+//	@RequestMapping("voteDown.do")
+//	public ModelAndView  voteDown(int rating){
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("results.jsp");
+//		mv.addObject("updatedQuestionList", updatedQuestionList);
+//		return mv;
+//	}
 
 }

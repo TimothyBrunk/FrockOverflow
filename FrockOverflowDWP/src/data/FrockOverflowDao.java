@@ -30,6 +30,10 @@ public interface FrockOverflowDao {
 	User createUser(User u);
 
 	User getUser(String email, String password);
+	
+//	Answer voteUp (int rating); 
+	
+//	Answer voteDown (int rating); 
  
 
 }
