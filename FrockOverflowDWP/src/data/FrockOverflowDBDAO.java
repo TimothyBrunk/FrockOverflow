@@ -44,7 +44,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		}
 		for (Tag tag3 : usedTags) {
 			System.out.println("in usedTags arraylist");
-			returnedQuestions.add(em.createQuery("SELECT q from Question q join TagAssignment a on q.id = a.question.id where a.tag.id = " + tag3.getId(), Question.class).getSingleResult());
+			returnedQuestions.add(em.createQuery("SELECT q from Question q join q.tags t where t.id = " + tag3.getId(), Question.class).getSingleResult());
 		}
 		for (Question tag4 : returnedQuestions) {
 			System.out.println(tag4);
