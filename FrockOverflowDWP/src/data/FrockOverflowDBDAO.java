@@ -15,6 +15,7 @@ import entities.AnswerStatus;
 import entities.Question;
 import entities.QuestionStatus;
 import entities.Tag;
+import entities.TagAssignment;
 import entities.User;
 
 @Transactional
@@ -32,20 +33,21 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
 		List<Question> returnedQuestions = new ArrayList<>();
-		List<Tag> usedTags = new ArrayList<>();
-		List<Tag> taglist = em.createQuery("SELECT t from Tag t", Tag.class).getResultList();
-		for (Tag tag2 : taglist) {
-			if (tag.equals(tag2.getBody())){
-				usedTags.add(tag2);
-			}
-		}
-		for (Tag tag3 : usedTags) {
-			returnedQuestions.add(em.createQuery("SELECT q from Question q join q.tags t where t.id = " + tag3.getId(), Question.class).getSingleResult());
-		}
-		for (Question tag4 : returnedQuestions) {
-			System.out.println(tag4);
-		}
-		
+//		List<Tag> usedTags = new ArrayList<>();
+//		List<Tag> taglist = em.createQuery("SELECT t from Tag t", Tag.class).getResultList();
+//		for (Tag tag2 : taglist) {
+//			if (tag.equals(tag2.getBody())){
+//				usedTags.add(tag2);
+//			}
+//		}
+//		for (Tag tag3 : usedTags) {
+//			returnedQuestions.add(em.createQuery("SELECT q from Question q join q.tags t where t.id = " + tag3.getId(), Question.class).getSingleResult());
+//		}
+//		for (Question tag4 : returnedQuestions) {
+//			System.out.println(tag4);
+//		}
+		returnedQuestions = em.createQuery("SELECT q from Question q join q.tags t where t.body = '" + tag + "'", Question.class).getResultList();
+
 		return returnedQuestions;
 	}
 
@@ -84,12 +86,39 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	@Override
-	public List<Question> createQuestion(Question q, User u) {
+	public List<Question> createQuestion(Question q, User u, String keywords) {
 		Date date = new Date();
 		q.setTimestamp(new Timestamp(date.getTime()));
 		q.setUser(u);
 		q.setStatus(QuestionStatus.Posted);
 		em.persist(q);
+		String[] tokens = keywords.split(" ");
+		List<Tag> usedTags = getTags();
+		for (String t : tokens) {
+			Tag tag = new Tag();
+			tag.setBody(t.trim());
+			boolean match = false;
+			int tagId = 0;
+			for (Tag t2 : usedTags) {
+				if (t2.getBody().equals(t.trim())) {
+					match = true;
+					tagId = t2.getId();
+					System.out.println(t2.getBody() + " " + t);
+					break;
+				}
+			}
+			TagAssignment ta = new TagAssignment();
+			ta.setQuestion(q);
+			if (!match) {
+				em.persist(tag);
+			}
+			else{
+				tag = em.find(Tag.class, tagId);
+			}
+				ta.setTag(tag);
+				em.persist(ta);
+			System.out.println("persisted tag assignment");
+		}
 		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
 		return ql;
 	}
