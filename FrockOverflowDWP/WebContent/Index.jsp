@@ -60,7 +60,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.jsp">Home</a></li>
+					<li><button type="button" name="Home"
+					onclick="window.location.href='index.jsp'">Home</button></li>
 					<li>
 			
 						<button class="w3-btn w3-hover-blue" type="button"

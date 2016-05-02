@@ -47,7 +47,8 @@
 			id="bs-example-navbar-collapse-1">
 			<form action="search.do">
 				<ul class="nav navbar-nav navbar-right">
-					<li> <a href="index.jsp">Home</a></li>
+					<li><button type="button" name="Home"
+					onclick="window.location.href='index.jsp'">Home</button></li>
 					<li><input type="submit" name="submit"
 						value="View All Questions"></li>
 					<li><input type="submit" name="submit"
@@ -101,7 +102,7 @@
 				<c:forEach var="question" items="${updatedQuestionList}">
 					<li>
 						<div id="questionBlock">
-							<h4>Q: ${question.body}</h4>
+							<h4 id="questionBlock">Q: ${question.body}</h4>
 						
 							Posted By: ${question.user.displayName} ${question.timestamp}<br>
 							Status: ${question.status}<br> 
