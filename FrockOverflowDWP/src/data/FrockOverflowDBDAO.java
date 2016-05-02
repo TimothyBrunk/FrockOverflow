@@ -170,11 +170,15 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		
 	}
 	@Override
-	public Question getMostRecentQuestion(Question q) {
-		Question mostrecent = em.createQuery("Select * FROM question WHERE timestamp = (SELECT MAX( timestamp ) FROM question ) LIMIT 1", Question.class)
+	public Question getMostRecentQuestion() {
+		Question mostrecent = em.createQuery("Select q FROM question q ORDER by id", Question.class)
+				.getSingleResult();
+		return mostrecent; 
 		
-		return mostrecent;
 	}
+
+	
+	
 //	@Override
 //	public List<Question> getAllPostedQuestions() {
 //		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Posted'", Question.class)

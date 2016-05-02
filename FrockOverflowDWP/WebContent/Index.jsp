@@ -157,6 +157,12 @@
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
 							</form>
 						</li> -->
+						test
+						<form action="getMostRecentQuestion.do" method="GET" > 
+						<input type="text" value="${question.body}"> 
+						
+						</form>
+						
 
 					</ul>
 				</div>

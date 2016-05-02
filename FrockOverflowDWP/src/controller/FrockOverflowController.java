@@ -156,6 +156,16 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", frockoverflowdao.getAllQuestions());
 		return mv;
 	}
+	@RequestMapping("getMostRecentQuestion.do")
+	public ModelAndView getMostRecentQuestion() {
+		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		mv.addObject("question", mostrecent); 
+		return mv;
+	}
+	
+	//Tim started the methods below before realizing he should probably talk to the team first. 
 //	@RequestMapping("voteUp.do")
 //	public ModelAndView  voteUp (int rating){
 //		
