@@ -196,7 +196,7 @@ p.copyright {
 }
 #answerBlock {
 	list-style:none;
-	text-align:center; 
+	text-align:left; 
 	color:white; 
 }
 #questionBlock{
@@ -207,7 +207,7 @@ p.copyright {
 	list-style:none; 
 }
 body {
-		background: url(../img/intro-bg.jpg)
+		background-color:gray; 
 		no-repeat center center;
 }
 #Question {

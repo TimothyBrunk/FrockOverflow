@@ -138,13 +138,13 @@
 							</form>
 							<br>
 						</li>
-							<form action="getQuestionByID.do" method="GET">
+						<!-- 	<form action="getQuestionByID.do" method="GET">
 								<input id="idtext" type="text" name="id"
 									placeholder="Search By Question Id" required
 									style="width: 200px; height: 40px;" /> <input type="submit"
 									value="Search By Question Id" class="btn btn-default btn-lg"><i
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
-							</form>
+							</form> -->
 				
 						<br>
 						<br>
