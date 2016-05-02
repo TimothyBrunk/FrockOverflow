@@ -100,7 +100,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			boolean match = false;
 			int tagId = 0;
 			for (Tag t2 : usedTags) {
-				if (t2.getBody().equals(t.trim())) {
+				if (t2.getBody().equalsIgnoreCase(t.trim())) {
 					match = true;
 					tagId = t2.getId();
 					System.out.println(t2.getBody() + " " + t);
