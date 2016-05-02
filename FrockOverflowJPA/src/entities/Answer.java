@@ -1,6 +1,7 @@
 package entities;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +21,7 @@ public class Answer {
 	private int id;
 	private String body;
 	private Timestamp timestamp;
+	private int rating;
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -28,12 +31,34 @@ public class Answer {
 	@Enumerated(EnumType.STRING)
 	@Column(name="answer_status")
 	private AnswerStatus status;
+	@ManyToMany(mappedBy="answers")
+	private List<Vote> votes;
 	
 	public Answer(){
 		super();
 	}
 
 	
+	public int getRating() {
+		return rating;
+	}
+
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+
+	public List<Vote> getVotes() {
+		return votes;
+	}
+
+
+	public void setVotes(List<Vote> votes) {
+		this.votes = votes;
+	}
+
+
 	public AnswerStatus getStatus() {
 		return status;
 	}

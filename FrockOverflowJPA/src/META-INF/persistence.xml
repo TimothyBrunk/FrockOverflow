@@ -11,6 +11,8 @@
         <class>entities.Answer</class>
         <class>entities.Tag</class>
         <class>entities.TagAssignment</class>
+        <class>entities.Vote</class>
+        <class>entities.VoteAssignment</class>
         
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/frockoverflowdb" />

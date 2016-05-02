@@ -17,6 +17,8 @@ import entities.QuestionStatus;
 import entities.Tag;
 import entities.TagAssignment;
 import entities.User;
+import entities.Vote;
+import entities.VoteAssignment;
 
 @Transactional
 public class FrockOverflowDBDAO implements FrockOverflowDao {
@@ -210,20 +212,35 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 
 	
-//	@Override
-//	public Answer voteUp(int rating) {
-//		Answer a = em.find(Answer.class, rating); 
-//		a.setRating(rating++); 
-//		em.persist(rating);
-//		return a;
-//	}
-//	@Override
-//	public Answer voteDown(int rating) {
-//		Answer a = em.find(Answer.class, rating); 
-//		a.setRating(rating--); 
-//		em.persist(rating);
-//		return a;
-//	}
+	@Override
+	public void voteUp(int answerId, int userId) {
+		Answer a = em.find(Answer.class, answerId);
+		User u = em.find(User.class, userId);
+		Vote v = em.find(Vote.class, 1);
+		List<VoteAssignment> va = em.createQuery("SELECT v from VoteAssignment v WHERE v.answer.id = " + answerId + " AND v.user.id = " + userId, VoteAssignment.class).getResultList();
+		if (va.isEmpty()) {
+			VoteAssignment voteAssign = new VoteAssignment();
+			voteAssign.setAnswer(a);
+			voteAssign.setUser(u);
+			voteAssign.setVote(v);
+			a.setRating(a.getRating()+v.getValue());
+		}
+	}
+	
+	@Override
+	public void voteDown(int answerId, int userId) {
+		Answer a = em.find(Answer.class, answerId);
+		User u = em.find(User.class, userId);
+		Vote v = em.find(Vote.class, 2);
+		List<VoteAssignment> va = em.createQuery("SELECT v from VoteAssignment v WHERE v.answer.id = " + answerId + " AND v.user.id = " + userId, VoteAssignment.class).getResultList();
+		if (va.isEmpty()) {
+			VoteAssignment voteAssign = new VoteAssignment();
+			voteAssign.setAnswer(a);
+			voteAssign.setUser(u);
+			voteAssign.setVote(v);
+			a.setRating(a.getRating()+v.getValue());
+		}
+	}
 
 
 }

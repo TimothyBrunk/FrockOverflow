@@ -38,9 +38,9 @@ public interface FrockOverflowDao {
 	
 	Question getMostRecentQuestion(); 
 	
-//	Answer voteUp (int rating); 
+	void voteUp (int answerId, int userId); 
 	
-//	Answer voteDown (int rating); 
+	void voteDown (int answerId, int userId); 
  
 
 }

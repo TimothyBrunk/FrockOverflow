@@ -168,22 +168,22 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
-	//Tim started the methods below before realizing he should probably talk to the team first. 
-//	@RequestMapping("voteUp.do")
-//	public ModelAndView  voteUp (int rating){
-//		
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("results.jsp");
+//	Tim started the methods below before realizing he should probably talk to the team first. 
+	@RequestMapping("voteUp.do")
+	public ModelAndView  voteUp (int answerId, @ModelAttribute("user") User user){
+		frockoverflowdao.voteUp(answerId, user.getId());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results.jsp");
 //		mv.addObject("updatedQuestionList", updatedQuestionList);
-//		return mv;
-//	}
-//	@RequestMapping("voteDown.do")
-//	public ModelAndView  voteDown(int rating){
-//		
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("results.jsp");
+		return mv;
+	}
+	@RequestMapping("voteDown.do")
+	public ModelAndView  voteDown(int answerId, @ModelAttribute("user") User user){
+		frockoverflowdao.voteDown(answerId, user.getId());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results.jsp");
 //		mv.addObject("updatedQuestionList", updatedQuestionList);
-//		return mv;
-//	}
+		return mv;
+	}
 
 }

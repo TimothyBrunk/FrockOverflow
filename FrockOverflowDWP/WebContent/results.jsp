@@ -169,10 +169,13 @@
 
 						<h4>A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
 						On or About: ${answer.timestamp}
+						Rating: ${answer.rating}
 						<form action="voteUp.do" method="POST">
+							<input type="hidden" name="answerId" value="${answer.id}">
 							<input type="submit" value="Vote Up"></input>
 						</form>
 						<form action="voteDown.do" method="POST">
+							<input type="hidden" name="answerId" value="${answer.id}">
 							<input type="submit" value="Vote Down"></input>
 						</form> <br> <c:if
 							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
