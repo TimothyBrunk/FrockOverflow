@@ -62,20 +62,26 @@
 					<li><input type="hidden" name="user" value="${user.id}"></input></li>
 				</ul>
 			</form>
+			</div>
+			<div id= "floatleft">
 			<form action="searchByTag.do">
 				<input type="text" name="searchTags" list="tags">
 				<datalist id="tags"> 
 				<c:forEach var="tag" items="${sessionScope.tags}">
 				<option value="${tag}"></option>
 				</c:forEach>
-				</datalist>
-				<p><em>For example;</em> java</p>
+				</datalist>				
 					<input type="submit" name="submit">
 			</form>
+			<p><em>For example;</em> java</p>
+			</div>
 			<!--**********************************************USER INFORMATION************************************-->
 			<ul class="logged">
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
+			<c:if test="${!empty invalid}">${invalid}</c:if>
+			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do">Edit Profile</a></c:if>
 			</ul>
+			
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -95,6 +101,7 @@
 	<br>
 	<br>
 	<br>
+	<c:if test="${sessionScope.user.type != 0}">
 	<button id="postquestion"
 		onclick="document.getElementById('questionFormDiv').style.display='block'">
 		Try Your Luck, Sucka (Post a Question)</button>
@@ -107,6 +114,7 @@
 				type="submit" name="post">
 		</form>
 	</div>
+	</c:if>
 
 	<!-- *******************************************QUESTION LIST*******************************************-->
 	<c:if test="${! empty message}">
@@ -169,12 +177,12 @@
 
 						<h4>A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
 						On or About: ${answer.timestamp}
-						<form action="voteUp.do" method="POST">
+						<c:if test="${sessionScope.user.type != 0}"><form action="voteUp.do" method="POST">
 							<input type="submit" value="Vote Up"></input>
 						</form>
 						<form action="voteDown.do" method="POST">
 							<input type="submit" value="Vote Down"></input>
-						</form> <br> <c:if
+						</form></c:if> <br> <c:if
 							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
 							<form action="acceptAnswer.do" method="GET">
 								<input type="hidden" name="answer_id" value="${answer.id}">

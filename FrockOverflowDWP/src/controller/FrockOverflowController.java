@@ -167,6 +167,22 @@ public class FrockOverflowController {
 		mv.addObject("question", mostrecent); 
 		return mv;
 	}
+	@RequestMapping("editprofile.do")
+	public ModelAndView editProfile(User u){
+	User user = frockoverflowdao.editUser(u);
+	ModelAndView mv = new ModelAndView();
+	if(user.getId() == 1000){
+		mv.addObject( "invalid", "Invalid Password");
+	}
+		mv.setViewName("results.jsp");
+		mv.addObject("user", user);
+	return mv;
+}
+	@RequestMapping("gotoeditprofile.do")
+	public ModelAndView goToEdit(@ModelAttribute("user") User u){
+		ModelAndView mv = new ModelAndView("profile.jsp", "user", u);
+		return mv;	
+	}
 	
 	//Tim started the methods below before realizing he should probably talk to the team first. 
 //	@RequestMapping("voteUp.do")
