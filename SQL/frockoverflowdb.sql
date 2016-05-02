@@ -71,6 +71,33 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `frockoverflowdb`.`tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `frockoverflowdb`.`tag` ;
+
+CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`tag` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `body` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `body_UNIQUE` ON `frockoverflowdb`.`tag` (`body` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `frockoverflowdb`.`tag_assignment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `frockoverflowdb`.`tag_assignment` ;
+
+CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`tag_assignment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tag_id` INT NOT NULL,
+  `question_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
