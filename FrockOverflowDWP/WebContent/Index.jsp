@@ -159,10 +159,11 @@
 						</li> -->
 						test
 						<form action="getMostRecentQuestion.do" method="GET" > 
-						<input type="text" value="${question.body}"> 
-						
-						</form>
-						
+						<input type="submit" value="Click Me"> 
+						<input type="text" value="${question.body}">
+						${question.body}
+						</form> 
+						${question.body }
 
 					</ul>
 				</div>

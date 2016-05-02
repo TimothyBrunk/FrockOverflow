@@ -10,7 +10,7 @@ import entities.User;
 public interface FrockOverflowDao {
 	Question getQuestion(int id);
 
-	List <Question> createQuestion(Question q, User u, String keywords);
+	List <Question> createQuestion(Question q, User u);
 	
 	List<Question> getAllQuestions();
 	

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -200,8 +201,10 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 	@Override
 	public Question getMostRecentQuestion() {
-		Question mostrecent = em.createQuery("Select q FROM question q ", Question.class)
-				.getSingleResult();
+		Question mostrecent = (Question) em.createQuery("Select q FROM Question q Where id = 1")
+				.getSingleResult(); 
+		System.out.println(mostrecent);
+		System.out.println("In DAO");
 		return mostrecent; 
 		
 	}
