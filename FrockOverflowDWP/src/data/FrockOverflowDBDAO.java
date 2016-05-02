@@ -200,7 +200,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 	@Override
 	public Question getMostRecentQuestion() {
-		Question mostrecent = em.createQuery("Select q FROM question q ORDER by id", Question.class)
+		Question mostrecent = em.createQuery("Select q FROM question q ", Question.class)
 				.getSingleResult();
 		return mostrecent; 
 		
