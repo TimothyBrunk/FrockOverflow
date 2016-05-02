@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`user` (
   `display_name` VARCHAR(45) NOT NULL,
   `date_created` DATETIME NOT NULL,
   `password` VARCHAR(45) NOT NULL,
+  `theme` INT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -98,6 +99,32 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`tag_assignment` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `frockoverflowdb`.`vote`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `frockoverflowdb`.`vote` ;
+
+CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`vote` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `value` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `frockoverflowdb`.`vote_assignment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `frockoverflowdb`.`vote_assignment` ;
+
+CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`vote_assignment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `answer_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `vote_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -107,10 +134,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `frockoverflowdb`;
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 2, 'lobes', NOW(), 'stub');
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1002, 'Tim', 'Brunk', 'timothybrunk@gmail.com', 2, 'brunky', NOW(), 'password');
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1003, 'Brenton', 'Gumucio', 'brenton.gumucio@gmail.com', 2, 'gumi', NOW(), 'brenton');
-INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`) VALUES (1000, 'Arnold', 'Poindexter', 'guest@email.com', 0, 'guest', NOW(), 'guest');
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`, `theme`) VALUES (1001, 'Sarah', 'Lobser', 'sarah.lobser@gmail.com', 2, 'lobes', NOW(), 'stub', NULL);
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`, `theme`) VALUES (1002, 'Tim', 'Brunk', 'timothybrunk@gmail.com', 2, 'brunky', NOW(), 'password', NULL);
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`, `theme`) VALUES (1003, 'Brenton', 'Gumucio', 'brenton.gumucio@gmail.com', 2, 'gumi', NOW(), 'brenton', NULL);
+INSERT INTO `frockoverflowdb`.`user` (`id`, `firstname`, `lastname`, `email`, `type`, `display_name`, `date_created`, `password`, `theme`) VALUES (1000, 'Arnold', 'Poindexter', 'guest@email.com', 0, 'guest', NOW(), 'guest', NULL);
 
 COMMIT;
 
@@ -158,6 +185,17 @@ START TRANSACTION;
 USE `frockoverflowdb`;
 INSERT INTO `frockoverflowdb`.`tag_assignment` (`id`, `tag_id`, `question_id`) VALUES (1, 1, 1);
 INSERT INTO `frockoverflowdb`.`tag_assignment` (`id`, `tag_id`, `question_id`) VALUES (2, 2, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `frockoverflowdb`.`vote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `frockoverflowdb`;
+INSERT INTO `frockoverflowdb`.`vote` (`id`, `value`) VALUES (1, 1);
+INSERT INTO `frockoverflowdb`.`vote` (`id`, `value`) VALUES (2, -1);
 
 COMMIT;
 
