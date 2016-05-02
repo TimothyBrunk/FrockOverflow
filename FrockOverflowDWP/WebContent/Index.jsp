@@ -37,7 +37,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head> 
+</head>
 
 <body>
 
@@ -61,9 +61,9 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><button type="button" name="Home"
-					onclick="window.location.href='index.jsp'">Home</button></li>
+							onclick="window.location.href='index.jsp'">Home</button></li>
 					<li>
-			
+
 						<button class="w3-btn w3-hover-blue" type="button"
 							onclick="document.getElementById('login').style.display='block'">Log
 							In</button>
@@ -77,9 +77,6 @@
 		</div>
 		<!-- /.container -->
 	</nav>
-
-
-
 
 	<!-- Header -->
 	<a name="about"></a>
@@ -108,36 +105,35 @@
 			</form>
 
 		</div>
-
+		<h1>
+			<img src="FrockOF.png">
+			<h3>Question and Answer Forum</h3>
+					<hr class="intro-divider">
+		</h1>
+		
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="intro-message">
-					<h1>
-						<img src="FrockOF.png">
-					</h1>
-					<h3>Question and Answer Forum</h3>
-					<hr class="intro-divider">
+				
 					<ul class="list-inline intro-social-buttons">
 						<li>
 							<!-- *********************************************GET QUESTION BY ID FORM********************************* -->
-			<!-- 							<form action="search.do">
+							<!-- 							<form action="search.do">
 			<ul id="searchbuttons">
 				<li><input type="submit" name="submit"
 					value="View All Questions"></li>
 									</li> -->
-							<form action="search.do" >
-								
-								 <input type="submit" name="submit"
-									value="Post New Question" class="btn btn-default btn-lg"><i
+							<form action="search.do">
+
+								<input type="submit" name="submit" value="Post New Question"
+									class="btn btn-default btn-lg"><i
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
 							</form>
-							<form action="search.do" >
-								
-								 <input type="submit" name="submit"
-									value="View All Questions" class="btn btn-default btn-lg"><i
+							<form action="search.do">
+
+								<input type="submit" name="submit" value="View All Questions"
+									class="btn btn-default btn-lg"><i
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
-							</form>
-							<br>
+							</form> <br>
 						</li>
 						<!-- 	<form action="getQuestionByID.do" method="GET">
 								<input id="idtext" type="text" name="id"
@@ -146,12 +142,12 @@
 									value="Search By Question Id" class="btn btn-default btn-lg"><i
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
 							</form> -->
-				
+
 						<br>
 						<br>
 						<li>
 							<!-- *******************************************CREATE QUESTION FORM***************************************-->
-							<form action="createQuestion.do" method="GET" id="inputtext">
+							<!-- <form action="createQuestion.do" method="GET" id="inputtext">
 								<textarea class="textbox" maxlength="1000" rows="15"
 									form="inputtext"
 									placeholder="Please Submit Your Awesome Question" id=""
@@ -160,7 +156,7 @@
 									class="btn btn-default btn-lg"><i
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
 							</form>
-						</li>
+						</li> -->
 
 					</ul>
 				</div>
