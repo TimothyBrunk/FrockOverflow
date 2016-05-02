@@ -136,3 +136,28 @@ INSERT INTO `frockoverflowdb`.`answer` (`id`, `user_id`, `question_id`, `timesta
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `frockoverflowdb`.`tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `frockoverflowdb`;
+INSERT INTO `frockoverflowdb`.`tag` (`id`, `body`) VALUES (1, 'java');
+INSERT INTO `frockoverflowdb`.`tag` (`id`, `body`) VALUES (2, 'nerds');
+INSERT INTO `frockoverflowdb`.`tag` (`id`, `body`) VALUES (3, 'beans');
+INSERT INTO `frockoverflowdb`.`tag` (`id`, `body`) VALUES (4, 'jpa');
+INSERT INTO `frockoverflowdb`.`tag` (`id`, `body`) VALUES (5, 'sql');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `frockoverflowdb`.`tag_assignment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `frockoverflowdb`;
+INSERT INTO `frockoverflowdb`.`tag_assignment` (`id`, `tag_id`, `question_id`) VALUES (1, 1, 1);
+INSERT INTO `frockoverflowdb`.`tag_assignment` (`id`, `tag_id`, `question_id`) VALUES (2, 2, 2);
+
+COMMIT;
+
