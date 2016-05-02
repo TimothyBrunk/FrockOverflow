@@ -82,17 +82,17 @@
 
 <form action="editprofile.do">
 <ul>
-<li>First Name:<input type="text" name="first" value="${user.firstName}">
+<li>First Name:<input type="text" name="firstName" value="${user.firstName}">
 </li>
-<li>Last Name:<input type="text" name="last" value="${user.lastName}">
+<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
 </li>
 <li>Email:<input type="text" name="email" value="${user.email}">
 </li>
-<li>Display Name:<input type="text" name="display" value="${user.displayName}">
+<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
 </li>
-<li>Password:<input type="text" name="password" placeholder="Password">
+<li>Password:<input type="password" name="password" placeholder="Password">
 </li>
-<li><input type="hidden" name="user" value= "${user.id}"></input>
+<li><input type="hidden" name="id" value= "${user.id}"></input>
 </li>
 </ul>
 <input type="submit" name="submit" value="Save Changes">

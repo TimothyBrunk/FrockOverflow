@@ -30,24 +30,29 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		em.detach(q);
 		return q;
 	}
-	
+
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
 		List<Question> returnedQuestions = new ArrayList<>();
-//		List<Tag> usedTags = new ArrayList<>();
-//		List<Tag> taglist = em.createQuery("SELECT t from Tag t", Tag.class).getResultList();
-//		for (Tag tag2 : taglist) {
-//			if (tag.equals(tag2.getBody())){
-//				usedTags.add(tag2);
-//			}
-//		}
-//		for (Tag tag3 : usedTags) {
-//			returnedQuestions.add(em.createQuery("SELECT q from Question q join q.tags t where t.id = " + tag3.getId(), Question.class).getSingleResult());
-//		}
-//		for (Question tag4 : returnedQuestions) {
-//			System.out.println(tag4);
-//		}
-		returnedQuestions = em.createQuery("SELECT q from Question q join q.tags t where t.body = '" + tag + "'", Question.class).getResultList();
+		// List<Tag> usedTags = new ArrayList<>();
+		// List<Tag> taglist = em.createQuery("SELECT t from Tag t",
+		// Tag.class).getResultList();
+		// for (Tag tag2 : taglist) {
+		// if (tag.equals(tag2.getBody())){
+		// usedTags.add(tag2);
+		// }
+		// }
+		// for (Tag tag3 : usedTags) {
+		// returnedQuestions.add(em.createQuery("SELECT q from Question q join
+		// q.tags t where t.id = " + tag3.getId(),
+		// Question.class).getSingleResult());
+		// }
+		// for (Question tag4 : returnedQuestions) {
+		// System.out.println(tag4);
+		// }
+		returnedQuestions = em
+				.createQuery("SELECT q from Question q join q.tags t where t.body = '" + tag + "'", Question.class)
+				.getResultList();
 
 		return returnedQuestions;
 	}
@@ -112,12 +117,11 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			ta.setQuestion(q);
 			if (!match) {
 				em.persist(tag);
-			}
-			else{
+			} else {
 				tag = em.find(Tag.class, tagId);
 			}
-				ta.setTag(tag);
-				em.persist(ta);
+			ta.setTag(tag);
+			em.persist(ta);
 			System.out.println("persisted tag assignment");
 		}
 		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
@@ -155,18 +159,18 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		System.out.println(answers.size());
 		return answers;
 	}
-	
+
 	@Override
 	public List<Tag> getTags() {
-		List<Tag> tags = em.createQuery("SELECT t from Tag t", Tag.class)
-				.getResultList();
+		List<Tag> tags = em.createQuery("SELECT t from Tag t", Tag.class).getResultList();
 		return tags;
 	}
 
 	@Override
 	public User createUser(User u) {
-		List<User> returnusers = em.createQuery("SELECT u from User u WHERE email='" + u.getEmail() + "'", User.class).getResultList();
-		if (returnusers.size()==0) {
+		List<User> returnusers = em.createQuery("SELECT u from User u WHERE email='" + u.getEmail() + "'", User.class)
+				.getResultList();
+		if (returnusers.size() == 0) {
 			Date date = new Date();
 			u.setDateCreated(new Timestamp(date.getTime()));
 			u.setType(1);
@@ -197,37 +201,47 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			System.out.println("No user found. Logging in as guest.");
 			return guest;
 		}
-		
+
 	}
+
 	@Override
 	public Question getMostRecentQuestion() {
-		Integer mostrecent =  (Integer) em.createQuery("Select max(q.id) FROM Question q")
-				.getSingleResult();
-		Question mostrecentquestion = em.find(Question.class, mostrecent); 
+		Integer mostrecent = (Integer) em.createQuery("Select max(q.id) FROM Question q").getSingleResult();
+		Question mostrecentquestion = em.find(Question.class, mostrecent);
 		System.out.println(mostrecent);
 		System.out.println("In DAO");
-		return mostrecentquestion; 
-		
+		return mostrecentquestion;
 	}
 
-	
+	public User editUser(User u) {
+		User guest = em.createQuery("SELECT u from User u WHERE id = 1000", User.class).getSingleResult();
+		User update = em.find(User.class, u.getId());
+		if (u.getPassword().equals(update.getPassword())) {
+			update.setFirstName(u.getFirstName());
+			update.setLastName(u.getLastName());
+			update.setDisplayName(u.getDisplayName());
+			update.setEmail(u.getEmail());
+			return update;
+		} else {
+			return guest;
+		}
+
+	}
 
 
-	
-//	@Override
-//	public Answer voteUp(int rating) {
-//		Answer a = em.find(Answer.class, rating); 
-//		a.setRating(rating++); 
-//		em.persist(rating);
-//		return a;
-//	}
-//	@Override
-//	public Answer voteDown(int rating) {
-//		Answer a = em.find(Answer.class, rating); 
-//		a.setRating(rating--); 
-//		em.persist(rating);
-//		return a;
-//	}
-
+	// @Override
+	// public Answer voteUp(int rating) {
+	// Answer a = em.find(Answer.class, rating);
+	// a.setRating(rating++);
+	// em.persist(rating);
+	// return a;
+	// }
+	// @Override
+	// public Answer voteDown(int rating) {
+	// Answer a = em.find(Answer.class, rating);
+	// a.setRating(rating--);
+	// em.persist(rating);
+	// return a;
+	// }
 
 }
