@@ -63,6 +63,7 @@ public class FrockOverflowController {
 	@RequestMapping("searchByTag.do")
 	public ModelAndView getQuestionsByTag(@RequestParam("searchTags") String tagString) {
 		String[] tagarr = tagString.split(" ");
+		System.out.println(tagarr[0]);
 		List<Question> qList = frockoverflowdao.getQuestionByTag(tagarr[0]);
 		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
 		if (qList.size() == 0) mv.addObject("message", "No Questions Found");

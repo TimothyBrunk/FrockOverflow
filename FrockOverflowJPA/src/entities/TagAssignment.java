@@ -14,27 +14,27 @@ public class TagAssignment {
 	private int id;
 	@ManyToOne
 	@JoinColumn(name="question_id")
-	private int question;
+	private Question question;
 	@ManyToOne
 	@JoinColumn(name="tag_id")
-	private int tag;
+	private Tag tag;
 	public TagAssignment() {
 		super();
 	}
 	public int getId() {
 		return id;
 	}
-	public int getQuestion() {
+	public Question getQuestion() {
 		return question;
 	}
-	public void setQuestion(int question) {
+	public void setQuestion(Question question) {
 		this.question = question;
 	}
-	public int getTag() {
+	public Tag getTag() {
 		return tag;
 	}
-	public void setTag(int tag) {
+	public void setTag(Tag tag) {
 		this.tag = tag;
-	}	
-
+	}
+	
 }
