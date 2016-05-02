@@ -202,17 +202,26 @@ p.copyright {
 #questionBlock{
 	list-style:none; 
 	color:white; 
+	text-align:left; 
 }
 #question{
 	list-style:none; 
+	text-align:left; 
 }
 body {
 		background-color:gray; 
-		no-repeat center center;
+		text-align:left; 
+		
 }
 #Question {
 	color:white;
+	text-align:left; 
 }
 #viewanswers{
 	color:black;
+	text-align:left; 
+}
+#postquestion{ 
+	text-align:right; 
+	
 }
