@@ -178,13 +178,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	
-	
-//	@Override
-//	public List<Question> getAllPostedQuestions() {
-//		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Posted'", Question.class)
-//				.getResultList();
-//		return ql;
-//	}
+
 
 	
 //	@Override
