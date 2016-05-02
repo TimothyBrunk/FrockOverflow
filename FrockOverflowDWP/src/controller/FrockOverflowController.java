@@ -61,6 +61,16 @@ public class FrockOverflowController {
 		
 	}
 	
+	@RequestMapping("initialLoad.do")
+	public ModelAndView initialLoad() {
+		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		mv.addObject("question", mostrecent); 
+		return mv;
+	}
+
+	
 	@RequestMapping("searchByTag.do")
 	public ModelAndView getQuestionsByTag(@RequestParam("searchTags") String tagString) {
 		String[] tagarr = tagString.split(" ");

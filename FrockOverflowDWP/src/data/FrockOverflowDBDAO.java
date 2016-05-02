@@ -201,11 +201,12 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 	@Override
 	public Question getMostRecentQuestion() {
-		Question mostrecent = (Question) em.createQuery("Select q FROM Question q Where id = 1")
-				.getSingleResult(); 
+		Integer mostrecent =  (Integer) em.createQuery("Select max(q.id) FROM Question q")
+				.getSingleResult();
+		Question mostrecentquestion = em.find(Question.class, mostrecent); 
 		System.out.println(mostrecent);
 		System.out.println("In DAO");
-		return mostrecent; 
+		return mostrecentquestion; 
 		
 	}
 

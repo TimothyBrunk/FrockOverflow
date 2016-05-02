@@ -1,6 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@page import="java.lang.*"%>
+<%@page import="java.util.*" %>
+
+<
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +40,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+<!-- <script type="text/javascript">
+    function myfunc () {
+        var frm = document.getElementById("question");
+        frm.submit();
+    }
+    window.onload = myfunc;
+</script> -->
 </head>
 
 <body>
@@ -157,13 +167,11 @@
 									class="fa fa-github fa-fw"></i> <span class="network-name"></span>
 							</form>
 						</li> -->
-						test
-						<form action="getMostRecentQuestion.do" method="GET" > 
-						<input type="submit" value="Click Me"> 
-						<input type="text" value="${question.body}">
-						${question.body}
+						
+						<form id="recentQuestion" action="getMostRecentQuestion.do" method="GET" id="question" > 
+						Q: ${question.body}
 						</form> 
-						${question.body }
+						
 
 					</ul>
 				</div>
