@@ -171,7 +171,20 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			System.out.println("No user found. Logging in as guest.");
 			return guest;
 		}
+		
 	}
+	@Override
+	public Question getMostRecentQuestion(Question q) {
+		Question mostrecent = em.createQuery("Select * FROM question WHERE timestamp = (SELECT MAX( timestamp ) FROM question ) LIMIT 1", Question.class)
+		
+		return mostrecent;
+	}
+//	@Override
+//	public List<Question> getAllPostedQuestions() {
+//		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Posted'", Question.class)
+//				.getResultList();
+//		return ql;
+//	}
 
 	
 //	@Override

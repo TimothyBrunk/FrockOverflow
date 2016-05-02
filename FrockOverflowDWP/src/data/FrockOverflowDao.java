@@ -36,6 +36,8 @@ public interface FrockOverflowDao {
 
 	List<Question> getQuestionByTag(String tag);
 	
+	Question getMostRecentQuestion(Question q); 
+	
 //	Answer voteUp (int rating); 
 	
 //	Answer voteDown (int rating); 
