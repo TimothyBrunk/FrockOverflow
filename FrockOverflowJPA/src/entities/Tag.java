@@ -23,9 +23,6 @@ public class Tag {
 					name= "question_id"))
 	private List<Question> questions;
 	
-	
-	
-	
 	public String getBody() {
 		return body;
 	}

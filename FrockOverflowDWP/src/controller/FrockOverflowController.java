@@ -3,11 +3,8 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,10 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import data.FrockOverflowDao;
 import entities.Answer;
 import entities.Question;
+import entities.Tag;
 import entities.User;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"user", "tags"})
 public class FrockOverflowController {
 	@Autowired
 	private FrockOverflowDao frockoverflowdao;
@@ -29,6 +27,12 @@ public class FrockOverflowController {
 	public User initUser() {
 		return new User();
 	}
+	@ModelAttribute("tags")
+	public List<Tag> initTags(){
+		List <Tag> tags = frockoverflowdao.getTags();
+		return tags;
+	}
+	
 
 	@RequestMapping("search.do")
 	public ModelAndView searchQuestions(@ModelAttribute("user") User login, @RequestParam("submit") String searchBy) {

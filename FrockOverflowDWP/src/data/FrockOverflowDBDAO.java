@@ -13,6 +13,7 @@ import entities.Answer;
 import entities.AnswerStatus;
 import entities.Question;
 import entities.QuestionStatus;
+import entities.Tag;
 import entities.User;
 
 @Transactional
@@ -102,6 +103,13 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 				.getResultList();
 		System.out.println(answers.size());
 		return answers;
+	}
+	
+	@Override
+	public List<Tag> getTags() {
+		List<Tag> tags = em.createQuery("SELECT t from Tag t", Tag.class)
+				.getResultList();
+		return tags;
 	}
 
 	@Override

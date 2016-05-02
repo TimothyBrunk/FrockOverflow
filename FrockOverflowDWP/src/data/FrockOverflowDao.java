@@ -4,6 +4,7 @@ import java.util.List;
 
 import entities.Answer;
 import entities.Question;
+import entities.Tag;
 import entities.User;
 
 public interface FrockOverflowDao {
@@ -30,6 +31,8 @@ public interface FrockOverflowDao {
 	User createUser(User u);
 
 	User getUser(String email, String password);
+
+	List<Tag> getTags();
 	
 //	Answer voteUp (int rating); 
 	
