@@ -33,6 +33,8 @@ public interface FrockOverflowDao {
 	User getUser(String email, String password);
 
 	List<Tag> getTags();
+
+	List<Question> getQuestionByTag(String tag);
 	
 //	Answer voteUp (int rating); 
 	

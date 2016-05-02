@@ -32,6 +32,10 @@ public class Tag {
 	public int getId() {
 		return id;
 	}
+	@Override
+	public String toString() {
+		return "Tag [id=" + id + ", body=" + body + "]";
+	}
 	
 	
 }
