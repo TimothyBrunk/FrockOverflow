@@ -18,9 +18,11 @@ public class TagAssignment {
 	@ManyToOne
 	@JoinColumn(name="tag_id")
 	private Tag tag;
+	
 	public TagAssignment() {
 		super();
 	}
+	
 	public int getId() {
 		return id;
 	}
