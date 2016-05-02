@@ -10,7 +10,7 @@ import entities.User;
 public interface FrockOverflowDao {
 	Question getQuestion(int id);
 
-	List <Question> createQuestion(Question q, User u, String keywords);
+	List <Question> createQuestion(Question q, User u, String s);
 	
 	List<Question> getAllQuestions();
 	
@@ -36,7 +36,9 @@ public interface FrockOverflowDao {
 
 	List<Question> getQuestionByTag(String tag);
 	
-	Question getMostRecentQuestion(); 
+	Question getMostRecentQuestion();
+
+	User editUser(User u); 
 	
 	void voteUp (int answerId, int userId); 
 	

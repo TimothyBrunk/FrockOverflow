@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -59,6 +60,16 @@ public class FrockOverflowController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("initialLoad.do")
+	public ModelAndView initialLoad() {
+		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		mv.addObject("question", mostrecent); 
+		return mv;
+	}
+
 	
 	@RequestMapping("searchByTag.do")
 	public ModelAndView getQuestionsByTag(@RequestParam("searchTags") String tagString) {
@@ -166,6 +177,22 @@ public class FrockOverflowController {
 		mv.setViewName("index.jsp");
 		mv.addObject("question", mostrecent); 
 		return mv;
+	}
+	@RequestMapping("editprofile.do")
+	public ModelAndView editProfile(User u){
+	User user = frockoverflowdao.editUser(u);
+	ModelAndView mv = new ModelAndView();
+	if(user.getId() == 1000){
+		mv.addObject( "invalid", "Invalid Password");
+	}
+		mv.setViewName("results.jsp");
+		mv.addObject("user", user);
+	return mv;
+}
+	@RequestMapping("gotoeditprofile.do")
+	public ModelAndView goToEdit(@ModelAttribute("user") User u){
+		ModelAndView mv = new ModelAndView("profile.jsp", "user", u);
+		return mv;	
 	}
 	
 //	Tim started the methods below before realizing he should probably talk to the team first. 

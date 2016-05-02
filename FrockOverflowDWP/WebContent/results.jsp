@@ -7,19 +7,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Question</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
+<title>FrockOverflow</title>
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
 <!-- Custom CSS -->
 <link href="css/landing-page.css" rel="stylesheet">
 
-<!-- Custom Fonts -->
+<!-- <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
-
+ 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -45,6 +45,19 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
+			<div id="floatleft">
+			Search by tags:
+			<form action="searchByTag.do">
+				<input type="text" name="searchTags" list="tags">
+				<datalist id="tags"> 
+				<c:forEach var="tag" items="${sessionScope.tags}">
+				<option value="${tag}"></option>
+				</c:forEach>
+				</datalist>				
+					<input type="submit" name="submit">
+			</form>
+			<p><em>For example;</em> java</p>
+			</div>
 			<form action="search.do">
 				<ul class="nav navbar-nav navbar-right">
 					<li><button type="button" name="Home"
@@ -62,21 +75,16 @@
 					<li><input type="hidden" name="user" value="${user.id}"></input></li>
 				</ul>
 			</form>
-			<form action="searchByTag.do">
-				<input type="text" name="searchTags" list="tags">
-				<datalist id="tags"> 
-				<c:forEach var="tag" items="${sessionScope.tags}">
-				<option value="${tag}"></option>
-				</c:forEach>
-				</datalist>
-				<p><em>For example;</em> java</p>
-					<input type="submit" name="submit">
-			</form>
+			</div>
+			
 			<!--**********************************************USER INFORMATION************************************-->
+			<div id="floatleft">
 			<ul class="logged">
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
+			<c:if test="${!empty invalid}">${invalid}</c:if>
+			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do">Edit Profile</a></c:if>
 			</ul>
-		</div>
+		</div>	
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container --> </nav>
@@ -95,6 +103,7 @@
 	<br>
 	<br>
 	<br>
+	<c:if test="${sessionScope.user.type != 0}">
 	<button id="postquestion"
 		onclick="document.getElementById('questionFormDiv').style.display='block'">
 		Try Your Luck, Sucka (Post a Question)</button>
@@ -107,6 +116,7 @@
 				type="submit" name="post">
 		</form>
 	</div>
+	</c:if>
 
 	<!-- *******************************************QUESTION LIST*******************************************-->
 	<c:if test="${! empty message}">
@@ -172,12 +182,13 @@
 						Rating: ${answer.rating}
 						<form action="voteUp.do" method="POST">
 							<input type="hidden" name="answerId" value="${answer.id}">
+						<c:if test="${sessionScope.user.type != 0}"><form action="voteUp.do" method="POST">
 							<input type="submit" value="Vote Up"></input>
 						</form>
 						<form action="voteDown.do" method="POST">
 							<input type="hidden" name="answerId" value="${answer.id}">
 							<input type="submit" value="Vote Down"></input>
-						</form> <br> <c:if
+						</form></c:if> <br> <c:if
 							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
 							<form action="acceptAnswer.do" method="GET">
 								<input type="hidden" name="answer_id" value="${answer.id}">
