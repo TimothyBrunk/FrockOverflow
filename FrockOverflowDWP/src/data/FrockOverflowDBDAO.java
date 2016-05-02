@@ -89,6 +89,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		a.setStatus(AnswerStatus.Accepted);
 		Question q = em.createQuery("SELECT q from Question q WHERE id = " + a.getQuestion().getId(), Question.class)
 				.getSingleResult();
+		q.setStatus(QuestionStatus.Resolved);
 		return q;
 	}
 
@@ -102,10 +103,16 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public User createUser(User u) {
-		u.setDateCreated(new Date());
-		System.out.println(u.getFirstName());
-		em.persist(u);
-		return u;
+		List<User> returnusers = em.createQuery("SELECT u from User u WHERE email='" + u.getEmail() + "'", User.class).getResultList();
+		if (returnusers.size()==0) {
+			u.setDateCreated(new Date());
+			u.setType(1);
+			em.persist(u);
+			return u;
+		} else {
+			User guest = em.find(User.class, 1000);
+			return guest;
+		}
 	}
 
 	@Override

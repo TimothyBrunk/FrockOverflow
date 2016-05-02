@@ -125,7 +125,7 @@ public class FrockOverflowController {
 		User user = frockoverflowdao.createUser(u);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-		mv.addObject("create", user);
+		mv.addObject("user", user);
 		return mv;
 	}
 

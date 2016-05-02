@@ -71,28 +71,6 @@
 	</div>
 	<!-- /.container --> </nav>
 
-	<div>
-
-
-		<!-- ***********************************NAVBAR READY FOR DELETION*********************************************************-->
-
-				<form action="search.do">
-			<ul id="searchbuttons">
-				<li><input type="submit" name="submit"
-					value="View All Questions"></li>
-				<li><input type="submit" name="submit"
-					value="View All Posted Questions"></li>
-				<li><input type="submit" name="submit"
-					value="View All Answered Questions"></li>
-				<li><input type="submit" name="submit"
-					value="View All Resolved Questions"></li>
-				<li><input type="submit" name="submit"
-					value="View All My Questions"></li>
-				<li><input type="hidden" name="user" value="${user.id}"></input>
-				</li>
-			</ul>
-		</form>  
-
 		<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 		<button id="postquestion"
 			onclick="document.getElementById('questionFormDiv').style.display='block'">
@@ -113,7 +91,6 @@
 		<c:if test="${! empty updatedQuestionList}">
 			<!-- UPDATED QUESTIONS LIST -->
 			<ul id="question">
-			<br>
 			<li><h2 id="Question">Questions:</h2></li>
 			</ul>
 			<ul id="questionBlock" >
@@ -153,13 +130,13 @@
 
 		<c:if test="${! empty answersByQ}">
 			<!-- LIST OF ANSWERS BY QUESTION -->
-			<h2>Here are all the Answers for that Question!</h2>
-			<div class="fullQuestionBlock">
-				<h3>Q: ${answeredQuestion.body} </h3>
-				Asked by: ${answeredQuestion.user.displayName} On or About:
-				${answeredQuestion.timestamp} <br> <br>
+			<h2 id="Question">Here are all the Answers for that Question!</h2>
+			<div class="questionBlock">
+				<h3 id="questionBlock">Q: ${answeredQuestion.body} </h3>
+				<p id="questionBlock">Asked by: ${answeredQuestion.user.displayName} On or About:
+				${answeredQuestion.timestamp} </p> <br>
 
-				<ul id="answerBlock">
+				<ul id="question">
 					<c:forEach var="answer" items="${answersByQ}">
 						<li id="answerBlock">
 
@@ -176,7 +153,7 @@
 									<input type="submit" name="Accept Answer" value="Accept Answer">
 								</form>
 							</c:if>
-			</div>
+			
 			</li>
 			</c:forEach>
 			</ul>
