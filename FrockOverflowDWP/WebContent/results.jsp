@@ -48,7 +48,7 @@
 			<form action="search.do">
 				<ul class="nav navbar-nav navbar-right">
 					<li><button type="button" name="Home"
-					onclick="window.location.href='index.jsp'">Home</button></li>
+							onclick="window.location.href='index.jsp'">Home</button></li>
 					<li><input type="submit" name="submit"
 						value="View All Questions"></li>
 					<li><input type="submit" name="submit"
@@ -63,8 +63,14 @@
 				</ul>
 			</form>
 			<form action="searchByTag.do">
-				<input type="text" name="searchTags">
-				<input type="submit" name="submit">
+				<input type="text" name="searchTags" list="tags">
+				<datalist id="tags"> 
+				<c:forEach var="tag" items="${sessionScope.tags}">
+				<option value="${tag}"></option>
+				</c:forEach>
+				</datalist>
+				<p><em>For example;</em> java</p>
+					<input type="submit" name="submit">
 			</form>
 			<!--**********************************************USER INFORMATION************************************-->
 			<ul class="logged">
@@ -75,98 +81,102 @@
 	</div>
 	<!-- /.container --> </nav>
 
-		<!-- ******************************POST A QUESTION FORM DIV********************************************-->
-		<br>
-		<br>
-		<br>
-		<br>
-		<button id="postquestion"
-			onclick="document.getElementById('questionFormDiv').style.display='block'">
-			Try Your Luck, Sucka (Post a Question)</button>
-		<div id="questionFormDiv" style="display: none">
-			<span onclick="this.parentElement.style.display='none'"
-				class="w3-closebtn">&times;</span>
-			<form action="createQuestion.do" method="GET">
-				<textarea cols="100" rows="10" name="body"></textarea>
-				Add keywords:<input type="text" name="keywords">
-				<input type="submit" name="post">
-			</form>
-		</div>
+	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
+	<br>
+	<br>
+	<br>
+	<br>
+	<button id="postquestion"
+		onclick="document.getElementById('questionFormDiv').style.display='block'">
+		Try Your Luck, Sucka (Post a Question)</button>
+	<div id="questionFormDiv" style="display: none">
+		<span onclick="this.parentElement.style.display='none'"
+			class="w3-closebtn">&times;</span>
+		<form action="createQuestion.do" method="GET">
+			<textarea cols="100" rows="10" name="body"></textarea>
+			Add keywords:<input type="text" name="keywords"> <input
+				type="submit" name="post">
+		</form>
+	</div>
 
-		<!-- *******************************************QUESTION LIST*******************************************-->
-		<c:if test="${! empty message}">
-			<h4 id="questionBlock">${message}</h4>
-		</c:if>
-		<c:if test="${! empty updatedQuestionList}">
-			<!-- UPDATED QUESTIONS LIST -->
-			<ul id="question">
+	<!-- *******************************************QUESTION LIST*******************************************-->
+	<c:if test="${! empty message}">
+		<h4 id="questionBlock">${message}</h4>
+	</c:if>
+	<c:if test="${! empty updatedQuestionList}">
+		<!-- UPDATED QUESTIONS LIST -->
+		<ul id="question">
 			<li><h2 id="Question">Questions:</h2></li>
-			</ul>
-			<ul id="questionBlock" >
-				<c:forEach var="question" items="${updatedQuestionList}">
-					<li>
-						<div id="questionBlock">
-							<h4 id="questionBlock">Q: ${question.body}</h4>
-						
-							Posted By: ${question.user.displayName} ${question.timestamp}<br>
-							Status: ${question.status}<br> 
+		</ul>
+		<ul id="questionBlock">
+			<c:forEach var="question" items="${updatedQuestionList}">
+				<li>
+					<div id="questionBlock">
+						<h4 id="questionBlock">Q: ${question.body}</h4>
 
-							<c:if
-								test="${question.status=='Resolved' or question.status=='Answered'}">
-								<form action="getAnswers.do" method="GET">
-									<input type="hidden" name="id" value="${question.id}">
-									<input id="viewanswers" type="submit" name="view answers" value="View Answers">
-								</form>
-							</c:if>
-						</div> <c:if test="${user.type != 0}">
-							<button id="viewanswers"
-								onclick="document.getElementById('postAnswerFor${question.id}').style.display='block'">
-								Answer This Question</button>
-							<div id="postAnswerFor${question.id}" style="display: none">
-								<span onclick="this.parentElement.style.display='none'"
-									class="w3-closebtn">&times;</span>
-								<form action="postAnswer.do" method="GET">
-									<textarea cols="100" rows="10" name="body"></textarea>
-									<input type="hidden" name="question_id" value="${question.id}">
-									<input type="submit" name="post">
-								</form>
-							</div>
+						Posted By: ${question.user.displayName} ${question.timestamp}<br>
+						Status: ${question.status}<br>
+
+						<c:if
+							test="${question.status=='Resolved' or question.status=='Answered'}">
+							<form action="getAnswers.do" method="GET">
+								<input type="hidden" name="id" value="${question.id}"> <input
+									id="viewanswers" type="submit" name="view answers"
+									value="View Answers">
+							</form>
 						</c:if>
+					</div> <c:if test="${user.type != 0}">
+						<button id="viewanswers"
+							onclick="document.getElementById('postAnswerFor${question.id}').style.display='block'">
+							Answer This Question</button>
+						<div id="postAnswerFor${question.id}" style="display: none">
+							<span onclick="this.parentElement.style.display='none'"
+								class="w3-closebtn">&times;</span>
+							<form action="postAnswer.do" method="GET">
+								<textarea cols="100" rows="10" name="body"></textarea>
+								<input type="hidden" name="question_id" value="${question.id}">
+								<input type="submit" name="post">
+							</form>
+						</div>
+					</c:if>
+				</li>
+			</c:forEach>
+		</ul>
+	</c:if>
+
+	<c:if test="${! empty answersByQ}">
+		<!-- LIST OF ANSWERS BY QUESTION -->
+		<h2 id="Question">Here are all the Answers for that Question!</h2>
+		<div class="questionBlock">
+			<h3 id="questionBlock">Q: ${answeredQuestion.body}</h3>
+			<p id="questionBlock">Asked by:
+				${answeredQuestion.user.displayName} On or About:
+				${answeredQuestion.timestamp}</p>
+			<br>
+
+			<ul id="question">
+				<c:forEach var="answer" items="${answersByQ}">
+					<li id="answerBlock">
+
+						<h4>A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
+						On or About: ${answer.timestamp}
+						<form action="voteUp.do" method="POST">
+							<input type="submit" value="Vote Up"></input>
+						</form>
+						<form action="voteDown.do" method="POST">
+							<input type="submit" value="Vote Down"></input>
+						</form> <br> <c:if
+							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+							<form action="acceptAnswer.do" method="GET">
+								<input type="hidden" name="answer_id" value="${answer.id}">
+								<input type="submit" name="Accept Answer" value="Accept Answer">
+							</form>
+						</c:if>
+
 					</li>
 				</c:forEach>
 			</ul>
-		</c:if>
-
-		<c:if test="${! empty answersByQ}">
-			<!-- LIST OF ANSWERS BY QUESTION -->
-			<h2 id="Question">Here are all the Answers for that Question!</h2>
-			<div class="questionBlock">
-				<h3 id="questionBlock">Q: ${answeredQuestion.body} </h3>
-				<p id="questionBlock">Asked by: ${answeredQuestion.user.displayName} On or About:
-				${answeredQuestion.timestamp} </p> <br>
-
-				<ul id="question">
-					<c:forEach var="answer" items="${answersByQ}">
-						<li id="answerBlock">
-
-							<h4>A: ${answer.body} </h4> 
-
-							Answered by:
-							${answer.user.displayName} On or About: ${answer.timestamp} 
-							<form action="voteUp.do" method="POST"> <input type="submit" value="Vote Up"></input></form>							
-							<form action="voteDown.do" method="POST"> <input type="submit" value="Vote Down"></input></form>
-							<br> <c:if
-								test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
-								<form action="acceptAnswer.do" method="GET">
-									<input type="hidden" name="answer_id" value="${answer.id}">
-									<input type="submit" name="Accept Answer" value="Accept Answer">
-								</form>
-							</c:if>
-			
-			</li>
-			</c:forEach>
-			</ul>
-	</div>
+		</div>
 	</c:if>
 </body>
 </html>
