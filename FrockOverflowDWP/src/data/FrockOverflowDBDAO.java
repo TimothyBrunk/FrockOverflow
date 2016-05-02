@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +27,30 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		Question q = em.find(Question.class, id);
 		em.detach(q);
 		return q;
+	}
+	
+	@Override
+	public List<Question> getQuestionByTag(String tag) {
+		System.out.println("In get ? by tag method");
+		tag = "java";
+		List<Question> returnedQuestions = new ArrayList<>();
+		List<Tag> usedTags = new ArrayList<>();
+		List<Tag> taglist = em.createQuery("SELECT t from Tag t", Tag.class).getResultList();
+		for (Tag tag2 : taglist) {
+			System.out.println(tag2 + "in taglist");
+			if (tag.equals(tag2.getBody())){
+				usedTags.add(tag2);
+			}
+		}
+		for (Tag tag3 : usedTags) {
+			System.out.println("in usedTags arraylist");
+			returnedQuestions.add(em.createQuery("SELECT q from Question q join TagAssignment a on q.id = a.question.id where a.tag.id = " + tag3.getId(), Question.class).getSingleResult());
+		}
+		for (Question tag4 : returnedQuestions) {
+			System.out.println(tag4);
+		}
+		
+		return returnedQuestions;
 	}
 
 	@Override

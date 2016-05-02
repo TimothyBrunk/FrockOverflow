@@ -59,9 +59,12 @@
 						value="View All Resolved Questions"></li>
 					<li><input type="submit" name="submit"
 						value="View All My Questions"></li>
-					<li><input type="hidden" name="user" value="${user.id}"></input>
-					</li>
+					<li><input type="hidden" name="user" value="${user.id}"></input></li>
 				</ul>
+			</form>
+			<form action="searchByTag.do">
+				<input type="text" name="searchTags">
+				<input type="submit" name="submit">
 			</form>
 			<!--**********************************************USER INFORMATION************************************-->
 			<ul class="logged">
@@ -85,6 +88,7 @@
 				class="w3-closebtn">&times;</span>
 			<form action="createQuestion.do" method="GET">
 				<textarea cols="100" rows="10" name="body"></textarea>
+				Add keywords:<input type="text" name="keywords">
 				<input type="submit" name="post">
 			</form>
 		</div>

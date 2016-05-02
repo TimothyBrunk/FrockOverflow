@@ -55,10 +55,18 @@ public class FrockOverflowController {
 			break;	
 		}
 		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
-		System.out.println(qList.size());
 		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
 		return mv;
 		
+	}
+	
+	@RequestMapping("searchByTag.do")
+	public ModelAndView getQuestionsByTag(@RequestParam("searchTags") String tagString) {
+		String[] tagarr = tagString.split(" ");
+		List<Question> qList = frockoverflowdao.getQuestionByTag(tagarr[0]);
+		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
+		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
+		return mv;
 	}
 	
 	@RequestMapping("getQuestionByID.do")
@@ -72,7 +80,8 @@ public class FrockOverflowController {
 	}
 
 	@RequestMapping("createQuestion.do")
-	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user) {
+	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user,
+			@RequestParam("keywords") String tags) {
 		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
