@@ -5,9 +5,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-#floatleft{
-	text-align: left;
-}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -16,7 +14,6 @@ html {
 body {
   margin: 0;
 }
-
 .questionBlock {
 	border: 1px;
 	background-color: #eeeeee;
@@ -24,8 +21,7 @@ body {
 
 .answerBlock {
 	background-color: #ddeeff;
-}
-
+} 
 article,
 aside,
 details,
