@@ -1,6 +1,6 @@
 package entities;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,9 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class User {
@@ -25,7 +22,7 @@ public class User {
 	@Column(name="display_name")
 	private String displayName;
 	@Column(name="date_created")
-	private Date dateCreated;
+	private Timestamp dateCreated;
 	private String password;
 	
 	@OneToMany(mappedBy="user")
@@ -95,11 +92,11 @@ public class User {
 		this.displayName = displayName;
 	}
 
-	public Date getDateCreated() {
+	public Timestamp getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date l) {
+	public void setDateCreated(Timestamp l) {
 		this.dateCreated = l;
 	}
 

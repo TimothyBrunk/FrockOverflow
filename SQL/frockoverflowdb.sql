@@ -24,11 +24,11 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NULL,
   `lastname` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `type` TINYINT(2) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `type` TINYINT(2) NOT NULL DEFAULT 1,
   `display_name` VARCHAR(45) NOT NULL,
   `date_created` DATE NOT NULL,
-  `password` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

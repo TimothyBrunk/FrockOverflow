@@ -86,7 +86,7 @@
 
 		<!-- *******************************************QUESTION LIST*******************************************-->
 		<c:if test="${! empty message}">
-			<h4>${message}</h4>
+			<h4 id="questionBlock">${message}</h4>
 		</c:if>
 		<c:if test="${! empty updatedQuestionList}">
 			<!-- UPDATED QUESTIONS LIST -->

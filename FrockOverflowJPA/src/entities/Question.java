@@ -1,6 +1,6 @@
 package entities;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String body;
-	private Date timestamp;
+	private Timestamp timestamp;
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -77,11 +77,11 @@ public class Question {
 		this.user = user;
 	}
 
-	public Date getTimestamp() {
+	public Timestamp getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date l) {
+	public void setTimestamp(Timestamp l) {
 		this.timestamp = l;
 	}
 

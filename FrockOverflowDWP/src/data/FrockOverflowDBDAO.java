@@ -1,6 +1,6 @@
 package data;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +63,8 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public List<Question> createQuestion(Question q, User u) {
-		q.setTimestamp(new Date());
+		Date date = new Date();
+		q.setTimestamp(new Timestamp(date.getTime()));
 		q.setUser(u);
 		q.setStatus(QuestionStatus.Posted);
 		em.persist(q);
@@ -75,8 +76,10 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	public Question postAnswer(Answer a, User user, int q) {
 		Question question = em.find(Question.class, q);
 		a.setUser(user);
-		a.setTimestamp(new Date());
+		Date date = new Date();
+		a.setTimestamp(new Timestamp(date.getTime()));
 		a.setQuestion(question);
+		a.setStatus(AnswerStatus.Posted);
 		question.addAnswer(a);
 		em.persist(a);
 		System.out.println(a.getUser().getId());
@@ -105,8 +108,10 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	public User createUser(User u) {
 		List<User> returnusers = em.createQuery("SELECT u from User u WHERE email='" + u.getEmail() + "'", User.class).getResultList();
 		if (returnusers.size()==0) {
-			u.setDateCreated(new Date());
+			Date date = new Date();
+			u.setDateCreated(new Timestamp(date.getTime()));
 			u.setType(1);
+			System.out.println(u);
 			em.persist(u);
 			return u;
 		} else {
