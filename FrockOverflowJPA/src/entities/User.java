@@ -127,8 +127,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User= " + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", type="
-				+ type + ", displayName=" + displayName + ", dateCreated=" + dateCreated + ", password=" + password;
+		return displayName;
 	}
 	
 	
