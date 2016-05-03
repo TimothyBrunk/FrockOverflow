@@ -62,10 +62,21 @@ body {
             	</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
+			
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1 search-text">
-				<ul class="nav navbar-nav">
-
+				<ul class="search-bar">
+					<li><span style="color: white">Search by tags:</span></li>
+					<form action="searchByTag.do">
+						<input type="text" name="searchTags" list="tags"
+							placeholder="ex... java">
+						<datalist id="tags">
+							<c:forEach var="tag" items="${sessionScope.tags}">
+								<option value="${tag}"></option>
+							</c:forEach>
+						</datalist>
+						<input type="submit" name="submit">
+					</form>
 				</ul>
 
 			</div>
@@ -75,7 +86,7 @@ body {
 					<ul class="nav navbar-nav">
 
 						<li>
-						<button 
+						<button type="button"
 							onclick="document.getElementById('login').style.display='block'">Log
 							In</button>
 						<button type="button" name="submit"
