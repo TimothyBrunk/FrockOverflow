@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,8 @@ import entities.QuestionStatus;
 import entities.Tag;
 import entities.TagAssignment;
 import entities.User;
+import entities.Vote;
+import entities.VoteAssignment;
 
 @Transactional
 public class FrockOverflowDBDAO implements FrockOverflowDao {
@@ -33,26 +36,9 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
 		List<Question> returnedQuestions = new ArrayList<>();
-		// List<Tag> usedTags = new ArrayList<>();
-		// List<Tag> taglist = em.createQuery("SELECT t from Tag t",
-		// Tag.class).getResultList();
-		// for (Tag tag2 : taglist) {
-		// if (tag.equals(tag2.getBody())){
-		// usedTags.add(tag2);
-		// }
-		// }
-		// for (Tag tag3 : usedTags) {
-		// returnedQuestions.add(em.createQuery("SELECT q from Question q join
-		// q.tags t where t.id = " + tag3.getId(),
-		// Question.class).getSingleResult());
-		// }
-		// for (Question tag4 : returnedQuestions) {
-		// System.out.println(tag4);
-		// }
 		returnedQuestions = em
 				.createQuery("SELECT q from Question q join q.tags t where t.body = '" + tag + "'", Question.class)
 				.getResultList();
-
 		return returnedQuestions;
 	}
 
@@ -126,6 +112,18 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
 		return ql;
 	}
+	
+	@Override
+	public void removeQuestion(int id) {
+		Question questionToRemove = em.find(Question.class, id);
+		for (TagAssignment t : questionToRemove.getTagAssignments()) {
+			em.remove(t);
+		}
+		for (Answer a : questionToRemove.getAnswers()) {
+			em.remove(a);
+		}
+		em.remove(questionToRemove);
+	}
 
 	@Override
 	public Question postAnswer(Answer a, User user, int q) {
@@ -157,6 +155,15 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 				.getResultList();
 		System.out.println(answers.size());
 		return answers;
+	}
+	
+	@Override
+	public void removeAnswer(int id) {
+		Answer answerToRemove = em.find(Answer.class, id);
+		for (VoteAssignment v : answerToRemove.getVoteAssignments()) {
+			em.remove(v);
+		}
+		em.remove(answerToRemove);
 	}
 
 	@Override
@@ -217,12 +224,60 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			return guest;
 		}
 	}
-
+	
+	@Override
+	public void removeUser(int id) {
+		User userToRemove = em.find(User.class, id);
+		for (Answer a : userToRemove.getAnswers()) {
+			removeAnswer(a.getId());
+		}
+		for (Question q : userToRemove.getQuestions()) {
+			removeQuestion(q.getId());
+		}
+		em.remove(userToRemove);
+	}
+	
 	@Override
 	public Question getMostRecentQuestion() {
-		Question mostrecent = em.createQuery("Select q FROM question q ", Question.class).getSingleResult();
-		return mostrecent;
+		Integer mostrecent = (Integer) em.createQuery("Select max(q.id) FROM Question q").getSingleResult();
+		Question mostrecentquestion = em.find(Question.class, mostrecent);
+		System.out.println(mostrecent);
+		System.out.println("In DAO");
+		return mostrecentquestion;
+	}
 
+
+	
+	@Override
+	public void voteUp(int answerId, int userId) {
+		Answer a = em.find(Answer.class, answerId);
+		User u = em.find(User.class, userId);
+		Vote v = em.find(Vote.class, 1);
+		List<VoteAssignment> va = em.createQuery("SELECT v from VoteAssignment v WHERE v.answer.id = " + answerId + " AND v.user.id = " + userId, VoteAssignment.class).getResultList();
+		if (va.isEmpty()) {
+			VoteAssignment voteAssign = new VoteAssignment();
+			voteAssign.setAnswer(a);
+			voteAssign.setUser(u);
+			voteAssign.setVote(v);
+			em.persist(voteAssign);
+			a.setRating(a.getRating()+v.getValue());
+		}
+	}
+	
+	@Override
+	public void voteDown(int answerId, int userId) {
+		Answer a = em.find(Answer.class, answerId);
+		User u = em.find(User.class, userId);
+		Vote v = em.find(Vote.class, 2);
+		List<VoteAssignment> va = em.createQuery("SELECT v from VoteAssignment v WHERE v.answer.id = " + answerId + " AND v.user.id = " + userId, VoteAssignment.class).getResultList();
+		if (va.isEmpty()) {
+			VoteAssignment voteAssign = new VoteAssignment();
+			voteAssign.setAnswer(a);
+			voteAssign.setUser(u);
+			voteAssign.setVote(v);
+			em.persist(voteAssign);
+			a.setRating(a.getRating()+v.getValue());
+		}
 	}
 
 	// @Override

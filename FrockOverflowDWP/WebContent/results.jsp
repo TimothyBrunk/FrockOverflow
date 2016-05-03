@@ -146,13 +146,19 @@
 
 						Posted By: ${question.user.displayName} ${question.timestamp}<br>
 						Status: ${question.status}<br>
+						
 
-						<c:if
-							test="${question.status=='Resolved' or question.status=='Answered'}">
+						<c:if test="${question.status=='Resolved' or question.status=='Answered'}">
 							<form action="getAnswers.do" method="GET">
 								<input type="hidden" name="id" value="${question.id}"> <input
 									id="viewanswers" type="submit" name="view answers"
 									value="View Answers">
+							</form>
+						</c:if>
+						<c:if test="${sessionScope.user.type > 1}">
+							<form action="removeQuestion.do" method="GET">
+								<input type="hidden" name="id" value="${question.id}"> 
+								<input type="submit" name="removeQuestion" value="Remove Question">
 							</form>
 						</c:if>
 					</div> <c:if test="${sessionScope.user.type != 0}">
@@ -183,23 +189,32 @@
 				${answeredQuestion.user.displayName} On or About:
 				${answeredQuestion.timestamp}</p>
 			<br>
-
 			<ul id="question">
 				<c:forEach var="answer" items="${answersByQ}">
 					<li id="answerBlock">
 
 						<h4 id="Question">A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
 						On or About: ${answer.timestamp}
-						<c:if test="${sessionScope.user.type != 0}"><form action="voteUp.do" method="POST">
+						Rating: ${answer.rating}
+						<c:if test="${sessionScope.user.type != 0}">
+						<form action="voteUp.do" method="POST">
+							<input type="hidden" name="answerId" value="${answer.id}">
 							<input type="submit" value="Vote Up"></input>
 						</form>
 						<form action="voteDown.do" method="POST">
+							<input type="hidden" name="answerId" value="${answer.id}">
 							<input type="submit" value="Vote Down"></input>
-						</form></c:if> <br> <c:if
-							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+						</form></c:if> <br> 
+						<c:if test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
 							<form action="acceptAnswer.do" method="GET">
 								<input type="hidden" name="answer_id" value="${answer.id}">
 								<input type="submit" name="Accept Answer" value="Accept Answer">
+							</form>
+						</c:if>
+						<c:if test="${sessionScope.user.type > 1}">
+							<form action="removeAnswer.do" method="GET">
+								<input type="hidden" name="id" value="${answer.id}"> 
+								<input type="submit" name="removeAnswer" value="Remove Answer">
 							</form>
 						</c:if>
 

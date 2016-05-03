@@ -8,9 +8,10 @@ import entities.Tag;
 import entities.User;
 
 public interface FrockOverflowDao {
-	Question getQuestion(int id);
+	
+	List <Question> createQuestion(Question q, User u, String s);
 
-	List <Question> createQuestion(Question q, User u, String keywords);
+	Question getQuestion(int id);
 	
 	List<Question> getAllQuestions();
 	
@@ -22,27 +23,33 @@ public interface FrockOverflowDao {
 	
 	List<Question> getQuestionsByUser(User u);
 
+	List<Question> getQuestionByTag(String tag);
+	
+	Question getMostRecentQuestion();
+	
+	void removeQuestion(int id);
+	
 	Question postAnswer(Answer a, User user, int q);
-	
+
 	Question acceptAnswer(int id);
-	
+
 	List<Answer> getAnswersByQuestionId(int questionId);
+	
+	void removeAnswer(int id);
 
 	User createUser(User u);
 
 	User getUser(String email, String password);
-
-	List<Tag> getTags();
-
-	List<Question> getQuestionByTag(String tag);
 	
-	Question getMostRecentQuestion();
-
 	User editUser(User u); 
 	
-//	Answer voteUp (int rating); 
+	void removeUser(int id);
+
+	List<Tag> getTags();
 	
-//	Answer voteDown (int rating); 
+	void voteUp (int answerId, int userId); 
+	
+	void voteDown (int answerId, int userId); 
  
 
 }
