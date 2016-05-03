@@ -19,7 +19,7 @@ import entities.Tag;
 import entities.User;
 
 @Controller
-@SessionAttributes({"user", "tags"})
+@SessionAttributes({ "user", "tags" })
 public class FrockOverflowController {
 	@Autowired
 	private FrockOverflowDao frockoverflowdao;
@@ -28,17 +28,17 @@ public class FrockOverflowController {
 	public User initUser() {
 		return new User();
 	}
+
 	@ModelAttribute("tags")
-	public List<Tag> initTags(){
-		List <Tag> tags = frockoverflowdao.getTags();
+	public List<Tag> initTags() {
+		List<Tag> tags = frockoverflowdao.getTags();
 		return tags;
 	}
-	
 
 	@RequestMapping("search.do")
 	public ModelAndView searchQuestions(@ModelAttribute("user") User login, @RequestParam("submit") String searchBy) {
 		List<Question> qList = new ArrayList<>();
-		switch(searchBy) {
+		switch (searchBy) {
 		case "View All Questions":
 			qList = frockoverflowdao.getAllQuestions();
 			break;
@@ -53,42 +53,44 @@ public class FrockOverflowController {
 			break;
 		case "View All My Questions":
 			qList = frockoverflowdao.getQuestionsByUser(login);
-			break;	
+			break;
 		}
 		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
-		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
+		if (qList.size() == 0)
+			mv.addObject("message", "No Questions Found");
 		return mv;
-		
+
 	}
-	
+
 	@RequestMapping("initialLoad.do")
 	public ModelAndView initialLoad() {
 		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index.jsp");
-		mv.addObject("question", mostrecent); 
+		mv.addObject("question", mostrecent);
 		return mv;
 	}
 
-	
 	@RequestMapping("searchByTag.do")
 	public ModelAndView getQuestionsByTag(@RequestParam("searchTags") String tagString) {
 		String[] tagarr = tagString.split(" ");
 		System.out.println(tagarr[0]);
 		List<Question> qList = frockoverflowdao.getQuestionByTag(tagarr[0]);
 		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
-		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
+		if (qList.size() == 0)
+			mv.addObject("message", "No Questions Found");
 		return mv;
 	}
-	
+
 	@RequestMapping("searchBySingleTag.do")
 	public ModelAndView getQuestionsBySingleTag(@RequestParam("tag") String tag) {
 		List<Question> qList = frockoverflowdao.getQuestionByTag(tag);
 		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
-		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
+		if (qList.size() == 0)
+			mv.addObject("message", "No Questions Found");
 		return mv;
 	}
-	
+
 	@RequestMapping("getQuestionByID.do")
 	public ModelAndView getQuestion(@ModelAttribute("user") User user, @RequestParam("id") int id) {
 		Question q = frockoverflowdao.getQuestion(id);
@@ -101,8 +103,7 @@ public class FrockOverflowController {
 
 	@RequestMapping("createQuestion.do")
 	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user,
-			@ModelAttribute("tags") List<Tag> tags,
-			@RequestParam("keywords") String keywords) {
+			@ModelAttribute("tags") List<Tag> tags, @RequestParam("keywords") String keywords) {
 		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
 		ModelAndView mv = new ModelAndView();
 		tags = frockoverflowdao.getTags();
@@ -111,7 +112,7 @@ public class FrockOverflowController {
 		mv.addObject("tags", tags);
 		return mv;
 	}
-	
+
 	@RequestMapping("removeQuestion.do")
 	public ModelAndView removeQuestion(int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Question has been deleted");
@@ -122,33 +123,32 @@ public class FrockOverflowController {
 	}
 
 	@RequestMapping("postAnswer.do")
-	public ModelAndView postAnswer(Answer a, @ModelAttribute("user") User user,
-			@RequestParam("question_id") int q) {
+	public ModelAndView postAnswer(Answer a, @ModelAttribute("user") User user, @RequestParam("question_id") int q) {
 		Question question = frockoverflowdao.postAnswer(a, user, q);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-		
+
 		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(question.getId());
-		for(Answer ans : answers) {
+		for (Answer ans : answers) {
 			System.out.println(ans.getBody());
 		}
 		mv.addObject("answersByQ", answers);
 		mv.addObject("answeredQuestion", question);
 		return mv;
 	}
-	
+
 	@RequestMapping("acceptAnswer.do")
 	public ModelAndView acceptAnswer(@RequestParam("answer_id") int id) {
 		Question q = frockoverflowdao.acceptAnswer(id);
 		ModelAndView mv = new ModelAndView("results.jsp", "acceptedAnswerQuestion", q);
 		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(q.getId());
-		for(Answer ans : answers) {
+		for (Answer ans : answers) {
 			System.out.println(ans.getBody());
 		}
 		mv.addObject("answersByQ", answers);
 		return mv;
 	}
-	
+
 	@RequestMapping("getAnswers.do")
 	public ModelAndView getAnswers(int id) {
 		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(id);
@@ -157,7 +157,7 @@ public class FrockOverflowController {
 		mv.addObject("answeredQuestion", q);
 		return mv;
 	}
-	
+
 	@RequestMapping("removeAnswer.do")
 	public ModelAndView removeAnswer(int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Answer has been deleted");
@@ -168,20 +168,21 @@ public class FrockOverflowController {
 	}
 
 	@RequestMapping("addUser.do")
-	public ModelAndView createUser(/*@Valid*/ User u/*, BindingResult result*/) {
+	public ModelAndView createUser(
+			/* @Valid */ User u/* , BindingResult result */) {
 		User userToAdd = new User();
 		userToAdd.setEmail(u.getEmail());
 		userToAdd.setPassword(u.getPassword());
 		userToAdd.setFirstName(u.getFirstName());
 		userToAdd.setLastName(u.getLastName());
 		userToAdd.setDisplayName(u.getDisplayName());
-//		if(result.hasErrors()){
-//			ModelAndView mv = new ModelAndView();
-//			mv.setViewName("results.jsp");
-//			String returned = "FORM VALIDATED BRO"; 
-//			mv.addObject("create", returned);
-//			return mv;
-//		}
+		// if(result.hasErrors()){
+		// ModelAndView mv = new ModelAndView();
+		// mv.setViewName("results.jsp");
+		// String returned = "FORM VALIDATED BRO";
+		// mv.addObject("create", returned);
+		// return mv;
+		// }
 		User user = frockoverflowdao.createUser(userToAdd);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
@@ -202,46 +203,59 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", frockoverflowdao.getAllQuestions());
 		return mv;
 	}
+
 	@RequestMapping("getMostRecentQuestion.do")
 	public ModelAndView getMostRecentQuestion() {
 		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index.jsp");
-		mv.addObject("question", mostrecent); 
+		mv.addObject("question", mostrecent);
 		return mv;
 	}
+
 	@RequestMapping("editprofile.do")
-	public ModelAndView editProfile(User u){
-	User user = frockoverflowdao.editUser(u);
-	ModelAndView mv = new ModelAndView();
-	if(user.getId() == 1000){
-		mv.addObject( "invalid", "Invalid Password");
-	}
+	public ModelAndView editProfile(User u) {
+		User user = frockoverflowdao.editUser(u);
+		ModelAndView mv = new ModelAndView();
+		if (user.getId() == 1000) {
+			mv.addObject("invalid", "Invalid Password");
+		}
 		mv.setViewName("results.jsp");
 		mv.addObject("user", user);
-	return mv;
-}
-	@RequestMapping("gotoeditprofile.do")
-	public ModelAndView goToEdit(@ModelAttribute("user") User u){
-		ModelAndView mv = new ModelAndView("profile.jsp", "user", u);
-		return mv;	
+		return mv;
 	}
-	
-//	Tim started the methods below before realizing he should probably talk to the team first. 
+
+	@RequestMapping("gotoeditprofile.do")
+	public ModelAndView goToEdit(@ModelAttribute("user") User u) {
+		ModelAndView mv = new ModelAndView("profile.jsp", "user", u);
+		return mv;
+	}
+
+	// Tim started the methods below before realizing he should probably talk to
+	// the team first.
 	@RequestMapping("voteUp.do")
-	public ModelAndView  voteUp (int answerId, @ModelAttribute("user") User user){
+	public ModelAndView voteUp(int answerId, @ModelAttribute("user") User user) {
 		frockoverflowdao.voteUp(answerId, user.getId());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-//		mv.addObject("updatedQuestionList", updatedQuestionList);
+		// mv.addObject("updatedQuestionList", updatedQuestionList);
 		return mv;
 	}
+
 	@RequestMapping("voteDown.do")
-	public ModelAndView  voteDown(int answerId, @ModelAttribute("user") User user){
+	public ModelAndView voteDown(int answerId, @ModelAttribute("user") User user) {
 		frockoverflowdao.voteDown(answerId, user.getId());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-//		mv.addObject("updatedQuestionList", updatedQuestionList);
+		// mv.addObject("updatedQuestionList", updatedQuestionList);
+		return mv;
+	}
+	@RequestMapping("logOut.do")
+	public ModelAndView logOut(User u) {
+		User user = frockoverflowdao.logOut(u);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		mv.addObject("user", user);
 		return mv;
 	}
 

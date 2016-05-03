@@ -113,7 +113,8 @@ body {
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
 				<c:if test="${!empty invalid}">${invalid}</c:if>
 				<c:if test="${sessionScope.user.type != 0}">
-					<a href="gotoeditprofile.do">Edit Profile</a>
+					<a href="gotoeditprofile.do">Edit Profile   </a>
+					<a href="logOut.do">   Log Out</a>
 				</c:if>
 			</ul>
 		</div>
@@ -121,9 +122,7 @@ body {
 		</div>
 		<!-- /.container -->
 	</nav>
-	<h3 >Question and Answer Forum</h3>
 
-	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	<br>
 	<br>
 	<br>
@@ -137,6 +136,9 @@ body {
 	<br>
 	<br>
 	<br>
+	<br>
+	<br>
+	<h3 id="questionandanswer" >Question and Answer Forum</h3>
 	<%-- <c:if test="${sessionScope.user.type != 0}">
 		<button id="postquestion"
 			onclick="document.getElementById('questionFormDiv').style.display='block'">
@@ -254,12 +256,12 @@ body {
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-
+ --%>
 </body>
 </html>
 
 
- --%>
+
 
 
 

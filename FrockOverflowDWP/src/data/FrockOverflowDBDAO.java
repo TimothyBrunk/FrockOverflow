@@ -279,6 +279,11 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			a.setRating(a.getRating()+v.getValue());
 		}
 	}
+	@Override
+	public User logOut(User u) {
+		User guest = em.createQuery("SELECT u from User u WHERE id = 1000", User.class).getSingleResult();
+		return guest;
+	} 
 
 	// @Override
 	// public Answer voteUp(int rating) {

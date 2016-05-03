@@ -108,6 +108,10 @@
 </li>
 </ul>
 <input type="submit" name="submit" value="Save Changes">
+<form action="logOut.do">
+<input type="submit" name="submit" value="Log Out">
+<a href="index.jsp"></a> 
+</form>
 </form>
 
 </body>

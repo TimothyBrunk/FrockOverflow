@@ -93,7 +93,7 @@
 			<ul class="logged">
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
 			<c:if test="${!empty invalid}">${invalid}</c:if>
-			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do"><em>Edit Profile</em></a></c:if>
+			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do"><em>Edit Profile</em></a></c:if><a href="logOut.do">   Log Out</a>
 			</ul>
 		</div>	
 		<!-- /.navbar-collapse -->
