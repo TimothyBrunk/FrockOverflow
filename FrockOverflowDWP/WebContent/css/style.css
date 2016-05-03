@@ -15,13 +15,13 @@ input{
 	background: transparent;
 	border-style: none;
 }
-.navbar-button>ul>li>button{
-	margin: 5px;
-	color: white;
-	font-family: "Courier New", Courier, monospace;
-	background: transparent;
-	border-style: none;
+.search-bar{
+	margin-top: 18px;
 }
-#bs-example-navbar-collapse-1 search-text>ul>li{
-	color: #05EDFF; 
+.questionBlock<li{
+	margin: 5px;       
+    color: white;      
+    font-family: "Courier New", Courier, monospace;
+    background: transparent;
+    border-style: none;
 }

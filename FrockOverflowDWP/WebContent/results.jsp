@@ -49,12 +49,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp'">FrockOverflow</a>
+                <a href="index.jsp">
+                <img src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
+            	</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 search-text">
-                <ul class="nav navbar-nav">
-			<li>Search by tags:</li>
+            <div class="collapse navbar-collapse search-bar" id="bs-example-navbar-collapse-1 search-text">
+                <ul class="search-bar">
+			<li><span style= "color: white">Search by tags:</span></li>
 			<form action="searchByTag.do">
 				<input type="text" name="searchTags" list="tags" placeholder= "ex... java">
 				<datalist id="tags"> 
@@ -91,7 +93,7 @@
 			<ul class="logged">
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
 			<c:if test="${!empty invalid}">${invalid}</c:if>
-			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do">Edit Profile</a></c:if>
+			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do"><em>Edit Profile</em></a></c:if>
 			</ul>
 		</div>	
 		<!-- /.navbar-collapse -->
@@ -99,12 +101,6 @@
 	<!-- /.container --> </nav>
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<br>
 	<br>
 	<br>
