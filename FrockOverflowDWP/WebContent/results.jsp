@@ -99,39 +99,41 @@ body {
 				<c:if test="${!empty invalid}">${invalid}</c:if>
 				<c:if test="${sessionScope.user.type != 0}">
 					<a href="gotoeditprofile.do"><em>Edit Profile</em></a> ||
-				</c:if><a href="logOut.do"> <em>  Log Out</em></a>
+				</c:if>
+				<a href="logOut.do"> <em> Log Out</em></a>
 			</ul>
+		</div>
 	</nav>
 
 
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	<div class="body-container">
-
 		<section class="content">
-		<c:if test="${sessionScope.user.type != 0}">
-			<form action="createQuestion.do" method="GET">
-				<span class="input input--ichiro"> <input
-					class="input__field input__field--ichiro" type="text" id="input-25"
-					name="body" /> 
-					<label class="input__label input__label--ichiro"
-					for="input-25"> <span
-						class="input__label-content input__label-content--ichiro">Post
-							A Question</span>
-				</label>
-				</span> <span class="input input--ichiro"> <input
-					class="input__field input__field--ichiro" type="text" id="input-26" 
-					name="keywords"/>
-					<label class="input__label input__label--ichiro" for="input-26">
-						<span class="input__label-content input__label-content--ichiro">Keywords</span>
-				</label>
-				</span> 
-				<input type="submit" name="post">
-			</form>
+			<c:if test="${sessionScope.user.type != 0}">
+				<form action="createQuestion.do" method="GET">
+					<span class="input input--ichiro"> <input
+						class="input__field input__field--ichiro" type="text"
+						id="input-25" name="body" /> <label
+						class="input__label input__label--ichiro" for="input-25">
+							<span class="input__label-content input__label-content--ichiro">Post
+								A Question</span>
+					</label>
+					</span> <span class="input input--ichiro"> <input
+						class="input__field input__field--ichiro" type="text"
+						id="input-26" name="keywords" /> <label
+						class="input__label input__label--ichiro" for="input-26">
+							<span class="input__label-content input__label-content--ichiro">Keywords</span>
+					</label>
+					</span> <span class="submit-question"> <input type="submit"
+						name="post">
+					</span>
+				</form>
 			</c:if>
 		</section>
+	</div>
 
-<%-- 
+	<%-- 
 		<c:if test="${sessionScope.user.type != 0}">
 			<button id="postquestion"
 				onclick="document.getElementById('questionFormDiv').style.display='block'">
@@ -148,104 +150,103 @@ body {
 			</div>
 		</c:if>
  --%>
-		<!-- *******************************************QUESTION LIST*******************************************-->
-
-		
-		<c:if test="${! empty message}">
-			<h4 id="questionBlock">${message}</h4>
-		</c:if>
-		<c:if test="${! empty updatedQuestionList}">
-			<!-- UPDATED QUESTIONS LIST -->
-			<ul id="question">
-				<li><h2 id="Question">Questions:</h2></li>
-			</ul>
-			<ul id="questionBlock">
-				<c:forEach var="question" items="${updatedQuestionList}">
-					<li>
-						<div id="questionBlock">
-							<h4 id="questionBlock">Q: ${question.body}</h4>
-
-							Posted By: ${question.user.displayName} ${question.timestamp}<br>
-							Status: ${question.status}<br>
+	<!-- *******************************************QUESTION LIST*******************************************-->
 
 
-							<c:if
-								test="${question.status=='Resolved' or question.status=='Answered'}">
-								<form action="getAnswers.do" method="GET">
-									<input type="hidden" name="id" value="${question.id}">
-									<input id="viewanswers" type="submit" name="view answers"
-										value="View Answers">
-								</form>
-							</c:if>
-							<c:if test="${sessionScope.user.type > 1}">
-								<form action="removeQuestion.do" method="GET">
-									<input type="hidden" name="id" value="${question.id}">
-									<input type="submit" name="removeQuestion"
-										value="Remove Question">
-								</form>
-							</c:if>
-						</div> <c:if test="${sessionScope.user.type != 0}">
-							<button id="viewanswers"
-								onclick="document.getElementById('postAnswerFor${question.id}').style.display='block'">
-								Answer This Question</button>
-							<div id="postAnswerFor${question.id}" style="display: none">
-								<span onclick="this.parentElement.style.display='none'"
-									class="w3-closebtn">&times;</span>
-								<form action="postAnswer.do" method="GET">
-									<textarea cols="100" rows="10" name="body"></textarea>
-									<input type="hidden" name="question_id" value="${question.id}">
-									<input type="submit" name="post">
-								</form>
-							</div>
+	<c:if test="${! empty message}">
+		<h4 id="questionBlock">${message}</h4>
+	</c:if>
+	<c:if test="${! empty updatedQuestionList}">
+		<!-- UPDATED QUESTIONS LIST -->
+		<ul id="question">
+			<li><h2 id="Question">Questions:</h2></li>
+		</ul>
+		<ul id="questionBlock">
+			<c:forEach var="question" items="${updatedQuestionList}">
+				<li>
+					<div id="questionBlock">
+						<h4 id="questionBlock">Q: ${question.body}</h4>
+
+						Posted By: ${question.user.displayName} ${question.timestamp}<br>
+						Status: ${question.status}<br>
+
+
+						<c:if
+							test="${question.status=='Resolved' or question.status=='Answered'}">
+							<form action="getAnswers.do" method="GET">
+								<input type="hidden" name="id" value="${question.id}"> <input
+									id="viewanswers" type="submit" name="view answers"
+									value="View Answers">
+							</form>
 						</c:if>
+						<c:if test="${sessionScope.user.type > 1}">
+							<form action="removeQuestion.do" method="GET">
+								<input type="hidden" name="id" value="${question.id}"> <input
+									type="submit" name="removeQuestion" value="Remove Question">
+							</form>
+						</c:if>
+					</div> <c:if test="${sessionScope.user.type != 0}">
+						<button id="viewanswers"
+							onclick="document.getElementById('postAnswerFor${question.id}').style.display='block'">
+							Answer This Question</button>
+						<div id="postAnswerFor${question.id}" style="display: none">
+							<span onclick="this.parentElement.style.display='none'"
+								class="w3-closebtn">&times;</span>
+							<form action="postAnswer.do" method="GET">
+								<textarea cols="100" rows="10" name="body"></textarea>
+								<input type="hidden" name="question_id" value="${question.id}">
+								<input type="submit" name="post">
+							</form>
+						</div>
+					</c:if>
+				</li>
+			</c:forEach>
+		</ul>
+	</c:if>
+
+	<c:if test="${! empty answersByQ}">
+		<!-- LIST OF ANSWERS BY QUESTION -->
+		<h2 id="Question">Here are all the Answers for that Question!</h2>
+		<div class="questionBlock">
+			<h3 id="questionBlock">Q: ${answeredQuestion.body}</h3>
+			<p id="questionBlock">Asked by:
+				${answeredQuestion.user.displayName} On or About:
+				${answeredQuestion.timestamp}</p>
+			<br>
+			<ul id="question">
+				<c:forEach var="answer" items="${answersByQ}">
+					<li id="answerBlock">
+
+						<h4 id="Question">A: ${answer.body}</h4> Answered by:
+						${answer.user.displayName} On or About: ${answer.timestamp}
+						Rating: ${answer.rating} <c:if
+							test="${sessionScope.user.type != 0}">
+							<form action="voteUp.do" method="POST">
+								<input type="hidden" name="answerId" value="${answer.id}">
+								<input type="submit" value="Vote Up"></input>
+							</form>
+							<form action="voteDown.do" method="POST">
+								<input type="hidden" name="answerId" value="${answer.id}">
+								<input type="submit" value="Vote Down"></input>
+							</form>
+						</c:if> <br> <c:if
+							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+							<form action="acceptAnswer.do" method="GET">
+								<input type="hidden" name="answer_id" value="${answer.id}">
+								<input type="submit" name="Accept Answer" value="Accept Answer">
+							</form>
+						</c:if> <c:if test="${sessionScope.user.type > 1}">
+							<form action="removeAnswer.do" method="GET">
+								<input type="hidden" name="id" value="${answer.id}"> <input
+									type="submit" name="removeAnswer" value="Remove Answer">
+							</form>
+						</c:if>
+
 					</li>
 				</c:forEach>
 			</ul>
-		</c:if>
-
-		<c:if test="${! empty answersByQ}">
-			<!-- LIST OF ANSWERS BY QUESTION -->
-			<h2 id="Question">Here are all the Answers for that Question!</h2>
-			<div class="questionBlock">
-				<h3 id="questionBlock">Q: ${answeredQuestion.body}</h3>
-				<p id="questionBlock">Asked by:
-					${answeredQuestion.user.displayName} On or About:
-					${answeredQuestion.timestamp}</p>
-				<br>
-				<ul id="question">
-					<c:forEach var="answer" items="${answersByQ}">
-						<li id="answerBlock">
-
-							<h4 id="Question">A: ${answer.body}</h4> Answered by:
-							${answer.user.displayName} On or About: ${answer.timestamp}
-							Rating: ${answer.rating} <c:if
-								test="${sessionScope.user.type != 0}">
-								<form action="voteUp.do" method="POST">
-									<input type="hidden" name="answerId" value="${answer.id}">
-									<input type="submit" value="Vote Up"></input>
-								</form>
-								<form action="voteDown.do" method="POST">
-									<input type="hidden" name="answerId" value="${answer.id}">
-									<input type="submit" value="Vote Down"></input>
-								</form>
-							</c:if> <br> <c:if
-								test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
-								<form action="acceptAnswer.do" method="GET">
-									<input type="hidden" name="answer_id" value="${answer.id}">
-									<input type="submit" name="Accept Answer" value="Accept Answer">
-								</form>
-							</c:if> <c:if test="${sessionScope.user.type > 1}">
-								<form action="removeAnswer.do" method="GET">
-									<input type="hidden" name="id" value="${answer.id}"> <input
-										type="submit" name="removeAnswer" value="Remove Answer">
-								</form>
-							</c:if>
-
-						</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</c:if>
+		</div>
+	</c:if>
 	</div>
 	<!-- jQuery Version 1.11.1 -->
 	<script src="js/jquery.js"></script>
