@@ -18,7 +18,34 @@ input{
 .search-bar{
 	margin-top: 18px;
 }
-.questionBlock<li{
+
+#bs-example-navbar-collapse-1 search-text>ul>li{
+	color: #05EDFF; 
+}
+#questionandanswer {
+	text-align: center; 
+}
+#user {
+	text-align:center;
+}
+#login {
+	text-align:center;
+}
+#createuserspan{
+	color:white; 
+	cursor:pointer; 
+	font-size:175%;
+	text-align:left; 
+	
+}
+#loginspan{
+	color:white; 
+	cursor:pointer; 
+	font-size:175%;
+	text-align:left; 
+}
+
+.questionBlock {
 	margin: 5px;       
     color: white;      
     font-family: "Courier New", Courier, monospace;
