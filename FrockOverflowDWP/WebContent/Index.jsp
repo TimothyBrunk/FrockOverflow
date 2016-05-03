@@ -57,13 +57,26 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.jsp'">FrockOverflow</a>
+				 <a href="index.jsp">
+                <img src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
+            	</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
+			
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1 search-text">
-				<ul class="nav navbar-nav">
-
+				<ul class="search-bar">
+					<li><span style="color: white">Search by tags:</span></li>
+					<form action="searchByTag.do">
+						<input type="text" name="searchTags" list="tags"
+							placeholder="ex... java">
+						<datalist id="tags">
+							<c:forEach var="tag" items="${sessionScope.tags}">
+								<option value="${tag}"></option>
+							</c:forEach>
+						</datalist>
+						<input type="submit" name="submit">
+					</form>
 				</ul>
 
 			</div>
@@ -73,7 +86,7 @@ body {
 					<ul class="nav navbar-nav">
 
 						<li>
-						<button class="w3-btn w3-hover-blue" type="button"
+						<button type="button"
 							onclick="document.getElementById('login').style.display='block'">Log
 							In</button>
 						<button type="button" name="submit"
