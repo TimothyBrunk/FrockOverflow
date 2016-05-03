@@ -9,12 +9,18 @@ input{
 	
 }
 .navbar-button>ul>li>input{
-	background: transparent;
+	margin: 5px;
 	color: white;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
 }
 .navbar-button>ul>li>button{
-	background: transparent;
+	margin: 5px;
 	color: white;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
 }
 #bs-example-navbar-collapse-1 search-text>ul>li{
 	color: #05EDFF; 

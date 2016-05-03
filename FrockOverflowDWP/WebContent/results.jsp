@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">FrockOverflow</a>
+                <a class="navbar-brand" href="index.jsp'">FrockOverflow</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 search-text">
@@ -70,8 +70,6 @@
 			<div class="collapse navbar-collapse navbar-button" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
     
-               	<li><button type="button" name="Home"
-							onclick="window.location.href='index.jsp'">Home</button></li>
 					<li><input type="submit" name="submit"
 						value="View All Questions"></li>
 					<li><input type="submit" name="submit"
