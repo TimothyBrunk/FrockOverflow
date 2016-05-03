@@ -61,7 +61,7 @@ public class FrockOverflowController {
 		
 	}
 	
-	@RequestMapping("initialLoad.do")
+	@RequestMapping("index.do")
 	public ModelAndView initialLoad() {
 		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
 		ModelAndView mv = new ModelAndView();

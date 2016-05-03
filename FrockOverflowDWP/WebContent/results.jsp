@@ -50,7 +50,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a href="index.jsp"> <img src="smallicon.png"
+				<a href="index.do"> <img src="smallicon.png"
 					alt="Frock Overflow" style="width: 100px; height: 100px;">
 				</a>
 			</div>
