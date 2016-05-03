@@ -57,7 +57,9 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.jsp'">FrockOverflow</a>
+				 <a href="index.jsp">
+                <img src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
+            	</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
@@ -73,7 +75,7 @@ body {
 					<ul class="nav navbar-nav">
 
 						<li>
-						<button class="w3-btn w3-hover-blue" type="button"
+						<button 
 							onclick="document.getElementById('login').style.display='block'">Log
 							In</button>
 						<button type="button" name="submit"
