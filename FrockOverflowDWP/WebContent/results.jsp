@@ -3,64 +3,74 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>FrockOverflow</title>
- <link href="css/bootstrap.min.css" rel="stylesheet">
- 
-<!-- Custom CSS -->
-<link href="css/landing-page.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
-	rel="stylesheet" type="text/css">
- 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Frock Overflow</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
+
 <body>
 	<!-- ********************************Top Nav Bar**************************** -->
-	<nav class="navbar navbar-default navbar-fixed-top topnav"
-		role="navigation">
-	<div class="container topnav">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-
-		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<div id="floatleft">
-			Search by tags:
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">FrockOverflow</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 search-text">
+                <ul class="nav navbar-nav">
+			<li>Search by tags:</li>
 			<form action="searchByTag.do">
-				<input type="text" name="searchTags" list="tags">
+				<input type="text" name="searchTags" list="tags" placeholder= "ex... java">
 				<datalist id="tags"> 
 				<c:forEach var="tag" items="${sessionScope.tags}">
 				<option value="${tag}"></option>
 				</c:forEach>
-				</datalist>				
+				</datalist>
 					<input type="submit" name="submit">
 			</form>
-			<p><em>For example;</em> java</p>
+				</ul>
 			</div>
 			<form action="search.do">
-				<ul class="nav navbar-nav navbar-right">
-					<li><button type="button" name="Home"
+			<div class="collapse navbar-collapse navbar-button" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+    
+               	<li><button type="button" name="Home"
 							onclick="window.location.href='index.jsp'">Home</button></li>
 					<li><input type="submit" name="submit"
 						value="View All Questions"></li>
@@ -74,7 +84,8 @@
 						value="View All My Questions"></li>
 					<li><input type="hidden" name="user" value="${user.id}"></input></li>
 				</ul>
-			</form>
+				</div>
+			</form> 
 			</div>
 			
 			<!--**********************************************USER INFORMATION************************************-->
@@ -177,7 +188,7 @@
 				<c:forEach var="answer" items="${answersByQ}">
 					<li id="answerBlock">
 
-						<h4>A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
+						<h4 id="Question">A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
 						On or About: ${answer.timestamp}
 						<c:if test="${sessionScope.user.type != 0}"><form action="voteUp.do" method="POST">
 							<input type="submit" value="Vote Up"></input>
@@ -197,5 +208,13 @@
 			</ul>
 		</div>
 	</c:if>
+	 
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>

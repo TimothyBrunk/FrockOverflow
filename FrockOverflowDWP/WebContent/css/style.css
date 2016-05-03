@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#floatleft{
+	margin-top: 10px;
+	text-align: left;
+	color: #05EDFF;
+}
+input{
+	
+}
+.navbar-button>ul>li>input{
+	background: transparent;
+	color: white;
+}
+.navbar-button>ul>li>button{
+	background: transparent;
+	color: white;
+}
+#bs-example-navbar-collapse-1 search-text>ul>li{
+	color: #05EDFF; 
+}
