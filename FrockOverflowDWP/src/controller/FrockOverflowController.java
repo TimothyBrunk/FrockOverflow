@@ -61,7 +61,7 @@ public class FrockOverflowController {
 		
 	}
 	
-	@RequestMapping("initialLoad.do")
+	@RequestMapping("index.do")
 	public ModelAndView initialLoad() {
 		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
 		ModelAndView mv = new ModelAndView();
@@ -188,7 +188,6 @@ public class FrockOverflowController {
 		mv.addObject("user", user);
 		return mv;
 	}
-
 	@RequestMapping("getUser.do")
 	public ModelAndView getUser(@ModelAttribute("user") User login, @RequestParam("email") String email,
 			@RequestParam("password") String password) {
@@ -225,6 +224,14 @@ public class FrockOverflowController {
 	public ModelAndView goToEdit(@ModelAttribute("user") User u){
 		ModelAndView mv = new ModelAndView("profile.jsp", "user", u);
 		return mv;	
+	}
+	@RequestMapping("logOut.do")
+	public ModelAndView logOut(User u){
+	User user = frockoverflowdao.logOut(u);
+	ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		mv.addObject("user", user);
+	return mv;
 	}
 	
 //	Tim started the methods below before realizing he should probably talk to the team first. 
