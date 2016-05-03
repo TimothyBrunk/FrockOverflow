@@ -152,6 +152,25 @@ body {
  --%>
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
+<c:forEach var="question" items="${updatedQuestionList}">
+<article id="${question.id}">
+  <h4>Q: ${question.body}</h4>
+
+						Posted By: ${question.user.displayName} ${question.timestamp}<br>
+						Status: ${question.status}<br>
+  
+  <div class="content_w">
+    <div class="content">
+    <c:forEach var="answer" items= "${question.answers}">
+					${answer}
+					</c:forEach> 
+    </div>
+  </div>
+</article>
+  </c:forEach>
+
+
+
 
 	<c:if test="${! empty message}">
 		<h4 id="questionBlock">${message}</h4>
@@ -199,6 +218,9 @@ body {
 							</form>
 						</div>
 					</c:if>
+					<c:forEach var="answer" items= "${question.answers}">
+					${answer}
+					</c:forEach> 
 				</li>
 			</c:forEach>
 		</ul>
@@ -253,6 +275,39 @@ body {
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-
+	
+	<!-- This is J-Query text expand code -->
+	<script type="text/javascript">
+	$('article').on('click', function() {
+		  slide($('.content', this)); 
+		});
+		 
+		function slide(content) {
+		  var wrapper = content.parent();
+		  var contentHeight = content.outerHeight(true);
+		  var wrapperHeight = wrapper.height();
+		 
+		  wrapper.toggleClass('open');
+		  if (wrapper.hasClass('open')) {
+		    setTimeout(function() {
+		      wrapper.addClass('transition').css('height', contentHeight);
+		    }, 10);
+		  }
+		  else {
+		    setTimeout(function() {
+		      wrapper.css('height', wrapperHeight);
+		      setTimeout(function() {
+		        wrapper.addClass('transition').css('height', 0);
+		      }, 10);
+		    }, 10);
+		  }
+		 
+		  wrapper.one('transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd', function() {
+		    if(wrapper.hasClass('open')) {
+		      wrapper.removeClass('transition').css('height', 'auto');
+		    }
+		  });
+		}  	
+	</script>
 </body>
 </html>
