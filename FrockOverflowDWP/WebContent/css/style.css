@@ -94,6 +94,16 @@ input {
 
 
 
+article .content_w {
+  overflow: hidden;
+  height: 0;
+}
+article .content_w.transition {
+  -webkit-transition: height 0.5s;
+     -moz-transition: height 0.5s;
+       -o-transition: height 0.5s;
+          transition: height 0.5s;
+}
 
 
 

@@ -44,7 +44,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public List<Question> getAllQuestions() {
-		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
+		List<Question> ql = em.createQuery("Select q from Question q join fetch q.answers", Question.class).getResultList();
 		return ql;
 	}
 
