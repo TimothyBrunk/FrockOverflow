@@ -35,7 +35,16 @@ body {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<body>
+    
+<body id="backgroundimage" >
+
+<div class="top"> 
+<img  src="FrockOF.png" height="200" width="900" > </div>
+
+
+
+
+
 	<!-- ********************************Top Nav Bar**************************** -->
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -104,7 +113,8 @@ body {
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
 				<c:if test="${!empty invalid}">${invalid}</c:if>
 				<c:if test="${sessionScope.user.type != 0}">
-					<a href="gotoeditprofile.do">Edit Profile</a>
+					<a href="gotoeditprofile.do">Edit Profile   </a>
+					<a href="logOut.do">   Log Out</a>
 				</c:if>
 			</ul>
 		</div>
@@ -113,7 +123,6 @@ body {
 		<!-- /.container -->
 	</nav>
 
-	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	<br>
 	<br>
 	<br>
@@ -127,7 +136,10 @@ body {
 	<br>
 	<br>
 	<br>
-	<c:if test="${sessionScope.user.type != 0}">
+	<br>
+	<br>
+	<h3 id="questionandanswer" >Question and Answer Forum</h3>
+	<%-- <c:if test="${sessionScope.user.type != 0}">
 		<button id="postquestion"
 			onclick="document.getElementById('questionFormDiv').style.display='block'">
 			Try Your Luck, Sucka (Post a Question)</button>
@@ -244,7 +256,7 @@ body {
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-
+ --%>
 </body>
 </html>
 

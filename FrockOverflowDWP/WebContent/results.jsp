@@ -96,10 +96,15 @@ body {
 		<div id="floatleft">
 			<ul class="logged">
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
+<<<<<<< HEAD
 				<c:if test="${!empty invalid}">${invalid}</c:if>
 				<c:if test="${sessionScope.user.type != 0}">
 					<a href="gotoeditprofile.do"><em>Edit Profile</em></a>
 				</c:if>
+=======
+			<c:if test="${!empty invalid}">${invalid}</c:if>
+			<c:if test="${sessionScope.user.type != 0}"><a href = "gotoeditprofile.do"><em>Edit Profile</em></a></c:if><a href="logOut.do">   Log Out</a>
+>>>>>>> bef1d0bbd21a5e575ab275d9747aaa5110e57586
 			</ul>
 	</nav>
 
