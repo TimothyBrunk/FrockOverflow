@@ -75,10 +75,9 @@ body {
 								<option value="${tag}"></option>
 							</c:forEach>
 						</datalist>
-						<input type="submit" name="submit">
-					</form>
+						<input type="submit" name="submit"></form>							
 				</ul>
-
+				<form action="search.do"><input type="submit" name="submit" value="View All Questions"> </form>	
 			</div>
 			<form action="search.do">
 				<div class="collapse navbar-collapse navbar-button"
@@ -127,7 +126,7 @@ body {
 				<c:if test="${!empty invalid}">${invalid}</c:if>
 				<c:if test="${sessionScope.user.type != 0}">
 					<a href="gotoeditprofile.do">Edit Profile   </a>
-					<a href="logOut.do">   Log Out</a>
+					<a href="logOut.do"> || Log Out</a>
 				</c:if>
 			</ul>
 		</div>
