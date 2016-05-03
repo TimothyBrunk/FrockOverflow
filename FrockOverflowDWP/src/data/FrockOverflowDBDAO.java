@@ -242,6 +242,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			voteAssign.setAnswer(a);
 			voteAssign.setUser(u);
 			voteAssign.setVote(v);
+			em.persist(voteAssign);
 			a.setRating(a.getRating()+v.getValue());
 		}
 	}
@@ -257,6 +258,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			voteAssign.setAnswer(a);
 			voteAssign.setUser(u);
 			voteAssign.setVote(v);
+			em.persist(voteAssign);
 			a.setRating(a.getRating()+v.getValue());
 		}
 	}
