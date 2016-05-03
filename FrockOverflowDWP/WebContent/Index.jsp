@@ -149,10 +149,11 @@ body {
 	<br><div id="imageandquestion" >
 		<h3> <img id="frockimage" src="FrockOF.png" ></h3>
 		<h2 id="questionandanswer" >Question and Answer Forum</h2>
-		<h2 ______________________________________________________</h2>
+		<h2 id=""> ______________________________________________________</h2>
+		<br>
 		  <h3 id ="question">
 						Most Recent Question Asked: ${question.body}<br></h3>
-						<h4 id="postedby">Posted By: ${question.user.displayName} - ${question.timestamp}</h4>
+						<h4 id="postedby">Posted By: ${question.user.displayName} on ${question.timestamp}</h4>
 						 
 	</div>
 	<br>
