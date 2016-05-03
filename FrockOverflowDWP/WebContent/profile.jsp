@@ -11,7 +11,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="css/landing-page.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
@@ -29,26 +29,40 @@
 </head>
 <body>
 	<!-- ********************************Top Nav Bar**************************** -->
-	<nav class="navbar navbar-default navbar-fixed-top topnav"
-		role="navigation">
-	<div class="container topnav">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-
-		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.jsp">
+                <img src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
+            	</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse search-bar" id="bs-example-navbar-collapse-1 search-text">
+                <ul class="search-bar">
+			<li><span style= "color: white">Search by tags:</span></li>
+			<form action="searchByTag.do">
+				<input type="text" name="searchTags" list="tags" placeholder= "ex... java">
+				<datalist id="tags"> 
+				<c:forEach var="tag" items="${sessionScope.tags}">
+				<option value="${tag}"></option>
+				</c:forEach>
+				</datalist>
+					<input type="submit" name="submit">
+			</form>
+				</ul>
+			</div>
 			<form action="search.do">
-				<ul class="nav navbar-nav navbar-right">
-					<li><button type="button" name="Home"
-							onclick="window.location.href='index.jsp'">Home</button></li>
+			<div class="collapse navbar-collapse navbar-button" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+    
 					<li><input type="submit" name="submit"
 						value="View All Questions"></li>
 					<li><input type="submit" name="submit"
@@ -61,19 +75,17 @@
 						value="View All My Questions"></li>
 					<li><input type="hidden" name="user" value="${user.id}"></input></li>
 				</ul>
-			</form>
-			<form action="searchByTag.do">
-				<input type="text" name="searchTags" list="tags">
-				<datalist id="tags"> 
-				<c:forEach var="tag" items="${sessionScope.tags}">
-				<option value="${tag}"></option>
-				</c:forEach>
-				</datalist>
-				<p><em>For example;</em> java</p>
-					<input type="submit" name="submit">
-			</form>
+				</div>
+			</form> 
+			</div>
+		</nav>	
 <!--**********************************************USER INFORMATION************************************-->
-<div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <h2>User Information</h2>
 <p>You are currently logged in as: <strong>${user.displayName}</strong></p>
 
