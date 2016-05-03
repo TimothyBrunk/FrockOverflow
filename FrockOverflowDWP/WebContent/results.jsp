@@ -180,16 +180,16 @@
 						<h4>A: ${answer.body}</h4> Answered by: ${answer.user.displayName}
 						On or About: ${answer.timestamp}
 						Rating: ${answer.rating}
+						<c:if test="${sessionScope.user.type != 0}">
 						<form action="voteUp.do" method="POST">
 							<input type="hidden" name="answerId" value="${answer.id}">
-						<c:if test="${sessionScope.user.type != 0}"><form action="voteUp.do" method="POST">
 							<input type="submit" value="Vote Up"></input>
 						</form>
 						<form action="voteDown.do" method="POST">
 							<input type="hidden" name="answerId" value="${answer.id}">
 							<input type="submit" value="Vote Down"></input>
-						</form></c:if> <br> <c:if
-							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+						</form></c:if> <br> 
+						<c:if test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
 							<form action="acceptAnswer.do" method="GET">
 								<input type="hidden" name="answer_id" value="${answer.id}">
 								<input type="submit" name="Accept Answer" value="Accept Answer">
