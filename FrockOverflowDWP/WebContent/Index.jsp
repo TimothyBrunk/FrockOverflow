@@ -35,7 +35,16 @@ body {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<body>
+    
+<body id="backgroundimage" >
+
+<div class="top"> 
+<img  src="FrockOF.png" height="200" width="900" > </div>
+
+
+
+
+
 	<!-- ********************************Top Nav Bar**************************** -->
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -112,6 +121,7 @@ body {
 		</div>
 		<!-- /.container -->
 	</nav>
+	<h3 >Question and Answer Forum</h3>
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	<br>
@@ -127,7 +137,7 @@ body {
 	<br>
 	<br>
 	<br>
-	<c:if test="${sessionScope.user.type != 0}">
+	<%-- <c:if test="${sessionScope.user.type != 0}">
 		<button id="postquestion"
 			onclick="document.getElementById('questionFormDiv').style.display='block'">
 			Try Your Luck, Sucka (Post a Question)</button>
@@ -249,7 +259,7 @@ body {
 </html>
 
 
-
+ --%>
 
 
 

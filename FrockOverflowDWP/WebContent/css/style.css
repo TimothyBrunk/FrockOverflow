@@ -1,54 +1,81 @@
 @CHARSET "UTF-8";
 
-#floatleft{
+#floatleft {
 	margin-top: 10px;
 	text-align: left;
 	color: #05EDFF;
 }
-input{
+
+input {
 	
 }
-.navbar-button>ul>li>input{
+
+.navbar-button>ul>li>input {
 	margin: 5px;
 	color: white;
 	font-family: "Courier New", Courier, monospace;
 	background: transparent;
 	border-style: none;
 }
-.search-bar{
+
+.search-bar {
 	margin-top: 18px;
 }
 
-#bs-example-navbar-collapse-1 search-text>ul>li{
-	color: #05EDFF; 
+#bs-example-navbar-collapse-1 search-text>ul>li {
+	color: #05EDFF;
 }
+
 #questionandanswer {
-	text-align: center; 
+	text-align: center;
 }
+
 #user {
-	text-align:center;
+	text-align: center;
 }
+
 #login {
-	text-align:center;
+	text-align: center;
 }
-#createuserspan{
-	color:white; 
-	cursor:pointer; 
-	font-size:175%;
-	text-align:left; 
-	
+
+#createuserspan {
+	color: white;
+	cursor: pointer;
+	font-size: 175%;
+	text-align: left;
 }
-#loginspan{
-	color:white; 
-	cursor:pointer; 
-	font-size:175%;
-	text-align:left; 
+
+#loginspan {
+	color: white;
+	cursor: pointer;
+	font-size: 175%;
+	text-align: left;
 }
 
 .questionBlock {
-	margin: 5px;       
-    color: white;      
-    font-family: "Courier New", Courier, monospace;
-    background: transparent;
-    border-style: none;
+	margin: 5px;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
+
+#backgroundimage {
+	background-image:
+		url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?crop=entropy&dpr=2&fit=crop&fm=jpg&h=600&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1275");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.containerdiv {
+	float: center;
+	position: relative;
+}
+
+.top {
+	position: fixed;
+	top: 30%;
+	left: 25%;
+	margin-top: -50px;
+	margin-left: -100px;
 }
