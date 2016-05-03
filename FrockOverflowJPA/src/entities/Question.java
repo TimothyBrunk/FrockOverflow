@@ -30,10 +30,29 @@ public class Question {
 	private QuestionStatus status;
 	@ManyToMany(mappedBy="questions")
 	private List<Tag> tags;
+	@OneToMany(mappedBy="question")
+	private List<TagAssignment> tagAssignments;
 	
 	public Question(){
 		super();
 	}
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public List<TagAssignment> getTagAssignments() {
+		return tagAssignments;
+	}
+
+	public void setTagAssignments(List<TagAssignment> tagAssignments) {
+		this.tagAssignments = tagAssignments;
+	}
+
 	public QuestionStatus getStatus() {
 		return status;
 	}

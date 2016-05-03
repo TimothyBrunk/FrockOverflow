@@ -81,6 +81,14 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
+	@RequestMapping("searchBySingleTag.do")
+	public ModelAndView getQuestionsBySingleTag(@RequestParam("tag") String tag) {
+		List<Question> qList = frockoverflowdao.getQuestionByTag(tag);
+		ModelAndView mv = new ModelAndView("results.jsp", "updatedQuestionList", qList);
+		if (qList.size() == 0) mv.addObject("message", "No Questions Found");
+		return mv;
+	}
+	
 	@RequestMapping("getQuestionByID.do")
 	public ModelAndView getQuestion(@ModelAttribute("user") User user, @RequestParam("id") int id) {
 		Question q = frockoverflowdao.getQuestion(id);
@@ -101,6 +109,15 @@ public class FrockOverflowController {
 		mv.setViewName("results.jsp");
 		mv.addObject("updatedQuestionList", updatedQuestionList);
 		mv.addObject("tags", tags);
+		return mv;
+	}
+	
+	@RequestMapping("removeQuestion.do")
+	public ModelAndView removeQuestion(int id) {
+		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Question has been deleted");
+		frockoverflowdao.removeQuestion(id);
+		List<Question> questions = frockoverflowdao.getAllQuestions();
+		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
 
@@ -140,9 +157,24 @@ public class FrockOverflowController {
 		mv.addObject("answeredQuestion", q);
 		return mv;
 	}
+	
+	@RequestMapping("removeAnswer.do")
+	public ModelAndView removeAnswer(int id) {
+		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Answer has been deleted");
+		frockoverflowdao.removeAnswer(id);
+		List<Question> questions = frockoverflowdao.getAllQuestions();
+		mv.addObject("updatedQuestionList", questions);
+		return mv;
+	}
 
 	@RequestMapping("addUser.do")
 	public ModelAndView createUser(/*@Valid*/ User u/*, BindingResult result*/) {
+		User userToAdd = new User();
+		userToAdd.setEmail(u.getEmail());
+		userToAdd.setPassword(u.getPassword());
+		userToAdd.setFirstName(u.getFirstName());
+		userToAdd.setLastName(u.getLastName());
+		userToAdd.setDisplayName(u.getDisplayName());
 //		if(result.hasErrors()){
 //			ModelAndView mv = new ModelAndView();
 //			mv.setViewName("results.jsp");
@@ -150,7 +182,7 @@ public class FrockOverflowController {
 //			mv.addObject("create", returned);
 //			return mv;
 //		}
-		User user = frockoverflowdao.createUser(u);
+		User user = frockoverflowdao.createUser(userToAdd);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
 		mv.addObject("user", user);

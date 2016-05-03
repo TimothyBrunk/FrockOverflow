@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Answer {
@@ -33,26 +34,32 @@ public class Answer {
 	private AnswerStatus status;
 	@ManyToMany(mappedBy="answers")
 	private List<Vote> votes;
+	@OneToMany(mappedBy="answer")
+	private List<VoteAssignment> voteAssignments;
 	
 	public Answer(){
 		super();
 	}
 
-	
+	public List<VoteAssignment> getVoteAssignments() {
+		return voteAssignments;
+	}
+
+	public void setVoteAssignments(List<VoteAssignment> voteAssignments) {
+		this.voteAssignments = voteAssignments;
+	}
+
 	public int getRating() {
 		return rating;
 	}
-
 
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
 
-
 	public List<Vote> getVotes() {
 		return votes;
 	}
-
 
 	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
