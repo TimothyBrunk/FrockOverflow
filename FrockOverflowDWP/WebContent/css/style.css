@@ -7,6 +7,9 @@
 	
 }
 
+input {
+	
+}
 
 .navbar-button>ul>li>input {
 	margin: 5px;
@@ -104,17 +107,9 @@
 .question{
 	background-color: white;
 }
-.submit-question>input{
-	margin-left: 20px;
-	margin-top: 48px;
-	font-weight: bold;
-	color: gray;
-	font-family: "Courier New", Courier, monospace;
-	background: transparent;
-	border-style: none;
-}
 .body-container{
-	margin-top:160px;
+	margin:170px;
+	margin: 5px;
 	color: white;
 	font-family: "Courier New", Courier, monospace;
 	background: transparent;
@@ -146,6 +141,13 @@
 }
 .logged{
 	list-style-type:none; 
+}
+#imageandquestion { 
+	text-align:center; 
+	
+}
+#recentQuestion {
+	color:white; 
 }
 
 

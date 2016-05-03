@@ -36,10 +36,10 @@ body {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-<body id="backgroundimage" >
+<body id="backgroundimage" onload="document.frm1">
 
 <div class="top"> 
-<img  src="FrockOF.png" height="200" width="900" > </div>
+ </div>
 
 
 
@@ -141,16 +141,16 @@ body {
 	<br>
 	<br>
 	<br>
+	<br><div id="imageandquestion" >
+		<h3> <img id="frockimage" src="FrockOF.png"></h3>
+		<h3 id="questionandanswer" >Question and Answer Forum</h3>
+		  <h4><form id="recentQuestion" action="getMostRecentQuestion.do" method="GET" > 
+						Most Recent Question Asked: ${question.body}
+						</form> </h4>
+	</div>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h3 id="questionandanswer" >Question and Answer Forum</h3>
+	
 	<%-- <c:if test="${sessionScope.user.type != 0}">
 		<button id="postquestion"
 			onclick="document.getElementById('questionFormDiv').style.display='block'">
