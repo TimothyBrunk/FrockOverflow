@@ -103,6 +103,9 @@ public class FrockOverflowController {
 	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user,
 			@ModelAttribute("tags") List<Tag> tags,
 			@RequestParam("keywords") String keywords) {
+		System.out.println(question);
+		System.out.println(user);
+		System.out.println(keywords);
 		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
 		ModelAndView mv = new ModelAndView();
 		tags = frockoverflowdao.getTags();

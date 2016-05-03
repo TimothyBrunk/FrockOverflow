@@ -80,12 +80,8 @@
 			</div>
 		</nav>	
 <!--**********************************************USER INFORMATION************************************-->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+<div class="body-container">
 <h2>User Information</h2>
 <p>You are currently logged in as: <strong>${user.displayName}</strong></p>
 
@@ -109,6 +105,6 @@
 </ul>
 <input type="submit" name="submit" value="Save Changes">
 </form>
-
+</div>
 </body>
 </html>
