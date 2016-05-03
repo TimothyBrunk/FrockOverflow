@@ -7,9 +7,6 @@
 	
 }
 
-input {
-	
-}
 
 .navbar-button>ul>li>input {
 	margin: 5px;
@@ -107,9 +104,17 @@ input {
 .question{
 	background-color: white;
 }
+.submit-question>input{
+	margin-left: 20px;
+	margin-top: 48px;
+	font-weight: bold;
+	color: gray;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
 .body-container{
-	margin:170px;
-	margin: 5px;
+	margin-top:160px;
 	color: white;
 	font-family: "Courier New", Courier, monospace;
 	background: transparent;
