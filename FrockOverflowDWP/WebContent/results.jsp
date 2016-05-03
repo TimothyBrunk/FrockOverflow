@@ -152,22 +152,70 @@ body {
  --%>
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
-<c:forEach var="question" items="${updatedQuestionList}">
-<article id="${question.id}">
-  <h4>Q: ${question.body}</h4>
+	<c:forEach var="question" items="${updatedQuestionList}">
+		<article id="${question.id}">
+			<div class = "text-body">
+			<h4>Q: ${question.body}</h4>
 
-						Posted By: ${question.user.displayName} ${question.timestamp}<br>
-						Status: ${question.status}<br>
-  
-  <div class="content_w">
-    <div class="content">
-    <c:forEach var="answer" items= "${question.answers}">
+			Posted By: ${question.user.displayName} ${question.timestamp}<br>
+			Status: ${question.status}<br>
+			
+			
+
+			<div class="content_w">
+				<div class="content">
+					<c:forEach var="answer" items="${question.answers}">
 					${answer}
-					</c:forEach> 
-    </div>
-  </div>
-</article>
-  </c:forEach>
+					<c:if test="${sessionScope.user.type != 0}">
+							<table class="button-answer">
+								<tr class="button-answer-row">
+									<td><form action="voteUp.do" method="POST">
+											<input type="hidden" name="answerId" value="${answer.id}">
+											<input type="submit" value="Vote Up"></input>
+										</form></td>
+									<td><form action="voteDown.do" method="POST">
+											<input type="hidden" name="answerId" value="${answer.id}">
+											<input type="submit" value="Vote Down"></input>
+										</form></td>
+						</c:if>
+						<br>
+						<c:if
+							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+							<td><form action="acceptAnswer.do" method="GET">
+									<input type="hidden" name="answer_id" value="${answer.id}">
+									<input type="submit" name="Accept Answer" value="Accept Answer">
+								</form></td>
+						</c:if>
+						<c:if test="${sessionScope.user.type > 1}">
+							<td><form action="removeAnswer.do" method="GET">
+									<input type="hidden" name="id" value="${answer.id}"> <input
+										type="submit" name="removeAnswer" value="Remove Answer">
+								</form></td>
+							</tr>
+							</table>
+						</c:if>
+
+
+					</c:forEach>
+				</div>
+			</div>
+			</div>
+		</article>
+		<c:if test="${sessionScope.user.type != 0}">
+				<form action="postAnswer.do" method="GET">
+					<span class="input input--ichiro"> <input
+						class="input__field input__field--ichiro" type="text"
+						id="input-${question.id}" name="body" /> <label
+						class="input__label input__label--ichiro" for="input-${question.id}">
+							<span class="input__label-content input__label-content--ichiro">Answer
+								Question</span>
+					</label>
+					</span> <span class="submit-question"> <input type="submit"
+						name="post">
+					</span>
+				</form>
+			</c:if>
+	</c:forEach>
 
 
 
@@ -217,10 +265,31 @@ body {
 								<input type="submit" name="post">
 							</form>
 						</div>
+					</c:if> <c:forEach var="answer" items="${question.answers}">
+						<ul class="answerlist">
+							<li>${answer}</li>
+						</ul>
+					</c:forEach> <c:if test="${sessionScope.user.type != 0}">
+						<form action="voteUp.do" method="POST">
+							<input type="hidden" name="answerId" value="${answer.id}">
+							<input type="submit" value="Vote Up"></input>
+						</form>
+						<form action="voteDown.do" method="POST">
+							<input type="hidden" name="answerId" value="${answer.id}">
+							<input type="submit" value="Vote Down"></input>
+						</form>
+					</c:if> <br> <c:if
+						test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+						<form action="acceptAnswer.do" method="GET">
+							<input type="hidden" name="answer_id" value="${answer.id}">
+							<input type="submit" name="Accept Answer" value="Accept Answer">
+						</form>
+					</c:if> <c:if test="${sessionScope.user.type > 1}">
+						<form action="removeAnswer.do" method="GET">
+							<input type="hidden" name="id" value="${answer.id}"> <input
+								type="submit" name="removeAnswer" value="Remove Answer">
+						</form>
 					</c:if>
-					<c:forEach var="answer" items= "${question.answers}">
-					${answer}
-					</c:forEach> 
 				</li>
 			</c:forEach>
 		</ul>
@@ -263,7 +332,6 @@ body {
 									type="submit" name="removeAnswer" value="Remove Answer">
 							</form>
 						</c:if>
-
 					</li>
 				</c:forEach>
 			</ul>
@@ -275,39 +343,44 @@ body {
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-	
+
 	<!-- This is J-Query text expand code -->
 	<script type="text/javascript">
-	$('article').on('click', function() {
-		  slide($('.content', this)); 
+		$('article').on('click', function() {
+			slide($('.content', this));
 		});
-		 
+
 		function slide(content) {
-		  var wrapper = content.parent();
-		  var contentHeight = content.outerHeight(true);
-		  var wrapperHeight = wrapper.height();
-		 
-		  wrapper.toggleClass('open');
-		  if (wrapper.hasClass('open')) {
-		    setTimeout(function() {
-		      wrapper.addClass('transition').css('height', contentHeight);
-		    }, 10);
-		  }
-		  else {
-		    setTimeout(function() {
-		      wrapper.css('height', wrapperHeight);
-		      setTimeout(function() {
-		        wrapper.addClass('transition').css('height', 0);
-		      }, 10);
-		    }, 10);
-		  }
-		 
-		  wrapper.one('transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd', function() {
-		    if(wrapper.hasClass('open')) {
-		      wrapper.removeClass('transition').css('height', 'auto');
-		    }
-		  });
-		}  	
+			var wrapper = content.parent();
+			var contentHeight = content.outerHeight(true);
+			var wrapperHeight = wrapper.height();
+
+			wrapper.toggleClass('open');
+			if (wrapper.hasClass('open')) {
+				setTimeout(
+						function() {
+							wrapper.addClass('transition').css('height',
+									contentHeight);
+						}, 10);
+			} else {
+				setTimeout(function() {
+					wrapper.css('height', wrapperHeight);
+					setTimeout(function() {
+						wrapper.addClass('transition').css('height', 0);
+					}, 10);
+				}, 10);
+			}
+
+			wrapper
+					.one(
+							'transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd',
+							function() {
+								if (wrapper.hasClass('open')) {
+									wrapper.removeClass('transition').css(
+											'height', 'auto');
+								}
+							});
+		}
 	</script>
 </body>
 </html>

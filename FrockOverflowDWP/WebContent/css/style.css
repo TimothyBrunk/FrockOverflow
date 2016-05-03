@@ -89,7 +89,16 @@
 
 
 
+article {
+	padding: 10px;
+	background: rgba(200, 200, 200, .5);
+	margin-left: 5%;
+	margin-right: 5%;
 
+}
+.text-body{
+	padding: 20px;;
+}
 
 article .content_w {
   overflow: hidden;
@@ -104,7 +113,14 @@ article .content_w.transition {
 
 
 
-
+.button-answer-row td input{
+	margin: 5px;
+	font-weight: bold;
+	color: gray;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
 
 
 

@@ -110,7 +110,7 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer= " + id + ", body=" + body + ", timestamp=" + timestamp + "]";
+		return "Answer: " + body + ", <br>Posted by: "+user+ " on " + timestamp;
 	}
 	
 	
