@@ -37,7 +37,7 @@ body {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <!-- ************************************Body Begin********************************** -->
+    <!-- ************************************Body Tag Begin********************************** -->
     
 
 <body id="backgroundimage" >
@@ -51,25 +51,25 @@ body {
 
 	<!-- ********************************Top Nav Bar**************************** -->
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+		 <!-- <div class="container">  -->
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
+			 <div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
+					 <span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+						class="icon-bar"></span>  
 				</button>
 				 <a href="index.do">
-                <img src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
+                <img id="logoimage" src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
             	</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1 search-text">
-				<ul class="search-bar">
+				<ul id="searchbar" class="search-bar">
 					<li><span style="color: white">Search by tags:</span></li>
 					<form action="searchByTag.do">
 						<input type="text" name="searchTags" list="tags"
@@ -86,7 +86,7 @@ body {
 			<form action="search.do">
 				<div class="collapse navbar-collapse navbar-button"
 					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
+					<ul id="loginandcreate" class="nav navbar-nav">
 
 						<li>
 						<button type="button"
