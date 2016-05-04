@@ -152,7 +152,6 @@ article .content_w.transition {
 }
 
 .submit-question>input{
-	margin-left: 20px;
 	margin-top: 48px;
 	font-weight: bold;
 	color: gray;
@@ -161,13 +160,38 @@ article .content_w.transition {
 	border-style: none;
 }
 
+
+.body-container-question-post{
+float: left;
+width: 50%;
+}
+.body-container-answer-post{
+float: left;
+width: 22%;
+}
+.body-container-submit-post{
+float: left;
+width: 22%;
+}
+
+post-container{
+	clear: both;
+}
+
+
+
+
+
 .content{
 	margin-left: 150px;
 }
-
+.question-comment-block{
+	width: 100%;
+}
 .body-container {
+	height: 100px;
 	margin-top:170px;
-	margin: 5px;
+	margin-left: 5px;
 	color: white;
 	font-family: "Courier New", Courier, monospace;
 	background: transparent;
