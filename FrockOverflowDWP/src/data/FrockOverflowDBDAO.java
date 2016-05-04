@@ -86,6 +86,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		em.persist(q);
 		String[] tokens = keywords.split(" ");
 		List<Tag> usedTags = getTags();
+		if (!tokens[0].equals("")) {
 		for (String t : tokens) {
 			Tag tag = new Tag();
 			tag.setBody(t.trim());
@@ -110,6 +111,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			em.persist(ta);
 			System.out.println("persisted tag assignment");
 		}
+		} // End of if
 		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
 		return ql;
 	}
