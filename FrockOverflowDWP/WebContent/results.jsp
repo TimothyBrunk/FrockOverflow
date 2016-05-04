@@ -156,16 +156,32 @@ body {
 		<article id="${question.id}">
 			<div class = "text-body">
 			<h4>Q: ${question.body}</h4>
+			<c:forEach var="tag" items="${question.tags}">
+				<form action="searchByTag.do" method="GET">
+					<input class="tagLink" type="submit" name="searchTags" value="${tag.body}">
+				</form>
+			</c:forEach>
 
 			Posted By: ${question.user.displayName} ${question.timestamp}<br>
 			Status: ${question.status}<br>
 			
 			
+			
 
 			<div class="content_w">
 				<div class="content">
+					<ul>
+					<c:forEach var="comment" items="${question.comments}">
+						<li>${comment.body}</li>
+					</c:forEach>
+					</ul>
 					<c:forEach var="answer" items="${question.answers}">
 					${answer}
+					<ul>
+						<c:forEach var="comment" items="${answer.comments}">
+							<li>${comment.body}</li>
+						</c:forEach>
+					</ul>
 					<c:if test="${sessionScope.user.type != 0}">
 							<table class="button-answer">
 								<tr class="button-answer-row">
@@ -178,9 +194,8 @@ body {
 											<input type="submit" value="Vote Down"></input>
 										</form></td>
 						</c:if>
-						<br>
-						<c:if
-							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+						
+						<c:if test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
 							<td><form action="acceptAnswer.do" method="GET">
 									<input type="hidden" name="answer_id" value="${answer.id}">
 									<input type="submit" name="Accept Answer" value="Accept Answer">

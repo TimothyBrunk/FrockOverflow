@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class Answer {
 	private List<Vote> votes;
 	@OneToMany(mappedBy="answer")
 	private List<VoteAssignment> voteAssignments;
-	@OneToMany(mappedBy="answer")
+	@OneToMany(mappedBy="answer", fetch=FetchType.EAGER)
 	private List<AComment> comments;
 	
 	public Answer(){
