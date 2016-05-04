@@ -31,7 +31,7 @@ public interface FrockOverflowDao {
 	
 	void removeQuestion(int id);
 	
-	Question postAnswer(Answer a, User user, int q);
+	List<Question> postAnswer(Answer a, User user, int q);
 	
 	void commentOnAnswer(AComment c, int userId, int answerId);
 	
