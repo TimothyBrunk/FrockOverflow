@@ -58,7 +58,7 @@ body {
 			<div class="collapse navbar-collapse search-bar"
 				id="bs-example-navbar-collapse-1 search-text">
 				<ul class="search-bar">
-					<li><span style="color: white">Search by tags:</span></li>
+					<li><span style="color: white">Search by tag:</span></li>
 					<form action="searchByTag.do">
 						<input type="text" name="searchTags" list="tags"
 							placeholder="ex... java">
@@ -148,8 +148,7 @@ body {
 
 		<c:forEach var="question" items="${updatedQuestionList}">
 			<article id="${question.id}">
-				<div class="text-body">
-					<h4>Q: ${question.body}</h4>
+				<div class="text-body"><h4>Q: ${question.body}</h4> 
 					<c:forEach var="tag" items="${question.tags}">
 						<form action="searchByTag.do" method="GET">
 							<input class="tagLink" type="submit" name="searchTags"
@@ -157,8 +156,8 @@ body {
 						</form>
 					</c:forEach>
 
-					Posted By: ${question.user.displayName} ${question.timestamp}<br>
-					Status: ${question.status}<br>
+					<em>Posted By: <strong>${question.user.displayName}</strong> ${question.timestamp}<br>
+					Status: ${question.status}<br></em>
 
 
 
@@ -175,8 +174,8 @@ body {
 					${answer}
 					<ul>
 									<c:forEach var="comment" items="${answer.comments}">
-										<li>${comment.body}Posted by ${comment.user.displayName}
-											On ${comment.timestamp}</li>
+										<li><em>${comment.body}Posted by <strong>${comment.user.displayName}</strong>
+											On ${comment.timestamp}</em></li>
 									</c:forEach>
 								</ul>
 								<c:if test="${sessionScope.user.type != 0}">
@@ -206,25 +205,25 @@ body {
 														<input type="submit" name="removeAnswer"
 															value="Remove Answer">
 													</form></td>
-										</tr>
-										<tr>
+										
 											<td>
 												<form action="commentOnAnswer.do" method="GET">
 													<span class="input input--ichiro"> <input
 														type="hidden" name="answer_id" value="${answer.id}">
 														<input class="input__field input__field--ichiro"
 														type="text" id="comment-${answer.question.id}${answer.id}"
-														name="body" /> <label
+														name="body" required /> <label
 														class="input__label input__label--ichiro"
 														for="comment-${answer.question.id}${answer.id}"> <span
 															class="input__label-content input__label-content--ichiro">Comment
 																on Answer</span>
 													</label>
-													</span> <span class="submit-question"> <input type="submit"
+													</span></td>
+													<td> <span class="submit-question"> <input type="submit"
 														name="post">
 													</span>
-												</form>
 											</td>
+												</form>
 										</tr>
 									</table>
 								</c:if>
@@ -238,9 +237,9 @@ body {
 					<tr>
 						<td><form action="postAnswer.do" method="GET">
 								<span class="input input--ichiro"> <input type="hidden"
-									name="question_id" value="${question.id}"> <input
+									name="question_id" value="${question.id}" required> <input
 									class="input__field input__field--ichiro" type="text"
-									id="input-${question.id}-2" name="body" /> <label
+									id="input-${question.id}-2" name="body" required/> <label
 									class="input__label input__label--ichiro"
 									for="input-${question.id}-2"> <span
 										class="input__label-content input__label-content--ichiro">Answer
@@ -253,9 +252,9 @@ body {
 							</form></td>
 						<td><form action="commentOnQuestion.do" method="GET">
 								<span class="input input--ichiro"> <input type="hidden"
-									name="question_id" value="${question.id}"> <input
+									name="question_id" value="${question.id}" required> <input
 									class="input__field input__field--ichiro" type="text"
-									id="comment-${question.id}-1" name="body" /> <label
+									id="comment-${question.id}-1" name="body" required/> <label
 									class="input__label input__label--ichiro"
 									for="comment-${question.id}-1"> <span
 										class="input__label-content input__label-content--ichiro">Comment
@@ -265,6 +264,11 @@ body {
 						<td><span class="submit-question"> <input
 								type="submit" name="post">
 						</span></td>
+						<td><form action="removeQuestion.do" method="GET">
+														<input type="hidden" name="id" value="${question.id}">
+														<input type="submit" name="removeQuestion"
+															value="Remove Question">
+													</form></td>
 						</form>
 						</td>
 					</tr>
