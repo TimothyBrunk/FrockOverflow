@@ -280,19 +280,20 @@ public class FrockOverflowController {
 	}
 	@RequestMapping("removeUser.do")
 	public ModelAndView removeUser(int id){
-	User user = frockoverflowdao.removeUser(id);
+	frockoverflowdao.removeUser(id);
+	List <User> users = frockoverflowdao.getAllUsers(); 
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("admin.jsp");
-	mv.addObject("users", user); 
+	mv.addObject("users", users); 
 	return mv; 
 	
 	}
 	@RequestMapping("getAllUsers.do")
 	public ModelAndView getAllUsers(){
-		List <User> user = frockoverflowdao.getAllUsers(); 
+		List <User> users = frockoverflowdao.getAllUsers(); 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin.jsp");
-		mv.addObject("users", user); 
+		mv.addObject("users", users); 
 		return mv; 
 		
 	}
