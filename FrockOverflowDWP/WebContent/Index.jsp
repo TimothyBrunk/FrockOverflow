@@ -98,10 +98,9 @@ body {
 						<li>
 						<c:if test="${sessionScope.user.type > 1}">					
 								<form  action="getAllUsers.do" Method="GET" >
-								<input id="bs-example-navbar-collapse-1" type="button" value=" Admin Page">
+								<input  type="submit" value=" Admin Page"
+								onclick="location.href='admin.jsp'">
 								</form>
-	
-							
 						</c:if>
 						</li> 
 
