@@ -172,14 +172,14 @@ body {
 				<div class="content">
 					<ul>
 					<c:forEach var="comment" items="${question.comments}">
-						<li>${comment.body}</li>
+						<li>${comment.body} Posted by ${comment.user.displayName} On ${comment.timestamp}</li>
 					</c:forEach>
 					</ul>
 					<c:forEach var="answer" items="${question.answers}">
 					${answer}
 					<ul>
 						<c:forEach var="comment" items="${answer.comments}">
-							<li>${comment.body}</li>
+							<li>${comment.body} Posted by ${comment.user.displayName} On ${comment.timestamp}</li>
 						</c:forEach>
 					</ul>
 					<c:if test="${sessionScope.user.type != 0}">
