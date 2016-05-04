@@ -58,6 +58,8 @@ public interface FrockOverflowDao {
 	void voteDown (int answerId, int userId); 
 	
 	User logOut(User u); 
+	
+	List <User> getAllUsers(); 
  
 
 }

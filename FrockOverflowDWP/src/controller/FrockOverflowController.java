@@ -235,7 +235,7 @@ public class FrockOverflowController {
 	return mv;
 	}
 	
-//	Tim started the methods below before realizing he should probably talk to the team first. 
+
 	@RequestMapping("voteUp.do")
 	public ModelAndView  voteUp (int answerId, @ModelAttribute("user") User user){
 		frockoverflowdao.voteUp(answerId, user.getId());
@@ -268,5 +268,13 @@ public class FrockOverflowController {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "comment posted");
 		return mv;
 		
+	}
+	@RequestMapping("getAllUsers.do")
+	public ModelAndView getAllUsers(){
+	List <User> user = frockoverflowdao.getAllUsers(); 
+	ModelAndView mv = new ModelAndView();
+	mv.setViewName("admin.jsp");
+	mv.addObject(user); 
+	return mv; 
 	}
 }

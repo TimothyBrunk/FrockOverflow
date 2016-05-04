@@ -87,11 +87,22 @@
 <br>
 
 <div id="admin-user">
-<c:forEach var="user" items="${user.displayName }"
+<c:forEach var="user" items="${user}">
+ <ul>
+<li>First Name:<input type="text" name="firstName" value="${user.firstName}">
+</li>
+<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
+</li>
+<li>Email:<input type="text" name="email" value="${user.email}">
+</li>
+<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
+</li>
+</ul>
+</c:forEach>
 
 <!-- ***********************************NAVBAR*********************************************************-->
 
-<form action="editprofile.do">
+<%-- <form action="getAllUsers.do">
 <ul>
 <li>First Name:<input type="text" name="firstName" value="${user.firstName}">
 </li>
@@ -112,8 +123,8 @@
 <a href="index.jsp"></a> 
 </form>
 </form>
-</div>
-<c:forEach var="question" items="${updatedQuestionList}">
+</div> --%>
+<%-- <c:forEach var="question" items="${updatedQuestionList}">
 		<article id="${question.id}">
 			<div class = "text-body">
 			<h4>Q: ${question.body}</h4>
@@ -121,6 +132,6 @@
 				<form action="searchByTag.do" method="GET">
 					<input class="tagLink" type="submit" name="searchTags" value="${tag.body}">
 				</form>
-			</c:forEach>
+			</c:forEach> --%>
 </body>
 </html>

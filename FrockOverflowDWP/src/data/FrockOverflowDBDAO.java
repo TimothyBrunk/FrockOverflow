@@ -316,12 +316,12 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		User guest = em.createQuery("SELECT u from User u WHERE id = 1000", User.class).getSingleResult();
 		return guest;
 	} 
-//	@Override
-//	public List<User> getAllUsers() {
-//		List<User> users = em.createQuery("Select u from User u WHERE status='Answered'", Question.class)
-//				.getResultList();
-//		return users;
-//	}
+	@Override
+	public List<User> getAllUsers() {
+		List<User> users = em.createQuery("Select u from User u ", User.class)
+				.getResultList();
+		return users;
+	}
 
 	// @Override
 	// public Answer voteUp(int rating) {
