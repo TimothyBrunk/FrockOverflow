@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.FrockOverflowDao;
+import entities.AComment;
 import entities.Answer;
+import entities.QComment;
 import entities.Question;
 import entities.Tag;
 import entities.User;
@@ -244,5 +245,21 @@ public class FrockOverflowController {
 //		mv.addObject("updatedQuestionList", updatedQuestionList);
 		return mv;
 	}
-
+	
+	@RequestMapping("commentOnQuestion.do")
+	public ModelAndView addCommentToQuestion (@ModelAttribute("user") User user, 
+			@RequestParam("question_id") int q, QComment c) {
+		frockoverflowdao.commentOnQuestion(c, user.getId(), q);
+		ModelAndView mv = new ModelAndView("results.jsp", "message", "comment posted");
+		return mv;
+		
+	}
+	@RequestMapping("commentOnAnswer.do")
+	public ModelAndView addCommentToAnswer (@ModelAttribute("user") User user, 
+			@RequestParam("answer_id") int a, AComment c) {
+		frockoverflowdao.commentOnAnswer(c, user.getId(), a);
+		ModelAndView mv = new ModelAndView("results.jsp", "message", "comment posted");
+		return mv;
+		
+	}
 }

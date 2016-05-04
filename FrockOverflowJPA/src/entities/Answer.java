@@ -36,9 +36,19 @@ public class Answer {
 	private List<Vote> votes;
 	@OneToMany(mappedBy="answer")
 	private List<VoteAssignment> voteAssignments;
+	@OneToMany(mappedBy="answer")
+	private List<AComment> comments;
 	
 	public Answer(){
 		super();
+	}
+
+	public List<AComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<AComment> comments) {
+		this.comments = comments;
 	}
 
 	public List<VoteAssignment> getVoteAssignments() {

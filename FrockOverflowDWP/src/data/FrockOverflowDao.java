@@ -2,7 +2,9 @@ package data;
 
 import java.util.List;
 
+import entities.AComment;
 import entities.Answer;
+import entities.QComment;
 import entities.Question;
 import entities.Tag;
 import entities.User;
@@ -10,7 +12,7 @@ import entities.User;
 public interface FrockOverflowDao {
 	
 	List <Question> createQuestion(Question q, User u, String s);
-
+	
 	Question getQuestion(int id);
 	
 	List<Question> getAllQuestions();
@@ -30,6 +32,10 @@ public interface FrockOverflowDao {
 	void removeQuestion(int id);
 	
 	Question postAnswer(Answer a, User user, int q);
+	
+	void commentOnAnswer(AComment c, int userId, int answerId);
+	
+	void commentOnQuestion(QComment c, int userId, int questionId);
 
 	Question acceptAnswer(int id);
 

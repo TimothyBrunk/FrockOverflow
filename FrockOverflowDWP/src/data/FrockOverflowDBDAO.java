@@ -7,12 +7,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.AComment;
 import entities.Answer;
 import entities.AnswerStatus;
+import entities.QComment;
 import entities.Question;
 import entities.QuestionStatus;
 import entities.Tag;
@@ -122,6 +123,9 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		for (Answer a : questionToRemove.getAnswers()) {
 			em.remove(a);
 		}
+		for (QComment c : questionToRemove.getComments()) {
+			em.remove(c);
+		}
 		em.remove(questionToRemove);
 	}
 
@@ -137,6 +141,30 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		em.persist(a);
 		System.out.println(a.getUser().getId());
 		return question;
+	}
+	
+	@Override
+	public void commentOnAnswer(AComment c, int userId, int answerId) {
+		User u = em.find(User.class, userId);
+		Answer a = em.find(Answer.class, answerId);
+		Date date = new Date();
+		c.setTimestamp(new Timestamp(date.getTime()));
+		c.setUser(u);
+		c.setAnswer(a);
+		a.getComments().add(c);
+		em.persist(c);
+	}
+	
+	@Override
+	public void commentOnQuestion(QComment c, int userId, int questionId){
+		User u = em.find(User.class, userId);
+		Question q = em.find(Question.class, questionId);
+		Date date = new Date();
+		c.setTimestamp(new Timestamp(date.getTime()));
+		c.setUser(u);
+		c.setQuestion(q);
+		q.getComments().add(c);
+		em.persist(c);
 	}
 
 	@Override
@@ -162,6 +190,9 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		Answer answerToRemove = em.find(Answer.class, id);
 		for (VoteAssignment v : answerToRemove.getVoteAssignments()) {
 			em.remove(v);
+		}
+		for (AComment c : answerToRemove.getComments()) {
+			em.remove(c);
 		}
 		em.remove(answerToRemove);
 	}
