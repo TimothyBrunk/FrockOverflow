@@ -197,8 +197,8 @@ body {
 								<form action="commentOnAnswer.do" method="GET">
 									<span class="input input--ichiro"> 
 									<input type="hidden" name="answer_id" value="${answer.id}">
-									<input class="input__field input__field--ichiro" type="text" id="comment-${answer.id}" name="body" /> 
-									<label class="input__label input__label--ichiro" for="comment-${answer.id}">
+									<input class="input__field input__field--ichiro" type="text" id="comment-${answer.question.id}${answer.id}" name="body" /> 
+									<label class="input__label input__label--ichiro" for="comment-${answer.question.id}${answer.id}">
 									<span class="input__label-content input__label-content--ichiro">Add a Comment</span>
 									</label>
 									</span> 
@@ -219,8 +219,8 @@ body {
 				<form action="postAnswer.do" method="GET">
 					<span class="input input--ichiro"> 
 						<input type="hidden" name="question_id" value="${question.id}">
-						<input class="input__field input__field--ichiro" type="text" id="input-${question.id}" name="body" /> 
-						<label class="input__label input__label--ichiro" for="input-${question.id}">
+						<input class="input__field input__field--ichiro" type="text" id="input-${question.id}-2" name="body" /> 
+						<label class="input__label input__label--ichiro" for="input-${question.id}-2">
 							<span class="input__label-content input__label-content--ichiro">Answer Question</span>
 						</label>
 					</span> 
@@ -231,8 +231,8 @@ body {
 				<form action="commentOnQuestion.do" method="GET">
 					<span class="input input--ichiro"> 
 						<input type="hidden" name="question_id" value="${question.id}">
-						<input class="input__field input__field--ichiro" type="text" id="comment-${question.id}" name="body" /> 
-						<label class="input__label input__label--ichiro" for="comment-${question.id}">
+						<input class="input__field input__field--ichiro" type="text" id="comment-${question.id}-1" name="body" /> 
+						<label class="input__label input__label--ichiro" for="comment-${question.id}-1">
 							<span class="input__label-content input__label-content--ichiro">Add a Comment</span>
 						</label>
 					</span> 

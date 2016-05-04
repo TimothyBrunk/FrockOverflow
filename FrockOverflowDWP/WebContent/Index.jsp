@@ -99,9 +99,9 @@ body {
 		<div id="login" class="w3-container" style="display: none">
 			<span id="loginspan" onclick="this.parentElement.style.display='none'"
 				class="w3-closebtn">&times;</span>
-			<form class="getUser" action="getUser.do" method="GET">
-				<input type="text" name="email" placeholder="Email"> <input
-					type="password" name="password" placeholder="Password"> <input
+			<form class="getUser" action="getUser.do" method="GET" name= "loginForm" onsubmit="return validateLogin()">
+				<input type="email" name="email" placeholder="Email" required> <input
+					type="password" name="password" placeholder="Password" required> <input
 					type="submit" name="submit">
 			</form>
 		</div>
@@ -110,11 +110,11 @@ body {
 				onclick="this.parentElement.style.display='none'"
 				class="w3-closebtn">&times;</span>
 			<form class="adduser" action="addUser.do" method=GET>
-				<input type="text" name="email" placeholder="Email"> <input
-					type="password" name="password" placeholder="Password"> <input
-					type="text" name="firstName" placeholder="First Name"> <input
-					type="text" name="lastName" placeholder="Last Name"> <input
-					type="text" name="displayName" placeholder="Display Name">
+				<input type="email" name="email" placeholder="Email" required> <input
+					type="password" name="password" placeholder="Password" required> <input
+					type="text" name="firstName" placeholder="First Name" required> <input
+					type="text" name="lastName" placeholder="Last Name" required> <input
+					type="text" name="displayName" placeholder="Display Name" required>
 				<input type="submit" name="submit" value="Create User">
 			</form>
 
@@ -476,6 +476,14 @@ body {
 	<!-- /.container -->
 
 	</div>
+		<!-- jQuery Version 1.11.1 -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+	
+	<%-- Validation Javascript --%>
+	
 
 </body>
 

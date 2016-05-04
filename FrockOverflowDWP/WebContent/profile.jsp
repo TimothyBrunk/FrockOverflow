@@ -90,15 +90,15 @@
 
 <form action="editprofile.do">
 <ul>
-<li>First Name:<input type="text" name="firstName" value="${user.firstName}">
+<li>First Name:<input type="text" name="firstName" value="${user.firstName}" required>
 </li>
-<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
+<li>Last Name:<input type="text" name="lastName" value="${user.lastName}" required>
 </li>
-<li>Email:<input type="text" name="email" value="${user.email}">
+<li>Email:<input type="email" name="email" value="${user.email}" required>
 </li>
-<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
+<li>Display Name:<input type="text" name="displayName" value="${user.displayName}" required>
 </li>
-<li>Password:<input type="password" name="password" placeholder="Password">
+<li>Password:<input type="password" name="password" placeholder="Password" required>
 </li>
 <li><input type="hidden" name="id" value= "${user.id}"></input>
 </li>
