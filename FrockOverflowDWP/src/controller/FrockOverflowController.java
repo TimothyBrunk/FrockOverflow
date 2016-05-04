@@ -104,8 +104,8 @@ public class FrockOverflowController {
 	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user,
 			@ModelAttribute("tags") List<Tag> tags,
 			@RequestParam("keywords") String keywords) {
-		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
 		ModelAndView mv = new ModelAndView();
+		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
 		tags = frockoverflowdao.getTags();
 		mv.setViewName("results.jsp");
 		mv.addObject("updatedQuestionList", updatedQuestionList);
@@ -142,28 +142,27 @@ public class FrockOverflowController {
 	public ModelAndView acceptAnswer(@RequestParam("answer_id") int id) {
 		Question q = frockoverflowdao.acceptAnswer(id);
 		ModelAndView mv = new ModelAndView("results.jsp", "acceptedAnswerQuestion", q);
-		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(q.getId());
-		for(Answer ans : answers) {
-			System.out.println(ans.getBody());
-		}
-		mv.addObject("answersByQ", answers);
+		List<Question> questions = new ArrayList<>();
+		questions.add(q);
+		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
 	
-	@RequestMapping("getAnswers.do")
-	public ModelAndView getAnswers(int id) {
-		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(id);
-		Question q = frockoverflowdao.getQuestion(id);
-		ModelAndView mv = new ModelAndView("results.jsp", "answersByQ", answers);
-		mv.addObject("answeredQuestion", q);
-		return mv;
-	}
+//	@RequestMapping("getAnswers.do")
+//	public ModelAndView getAnswers(int id) {
+//		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(id);
+//		Question q = frockoverflowdao.getQuestion(id);
+//		ModelAndView mv = new ModelAndView("results.jsp", "answersByQ", answers);
+//		mv.addObject("answeredQuestion", q);
+//		return mv;
+//	}
 	
 	@RequestMapping("removeAnswer.do")
-	public ModelAndView removeAnswer(int id) {
+	public ModelAndView removeAnswer(@RequestParam("answer_id") int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Answer has been deleted");
-		frockoverflowdao.removeAnswer(id);
-		List<Question> questions = frockoverflowdao.getAllQuestions();
+		Question q = frockoverflowdao.removeAnswer(id);
+		List<Question> questions = new ArrayList<>();
+		questions.add(q);
 		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
@@ -238,34 +237,44 @@ public class FrockOverflowController {
 //	Tim started the methods below before realizing he should probably talk to the team first. 
 	@RequestMapping("voteUp.do")
 	public ModelAndView  voteUp (int answerId, @ModelAttribute("user") User user){
-		frockoverflowdao.voteUp(answerId, user.getId());
+		Question question = frockoverflowdao.voteUp(answerId, user.getId());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-//		mv.addObject("updatedQuestionList", updatedQuestionList);
+		List<Question> questions = new ArrayList<>();
+		questions.add(question);
+		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
 	@RequestMapping("voteDown.do")
 	public ModelAndView  voteDown(int answerId, @ModelAttribute("user") User user){
-		frockoverflowdao.voteDown(answerId, user.getId());
+		Question question = frockoverflowdao.voteDown(answerId, user.getId());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-//		mv.addObject("updatedQuestionList", updatedQuestionList);
+		List<Question> questions = new ArrayList<>();
+		questions.add(question);
+		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
 	
 	@RequestMapping("commentOnQuestion.do")
 	public ModelAndView addCommentToQuestion (@ModelAttribute("user") User user, 
 			@RequestParam("question_id") int q, QComment c) {
-		frockoverflowdao.commentOnQuestion(c, user.getId(), q);
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "comment posted");
+		Question question = frockoverflowdao.commentOnQuestion(c, user.getId(), q);
+		List<Question> questions = new ArrayList<>();
+		questions.add(question);
+		mv.addObject("updatedQuestionList", questions);
 		return mv;
 		
 	}
 	@RequestMapping("commentOnAnswer.do")
 	public ModelAndView addCommentToAnswer (@ModelAttribute("user") User user, 
 			@RequestParam("answer_id") int a, AComment c) {
-		frockoverflowdao.commentOnAnswer(c, user.getId(), a);
+		Question question = frockoverflowdao.commentOnAnswer(c, user.getId(), a);
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "comment posted");
+		List<Question> questions = new ArrayList<>();
+		questions.add(question);
+		mv.addObject("updatedQuestionList", questions);
 		return mv;
 		
 	}
