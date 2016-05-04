@@ -83,7 +83,7 @@ body {
 		
 			<div class="collapse navbar-collapse navbar-button"
 				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav" id="main-nav-bar">
+				<ul class="nav navbar-nav">
 					<li>
 					<input type="button" value="Log In"
 						onclick="document.getElementById('login').style.display='block'"><form action="search.do"></form></li> 
@@ -96,13 +96,13 @@ body {
 			</form>
 			</li>
 						<li>
-						<c:if test="${sessionScope.user.type > 1}">					
+						 <c:if test="${sessionScope.user.type > 1}"> 					
 								<form  action="getAllUsers.do" Method="GET" >
 								<input id="bs-example-navbar-collapse-1" type="button" value=" Admin Page">
 								</form>
 	
 							
-						</c:if>
+						 </c:if> 
 						</li> 
 
 				</ul>

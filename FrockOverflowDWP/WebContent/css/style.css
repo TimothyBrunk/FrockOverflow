@@ -7,7 +7,13 @@
 	
 }
 
-
+.navbar-button>ul>li>form>input {
+	margin: 5px;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
 
 .navbar-button>ul>li>input {
 	margin: 5px;
