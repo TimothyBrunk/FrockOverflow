@@ -100,38 +100,6 @@
 </ul>
 </c:forEach>
 
-<!-- ***********************************NAVBAR*********************************************************-->
 
-<%-- <form action="getAllUsers.do">
-<ul>
-<li>First Name:<input type="text" name="firstName" value="${user.firstName}">
-</li>
-<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
-</li>
-<li>Email:<input type="text" name="email" value="${user.email}">
-</li>
-<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
-</li>
-<li>Password:<input type="password" name="password" placeholder="Password">
-</li>
-<li><input type="hidden" name="id" value= "${user.id}"></input>
-</li>
-</ul>
-<input type="submit" name="submit" value="Save Changes">
-<form action="logOut.do">
-<input type="submit" name="submit" value="Log Out">
-<a href="index.jsp"></a> 
-</form>
-</form>
-</div> --%>
-<%-- <c:forEach var="question" items="${updatedQuestionList}">
-		<article id="${question.id}">
-			<div class = "text-body">
-			<h4>Q: ${question.body}</h4>
-			<c:forEach var="tag" items="${question.tags}">
-				<form action="searchByTag.do" method="GET">
-					<input class="tagLink" type="submit" name="searchTags" value="${tag.body}">
-				</form>
-			</c:forEach> --%>
 </body>
 </html>
