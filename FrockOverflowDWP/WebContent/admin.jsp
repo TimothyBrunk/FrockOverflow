@@ -88,26 +88,31 @@
 <br>
 <br>
 <br>
-<br><form action="getAllUsers.do" method="GET">
-<input type="submit" value="Get All Users">
 
 
 
-</form>
 
 
+<h3 id="welcome">Welcome Administrative Type People</h3>
 
 <div id="admin-user">
 <c:forEach var="user" items="${users}">
- <ul>
-<li>First Name:<input type="text" name="firstName" value="${user.firstName}">
 
-Last Name:<input type="text" name="lastName" value="${user.lastName}">
+ <ul id="admin-list" >
 
-Email:<input type="text" name="email" value="${user.email}">
+<li>First Name:<input type="text" name="firstName" readonly value="${user.firstName}">
 
-Display Name:<input type="text" name="displayName" value="${user.displayName}">
+Last Name:<input type="text" name="lastName" readonly value="${user.lastName}">
+
+Email:<input type="text" name="email" readonly value="${user.email}">
+
+Display Name:<input type="text" name="displayName" readonly value="${user.displayName}">
+ <form action="removeUser.do" method="POST"> 
+ID:<input type="text" name="id" readonly value="${user.id}">
+<input type="submit" value="Delete User"> </form>
 </li>
+
+
 </ul>
 </c:forEach>
 </div>
