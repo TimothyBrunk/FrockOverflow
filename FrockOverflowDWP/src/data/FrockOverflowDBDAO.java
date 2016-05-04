@@ -81,7 +81,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	@Override
-	public List<Question> createQuestion(Question q, User u, String keywords) {
+	public void createQuestion(Question q, User u, String keywords) {
 		Date date = new Date();
 		q.setTimestamp(new Timestamp(date.getTime()));
 		q.setUser(u);
@@ -114,8 +114,9 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			em.persist(ta);
 		}
 		} // End of if
-		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q.getId(), Question.class).getResultList();
-		return ql;
+
+//		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q.getId(), Question.class).getResultList();
+//		return q;
 	}
 	
 	@Override
@@ -334,20 +335,5 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 				.getResultList();
 		return users;
 	}
-
-	// @Override
-	// public Answer voteUp(int rating) {
-	// Answer a = em.find(Answer.class, rating);
-	// a.setRating(rating++);
-	// em.persist(rating);
-	// return a;
-	// }
-	// @Override
-	// public Answer voteDown(int rating) {
-	// Answer a = em.find(Answer.class, rating);
-	// a.setRating(rating--);
-	// em.persist(rating);
-	// return a;
-	// }
 
 }

@@ -105,10 +105,13 @@ public class FrockOverflowController {
 			@ModelAttribute("tags") List<Tag> tags,
 			@RequestParam("keywords") String keywords) {
 		ModelAndView mv = new ModelAndView();
-		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
+		frockoverflowdao.createQuestion(question, user, keywords);
+		Question q = frockoverflowdao.getQuestion(question.getId());
+		List<Question> qList = new ArrayList<>();
+		qList.add(q);
 		tags = frockoverflowdao.getTags();
 		mv.setViewName("results.jsp");
-		mv.addObject("updatedQuestionList", updatedQuestionList);
+		mv.addObject("updatedQuestionList", qList);
 		mv.addObject("tags", tags);
 		return mv;
 	}

@@ -58,6 +58,12 @@ public class Question {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
+	
+	public void addTag(Tag tag) {
+		System.out.println("In add tag method");
+		this.tags.add(tag);
+		System.out.println("Added tag?");
+	}
 
 	public List<TagAssignment> getTagAssignments() {
 		return tagAssignments;
@@ -127,7 +133,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question= " + id + ", body=" + body + ", timestamp=" + timestamp;
+		return "Question= " + id + ", body=" + body + ", timestamp=" + timestamp + ", first tag=" + getTags();
 	}
 	
 	
