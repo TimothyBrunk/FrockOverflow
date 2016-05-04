@@ -111,7 +111,6 @@ body {
 
 	<div class="body-container">
 		<section class="content">
-		<div class = "question-post-block">
 			<c:if test="${sessionScope.user.type != 0}">
 				<form action="createQuestion.do" method="GET">
 					<span class="input input--ichiro"> <input
@@ -122,8 +121,6 @@ body {
 								A Question</span>
 					</label>
 					</span> 
-					</div>
-					<div class = answer-post-block>
 					<span class="input input--ichiro"> <input
 						class="input__field input__field--ichiro" type="text"
 						id="input-26" name="keywords" /> <label
@@ -131,33 +128,14 @@ body {
 							<span class="input__label-content input__label-content--ichiro">Keywords</span>
 					</label>
 					</span>
-					</div>
-					<div class = "submit-post-block"><span class="submit-question"> <input type="submit"
+					<span class="submit-question"> <input type="submit"
 						name="post">
 					</span>
-					</div>
 				</form>
 			</c:if>
 		</section>
 	</div>
 
-	<%-- 
-		<c:if test="${sessionScope.user.type != 0}">
-			<button id="postquestion"
-				onclick="document.getElementById('questionFormDiv').style.display='block'">
-				Post a Question</button>
-			<span onclick="this.parentElement.style.display='none'"
-				class="w3-closebtn">&times;</span>
-			<div id="questionFormDiv"
-				style="display: none; padding-top: 200px; height: 800px;">
-				<form action="createQuestion.do" method="GET">
-					<textarea cols="100" rows="10" name="body"></textarea>
-					Add keywords:<input type="text" name="keywords"> <input
-						type="submit" name="post">
-				</form>
-			</div>
-		</c:if>
- --%>
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
 	<c:forEach var="question" items="${updatedQuestionList}">
@@ -233,8 +211,6 @@ body {
 							</tr>
 							</table>
 						</c:if>
-
-
 					</c:forEach>
 				</div>
 			</div>
