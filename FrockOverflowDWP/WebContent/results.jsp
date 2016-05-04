@@ -192,6 +192,22 @@ body {
 										type="submit" name="removeAnswer" value="Remove Answer">
 								</form></td>
 							</tr>
+							<tr>
+							<td>
+								<form action="commentOnAnswer.do" method="GET">
+									<span class="input input--ichiro"> 
+									<input type="hidden" name="answer_id" value="${answer.id}">
+									<input class="input__field input__field--ichiro" type="text" id="comment-${answer.id}" name="body" /> 
+									<label class="input__label input__label--ichiro" for="comment-${answer.id}">
+									<span class="input__label-content input__label-content--ichiro">Add a Comment</span>
+									</label>
+									</span> 
+									<span class="submit-question"> 
+										<input type="submit" name="post">
+									</span>
+								</form>
+							</td>
+							</tr>
 							</table>
 						</c:if>
 
