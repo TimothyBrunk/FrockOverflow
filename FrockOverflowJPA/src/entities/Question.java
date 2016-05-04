@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Question {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	@OneToMany(mappedBy="question")
+	@OneToMany(mappedBy="question", fetch=FetchType.EAGER)
 	private List<Answer> answers;
 	@Enumerated(EnumType.STRING)
 	private QuestionStatus status;
@@ -32,11 +33,21 @@ public class Question {
 	private List<Tag> tags;
 	@OneToMany(mappedBy="question")
 	private List<TagAssignment> tagAssignments;
+	@OneToMany(mappedBy="question")
+	private List<QComment> comments;
 	
 	public Question(){
 		super();
 	}
 	
+	public List<QComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<QComment> comments) {
+		this.comments = comments;
+	}
+
 	public List<Tag> getTags() {
 		return tags;
 	}

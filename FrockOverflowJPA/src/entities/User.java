@@ -32,6 +32,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Answer> answers;
 	
+	@OneToMany(mappedBy="user")
+	private List<QComment> comments;
+	
 	@ManyToMany(mappedBy="users")
 	private List<Vote> votes;
 	
@@ -120,9 +123,16 @@ public class User {
 		this.password = password;
 	}
 
-
 	public int getId() {
 		return id;
+	}
+
+	public List<QComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<QComment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

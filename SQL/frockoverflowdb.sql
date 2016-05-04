@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`question` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `timestamp` DATETIME NOT NULL,
-  `body` VARCHAR(1000) NOT NULL,
+  `body` VARCHAR(2000) NOT NULL,
   `status` VARCHAR(45) NULL DEFAULT 'Posted',
   `rating` INT NULL DEFAULT 0,
   `views` INT NULL DEFAULT 0,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`answer` (
   `user_id` INT NOT NULL,
   `question_id` INT NOT NULL,
   `timestamp` DATETIME NOT NULL,
-  `body` VARCHAR(1000) NOT NULL,
+  `body` VARCHAR(2000) NOT NULL,
   `answer_status` VARCHAR(45) NULL DEFAULT 'Posted',
   `rating` INT NULL DEFAULT 0,
   `flag` VARCHAR(45) NULL,
@@ -121,6 +121,36 @@ CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`vote_assignment` (
   `answer_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `vote_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `frockoverflowdb`.`qcomment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `frockoverflowdb`.`qcomment` ;
+
+CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`qcomment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `timestamp` DATETIME NOT NULL,
+  `body` VARCHAR(500) NOT NULL,
+  `question_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `frockoverflowdb`.`acomment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `frockoverflowdb`.`acomment` ;
+
+CREATE TABLE IF NOT EXISTS `frockoverflowdb`.`acomment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `timestamp` DATETIME NOT NULL,
+  `body` VARCHAR(500) NOT NULL,
+  `answer_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

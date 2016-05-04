@@ -13,6 +13,8 @@
         <class>entities.TagAssignment</class>
         <class>entities.Vote</class>
         <class>entities.VoteAssignment</class>
+        <class>entities.QComment</class>
+        <class>entities.AComment</class>
         
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/frockoverflowdb" />
