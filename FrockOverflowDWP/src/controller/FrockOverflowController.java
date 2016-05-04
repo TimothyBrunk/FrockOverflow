@@ -125,16 +125,16 @@ public class FrockOverflowController {
 	@RequestMapping("postAnswer.do")
 	public ModelAndView postAnswer(Answer a, @ModelAttribute("user") User user,
 			@RequestParam("question_id") int q) {
-		Question question = frockoverflowdao.postAnswer(a, user, q);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
 		
-		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(question.getId());
-		for(Answer ans : answers) {
-			System.out.println(ans.getBody());
-		}
-		mv.addObject("answersByQ", answers);
-		mv.addObject("answeredQuestion", question);
+//		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(question.getId());
+//		for(Answer ans : answers) {
+//			System.out.println(ans.getBody());
+//		}
+		List<Question> qList = frockoverflowdao.postAnswer(a, user, q);
+//		mv.addObject("answersByQ", answers);
+		mv.addObject("updatedQuestionList", qList);
 		return mv;
 	}
 	

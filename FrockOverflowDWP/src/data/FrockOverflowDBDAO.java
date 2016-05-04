@@ -1,7 +1,6 @@
 package data;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import entities.AComment;
 import entities.Answer;
@@ -46,7 +46,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	@Override
 	public List<Question> getAllQuestions() {
 		int pageNumber = 1;
-		int pageSize = 3;
+		int pageSize = 10;
 		List<Question> ql = em.createQuery("Select q from Question q order by timestamp desc", Question.class)
 				.setFirstResult((pageNumber-1) * pageSize).setMaxResults(pageSize).getResultList();
 		return ql;
@@ -114,12 +114,12 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			em.persist(ta);
 		}
 		} // End of if
-		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
+		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q.getId(), Question.class).getResultList();
 		return ql;
 	}
 	
 	@Override
-	public void removeQuestion(int id) {
+	public void removeQuestion(@RequestParam("id") int id) {
 		Question questionToRemove = em.find(Question.class, id);
 		for (TagAssignment t : questionToRemove.getTagAssignments()) {
 			em.remove(t);
@@ -134,7 +134,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	@Override
-	public Question postAnswer(Answer a, User user, int q) {
+	public List<Question> postAnswer(Answer a, User user, int q) {
 		Question question = em.find(Question.class, q);
 		a.setUser(user);
 		Date date = new Date();
@@ -143,8 +143,8 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		a.setStatus(AnswerStatus.Posted);
 		question.addAnswer(a);
 		em.persist(a);
-		System.out.println(a.getUser().getId());
-		return question;
+		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q, Question.class).getResultList();
+		return ql;
 	}
 	
 	@Override
