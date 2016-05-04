@@ -7,6 +7,9 @@
 	
 }
 
+input {
+	
+}
 
 .navbar-button>ul>li>input {
 	margin: 5px;
@@ -54,6 +57,16 @@
     background: transparent;
     border-style: none;
 }
+#logoimage{
+	text-align:left; 
+	
+}
+#searchbar{
+	
+}
+#loginandcreate{
+	
+}
 
 
 
@@ -83,6 +96,13 @@
 
 
 
+#admin-user {
+	margin: 100px;
+	color: black;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
 
 
 
@@ -130,6 +150,7 @@ article .content_w.transition {
 .question{
 	background-color: white;
 }
+
 .submit-question>input{
 	margin-left: 20px;
 	margin-top: 48px;
@@ -143,8 +164,10 @@ article .content_w.transition {
 .content{
 	margin-left: 150px;
 }
-.body-container{
-	margin-top:160px;
+
+.body-container {
+	margin-top:170px;
+	margin: 5px;
 	color: white;
 	font-family: "Courier New", Courier, monospace;
 	background: transparent;
@@ -156,6 +179,7 @@ article .content_w.transition {
 		url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?crop=entropy&dpr=2&fit=crop&fm=jpg&h=600&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1275");
 	background-repeat: no-repeat;
 	background-size: cover;
+	
 }
 
 .containerdiv {
@@ -176,6 +200,22 @@ article .content_w.transition {
 }
 .logged{
 	list-style-type:none; 
+}
+#imageandquestion { 
+	text-align:center; 
+	
+}
+#recentQuestion {
+	color:white; 
+}
+#question{
+	color:white; 
+}
+#postedby{
+	color:white; 
+}
+#divider{
+	color:white; 
 }
 
 

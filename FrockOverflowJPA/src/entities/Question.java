@@ -36,6 +36,7 @@ public class Question {
 	@OneToMany(mappedBy="question")
 	private List<TagAssignment> tagAssignments;
 	@OneToMany(mappedBy="question", fetch=FetchType.EAGER)
+	@OrderBy("timestamp DESC")
 	private List<QComment> comments;
 	
 	public Question(){

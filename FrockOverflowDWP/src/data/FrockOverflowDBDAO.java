@@ -38,42 +38,42 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	public List<Question> getQuestionByTag(String tag) {
 		List<Question> returnedQuestions = new ArrayList<>();
 		returnedQuestions = em
-				.createQuery("SELECT q from Question q join q.tags t where t.body = '" + tag + "'", Question.class)
+				.createQuery("SELECT q from Question q where t.body = '" + tag + "' order by timestamp desc", Question.class)
 				.getResultList();
 		return returnedQuestions;
 	}
 
 	@Override
 	public List<Question> getAllQuestions() {
-		List<Question> ql = em.createQuery("Select q from Question q join fetch q.answers", Question.class).getResultList();
+		List<Question> ql = em.createQuery("Select q from Question q order by timestamp desc", Question.class).setMaxResults(20).getResultList();
 		return ql;
 	}
 
 	@Override
 	public List<Question> getAllPostedQuestions() {
-		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Posted'", Question.class)
-				.getResultList();
+		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Posted' order by timestamp desc", Question.class)
+				.setMaxResults(20).getResultList();
 		return ql;
 	}
 
 	@Override
 	public List<Question> getAllAnsweredQuestions() {
-		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Answered'", Question.class)
-				.getResultList();
+		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Answered' order by timestamp desc", Question.class)
+				.setMaxResults(20).getResultList();
 		return ql;
 	}
 
 	@Override
 	public List<Question> getAllResolvedQuestions() {
-		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Resolved'", Question.class)
-				.getResultList();
+		List<Question> ql = em.createQuery("Select q from Question q WHERE status='Resolved' order by timestamp desc", Question.class)
+				.setMaxResults(20).getResultList();
 		return ql;
 	}
 
 	@Override
 	public List<Question> getQuestionsByUser(User u) {
 		List<Question> ql = em.createQuery("Select q from Question q WHERE user.id = " + u.getId(), Question.class)
-				.getResultList();
+				.setMaxResults(20).getResultList();
 		return ql;
 	}
 
@@ -109,7 +109,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			}
 			ta.setTag(tag);
 			em.persist(ta);
-			System.out.println("persisted tag assignment");
 		}
 		} // End of if
 		List<Question> ql = em.createQuery("Select q from Question q", Question.class).getResultList();
@@ -317,6 +316,12 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		User guest = em.createQuery("SELECT u from User u WHERE id = 1000", User.class).getSingleResult();
 		return guest;
 	} 
+//	@Override
+//	public List<User> getAllUsers() {
+//		List<User> users = em.createQuery("Select u from User u WHERE status='Answered'", Question.class)
+//				.getResultList();
+//		return users;
+//	}
 
 	// @Override
 	// public Answer voteUp(int rating) {

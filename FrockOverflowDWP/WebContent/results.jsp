@@ -50,7 +50,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a href="index.jsp"> <img src="smallicon.png"
+				<a href="index.do"> <img src="smallicon.png"
 					alt="Frock Overflow" style="width: 100px; height: 100px;">
 				</a>
 			</div>
@@ -108,6 +108,8 @@ body {
 
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
+
+
 	<div class="body-container">
 		<section class="content">
 			<c:if test="${sessionScope.user.type != 0}">

@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" >
 
-<head>
+<head >
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,20 +14,21 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Frock Overflow</title>
+<title >Frock Overflow</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="css/style.css" rel="stylesheet">
-
 <style>
+
 body {
 	padding-top: 70px;
 	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 </style>
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,10 +37,13 @@ body {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+    <!-- ************************************Body Tag Begin********************************** -->
+    
+
 <body id="backgroundimage" >
 
 <div class="top"> 
-<img  src="FrockOF.png" height="200" width="900" > </div>
+ </div>
 
 
 
@@ -47,25 +51,25 @@ body {
 
 	<!-- ********************************Top Nav Bar**************************** -->
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+	<!--  <div class="container">  -->
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
+			 <div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
+					 <span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+						class="icon-bar"></span>  
 				</button>
-				 <a href="index.jsp">
-                <img src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
+				 <a href="index.do">
+                <img id="logoimage" src="smallicon.png" alt="Frock Overflow" style="width:100px;height:100px;">
             	</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1 search-text">
-				<ul class="search-bar">
+				<ul id="searchbar" class="search-bar">
 					<li><span style="color: white">Search by tags:</span></li>
 					<form action="searchByTag.do">
 						<input type="text" name="searchTags" list="tags"
@@ -75,15 +79,14 @@ body {
 								<option value="${tag}"></option>
 							</c:forEach>
 						</datalist>
-						<input type="submit" name="submit">
-					</form>
+						<input type="submit" name="submit"></form>							
 				</ul>
-
+				<form action="search.do"><input type="submit" name="submit" value="View All Questions"> </form>	
 			</div>
 			<form action="search.do">
 				<div class="collapse navbar-collapse navbar-button"
 					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
+					<ul id="loginandcreate" class="nav navbar-nav">
 
 						<li>
 						<button type="button"
@@ -127,7 +130,7 @@ body {
 				<c:if test="${!empty invalid}">${invalid}</c:if>
 				<c:if test="${sessionScope.user.type != 0}">
 					<a href="gotoeditprofile.do">Edit Profile   </a>
-					<a href="logOut.do">   Log Out</a>
+					<a href="logOut.do"> || Log Out</a>
 				</c:if>
 			</ul>
 		</div>
@@ -142,16 +145,20 @@ body {
 	<br>
 	<br>
 	<br>
+	<!-- ********************************************** Frock Image ********************************** -->
+	<br><div id="imageandquestion" >
+		<h3> <img id="frockimage" src="FrockOF.png" ></h3>
+		<h2 id="questionandanswer" >Question and Answer Forum</h2>
+		<h2 id=""> ______________________________________________________</h2>
+		<br>
+		  <h3 id ="question">
+						Most Recent Question Asked: ${question.body}<br></h3>
+						<h4 id="postedby">Posted By: ${question.user.displayName} on ${question.timestamp}</h4>
+						 
+	</div>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h3 id="questionandanswer" >Question and Answer Forum</h3>
+	
 	<%-- <c:if test="${sessionScope.user.type != 0}">
 		<button id="postquestion"
 			onclick="document.getElementById('questionFormDiv').style.display='block'">

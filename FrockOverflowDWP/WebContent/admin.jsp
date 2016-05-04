@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Question</title>
+<title>Admin Page</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
@@ -80,25 +80,28 @@
 			</div>
 		</nav>	
 <!--**********************************************USER INFORMATION************************************-->
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<div class="body-container">
-<h2>User Information</h2>
-<p>You are currently logged in as: <strong>${user.displayName}</strong></p>
-
+<div id="admin-user">
+<c:forEach var="user" items="${user.displayName }"
 
 <!-- ***********************************NAVBAR*********************************************************-->
 
 <form action="editprofile.do">
 <ul>
-<li>First Name:<input type="text" name="firstName" value="${user.firstName}" required>
+<li>First Name:<input type="text" name="firstName" value="${user.firstName}">
 </li>
-<li>Last Name:<input type="text" name="lastName" value="${user.lastName}" required>
+<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
 </li>
-<li>Email:<input type="email" name="email" value="${user.email}" required>
+<li>Email:<input type="text" name="email" value="${user.email}">
 </li>
-<li>Display Name:<input type="text" name="displayName" value="${user.displayName}" required>
+<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
 </li>
-<li>Password:<input type="password" name="password" placeholder="Password" required>
+<li>Password:<input type="password" name="password" placeholder="Password">
 </li>
 <li><input type="hidden" name="id" value= "${user.id}"></input>
 </li>
@@ -110,5 +113,14 @@
 </form>
 </form>
 </div>
+<c:forEach var="question" items="${updatedQuestionList}">
+		<article id="${question.id}">
+			<div class = "text-body">
+			<h4>Q: ${question.body}</h4>
+			<c:forEach var="tag" items="${question.tags}">
+				<form action="searchByTag.do" method="GET">
+					<input class="tagLink" type="submit" name="searchTags" value="${tag.body}">
+				</form>
+			</c:forEach>
 </body>
 </html>
