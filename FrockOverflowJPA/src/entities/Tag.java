@@ -29,6 +29,9 @@ public class Tag {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
+	public void addQuestion(Question question) {
+		this.questions.add(question);
+	}
 	public String getBody() {
 		return body;
 	}
