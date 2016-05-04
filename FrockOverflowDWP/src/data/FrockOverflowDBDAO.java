@@ -36,7 +36,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
-//		List<Question> returnedQuestions = new ArrayList<>();
 		Tag matchTag = em
 				.createQuery("SELECT t from Tag t join fetch t.questions WHERE t.body = '" + tag + "' order by timestamp desc", Tag.class)
 				.getSingleResult();
@@ -115,8 +114,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		}
 		} // End of if
 
-//		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q.getId(), Question.class).getResultList();
-//		return q;
 	}
 	
 	@Override
@@ -135,7 +132,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	@Override
-	public List<Question> postAnswer(Answer a, User user, int q) {
+	public void postAnswer(Answer a, User user, int q) {
 		Question question = em.find(Question.class, q);
 		a.setUser(user);
 		Date date = new Date();
@@ -144,8 +141,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		a.setStatus(AnswerStatus.Posted);
 		question.addAnswer(a);
 		em.persist(a);
-		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q, Question.class).getResultList();
-		return ql;
 	}
 	
 	@Override
