@@ -85,6 +85,12 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>${user.firstName}
 
 <div id="admin-user">
 <c:forEach var="user" items="${user}">
