@@ -109,6 +109,7 @@ body {
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 
+
 	<div class="body-container">
 		<section class="content">
 			<c:if test="${sessionScope.user.type != 0}">

@@ -96,6 +96,13 @@ input {
 
 
 
+#admin-user {
+	margin: 100px;
+	color: black;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
 
 
 
@@ -158,8 +165,8 @@ article .content_w.transition {
 	margin-left: 150px;
 }
 
-.body-container{
-	margin-top:570px;
+.body-container {
+	margin-top:170px;
 	margin: 5px;
 	color: white;
 	font-family: "Courier New", Courier, monospace;
