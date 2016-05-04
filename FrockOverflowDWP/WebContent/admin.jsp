@@ -88,23 +88,29 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>${user.firstName}
+<br><form action="getAllUsers.do" method="GET">
+<input type="submit" value="Get All Users">
+
+
+
+</form>
+
+
 
 <div id="admin-user">
-<c:forEach var="user" items="${user}">
+<c:forEach var="user" items="${users}">
  <ul>
 <li>First Name:<input type="text" name="firstName" value="${user.firstName}">
-</li>
-<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
-</li>
-<li>Email:<input type="text" name="email" value="${user.email}">
-</li>
-<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
+
+Last Name:<input type="text" name="lastName" value="${user.lastName}">
+
+Email:<input type="text" name="email" value="${user.email}">
+
+Display Name:<input type="text" name="displayName" value="${user.displayName}">
 </li>
 </ul>
 </c:forEach>
+</div>
 
 
 </body>
