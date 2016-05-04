@@ -233,6 +233,16 @@ button-answer-row{
 #divider{
 	color:white; 
 }
+#welcome {
+	text-align:center; 
+	text-decoration: underline; 
+}
+#admin-list{
+	list-style:none; 
+}
+#main-nav-bar {
+	display:inline; 
+}
 
 
 
