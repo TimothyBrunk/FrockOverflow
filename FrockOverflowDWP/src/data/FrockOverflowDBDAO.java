@@ -259,7 +259,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	
 	@Override
 	public void removeUser(int id) {
-		User userToRemove = em.find(User.class, id);
+		User userToRemove = em.createQuery("SELECT u from User u join fetch u.questions join fetch u.answers WHERE id ="+ id, User.class).getSingleResult();
 		for (Answer a : userToRemove.getAnswers()) {
 			removeAnswer(a.getId());
 		}
