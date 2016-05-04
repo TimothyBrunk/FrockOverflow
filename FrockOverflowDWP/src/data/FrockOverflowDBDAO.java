@@ -36,7 +36,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
-//		List<Question> returnedQuestions = new ArrayList<>();
 		Tag matchTag = em
 				.createQuery("SELECT t from Tag t join fetch t.questions WHERE t.body = '" + tag + "' order by timestamp desc", Tag.class)
 				.getSingleResult();
@@ -81,7 +80,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	@Override
-	public List<Question> createQuestion(Question q, User u, String keywords) {
+	public void createQuestion(Question q, User u, String keywords) {
 		Date date = new Date();
 		q.setTimestamp(new Timestamp(date.getTime()));
 		q.setUser(u);
@@ -114,8 +113,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			em.persist(ta);
 		}
 		} // End of if
-		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q.getId(), Question.class).getResultList();
-		return ql;
+
 	}
 	
 	@Override
@@ -134,7 +132,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 
 	@Override
-	public List<Question> postAnswer(Answer a, User user, int q) {
+	public void postAnswer(Answer a, User user, int q) {
 		Question question = em.find(Question.class, q);
 		a.setUser(user);
 		Date date = new Date();
@@ -143,8 +141,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		a.setStatus(AnswerStatus.Posted);
 		question.addAnswer(a);
 		em.persist(a);
-		List<Question> ql = em.createQuery("Select q from Question q WHERE id="+ q, Question.class).getResultList();
-		return ql;
 	}
 	
 	@Override
@@ -267,7 +263,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	
 	@Override
 	public void removeUser(int id) {
-		User userToRemove = em.find(User.class, id);
+		User userToRemove = em.createQuery("SELECT u from User u join fetch u.questions join fetch u.answers WHERE id ="+ id, User.class).getSingleResult();
 		for (Answer a : userToRemove.getAnswers()) {
 			removeAnswer(a.getId());
 		}
@@ -328,26 +324,11 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		User guest = em.createQuery("SELECT u from User u WHERE id = 1000", User.class).getSingleResult();
 		return guest;
 	} 
-//	@Override
-//	public List<User> getAllUsers() {
-//		List<User> users = em.createQuery("Select u from User u WHERE status='Answered'", Question.class)
-//				.getResultList();
-//		return users;
-//	}
-
-	// @Override
-	// public Answer voteUp(int rating) {
-	// Answer a = em.find(Answer.class, rating);
-	// a.setRating(rating++);
-	// em.persist(rating);
-	// return a;
-	// }
-	// @Override
-	// public Answer voteDown(int rating) {
-	// Answer a = em.find(Answer.class, rating);
-	// a.setRating(rating--);
-	// em.persist(rating);
-	// return a;
-	// }
+	@Override
+	public List<User> getAllUsers() {
+		List<User> users = em.createQuery("Select u from User u ", User.class)
+				.getResultList();
+		return users;
+	}
 
 }

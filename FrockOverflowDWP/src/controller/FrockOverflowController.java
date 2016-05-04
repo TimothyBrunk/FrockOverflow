@@ -105,10 +105,13 @@ public class FrockOverflowController {
 			@ModelAttribute("tags") List<Tag> tags,
 			@RequestParam("keywords") String keywords) {
 		ModelAndView mv = new ModelAndView();
-		List<Question> updatedQuestionList = frockoverflowdao.createQuestion(question, user, keywords);
+		frockoverflowdao.createQuestion(question, user, keywords);
+		Question q = frockoverflowdao.getQuestion(question.getId());
+		List<Question> qList = new ArrayList<>();
+		qList.add(q);
 		tags = frockoverflowdao.getTags();
 		mv.setViewName("results.jsp");
-		mv.addObject("updatedQuestionList", updatedQuestionList);
+		mv.addObject("updatedQuestionList", qList);
 		mv.addObject("tags", tags);
 		return mv;
 	}
@@ -127,13 +130,10 @@ public class FrockOverflowController {
 			@RequestParam("question_id") int q) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-		
-//		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(question.getId());
-//		for(Answer ans : answers) {
-//			System.out.println(ans.getBody());
-//		}
-		List<Question> qList = frockoverflowdao.postAnswer(a, user, q);
-//		mv.addObject("answersByQ", answers);
+		List<Question> qList = new ArrayList<>();
+		frockoverflowdao.postAnswer(a, user, q);
+		Question question = frockoverflowdao.getQuestion(a.getQuestion().getId());
+		qList.add(question);
 		mv.addObject("updatedQuestionList", qList);
 		return mv;
 	}
@@ -234,7 +234,7 @@ public class FrockOverflowController {
 	return mv;
 	}
 	
-//	Tim started the methods below before realizing he should probably talk to the team first. 
+
 	@RequestMapping("voteUp.do")
 	public ModelAndView  voteUp (int answerId, @ModelAttribute("user") User user){
 		Question question = frockoverflowdao.voteUp(answerId, user.getId());
@@ -276,6 +276,25 @@ public class FrockOverflowController {
 		questions.add(question);
 		mv.addObject("updatedQuestionList", questions);
 		return mv;
+		
+	}
+	@RequestMapping("removeUser.do")
+	public ModelAndView removeUser(int id){
+	frockoverflowdao.removeUser(id);
+	List <User> users = frockoverflowdao.getAllUsers(); 
+	ModelAndView mv = new ModelAndView();
+	mv.setViewName("admin.jsp");
+	mv.addObject("users", users); 
+	return mv; 
+	
+	}
+	@RequestMapping("getAllUsers.do")
+	public ModelAndView getAllUsers(){
+		List <User> users = frockoverflowdao.getAllUsers(); 
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("users", users); 
+		return mv; 
 		
 	}
 }

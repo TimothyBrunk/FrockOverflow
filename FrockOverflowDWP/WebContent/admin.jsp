@@ -85,42 +85,33 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br><form action="getAllUsers.do" method="GET">
+<input type="submit" value="Get All Users">
+
+
+
+</form>
+
+
 
 <div id="admin-user">
-<c:forEach var="user" items="${user.displayName }"
-
-<!-- ***********************************NAVBAR*********************************************************-->
-
-<form action="editprofile.do">
-<ul>
+<c:forEach var="user" items="${users}">
+ <ul>
 <li>First Name:<input type="text" name="firstName" value="${user.firstName}">
-</li>
-<li>Last Name:<input type="text" name="lastName" value="${user.lastName}">
-</li>
-<li>Email:<input type="text" name="email" value="${user.email}">
-</li>
-<li>Display Name:<input type="text" name="displayName" value="${user.displayName}">
-</li>
-<li>Password:<input type="password" name="password" placeholder="Password">
-</li>
-<li><input type="hidden" name="id" value= "${user.id}"></input>
+
+Last Name:<input type="text" name="lastName" value="${user.lastName}">
+
+Email:<input type="text" name="email" value="${user.email}">
+
+Display Name:<input type="text" name="displayName" value="${user.displayName}">
 </li>
 </ul>
-<input type="submit" name="submit" value="Save Changes">
-<form action="logOut.do">
-<input type="submit" name="submit" value="Log Out">
-<a href="index.jsp"></a> 
-</form>
-</form>
+</c:forEach>
 </div>
-<c:forEach var="question" items="${updatedQuestionList}">
-		<article id="${question.id}">
-			<div class = "text-body">
-			<h4>Q: ${question.body}</h4>
-			<c:forEach var="tag" items="${question.tags}">
-				<form action="searchByTag.do" method="GET">
-					<input class="tagLink" type="submit" name="searchTags" value="${tag.body}">
-				</form>
-			</c:forEach>
+
+
 </body>
 </html>
