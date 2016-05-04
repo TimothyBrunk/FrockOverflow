@@ -110,6 +110,7 @@ body {
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	<div class="body-container">
 		<section class="content">
+		<div class = "question-post-block">
 			<c:if test="${sessionScope.user.type != 0}">
 				<form action="createQuestion.do" method="GET">
 					<span class="input input--ichiro"> <input
@@ -119,15 +120,21 @@ body {
 							<span class="input__label-content input__label-content--ichiro">Post
 								A Question</span>
 					</label>
-					</span> <span class="input input--ichiro"> <input
+					</span> 
+					</div>
+					<div class = answer-post-block>
+					<span class="input input--ichiro"> <input
 						class="input__field input__field--ichiro" type="text"
 						id="input-26" name="keywords" /> <label
 						class="input__label input__label--ichiro" for="input-26">
 							<span class="input__label-content input__label-content--ichiro">Keywords</span>
 					</label>
-					</span> <span class="submit-question"> <input type="submit"
+					</span>
+					</div>
+					<div class = "submit-post-block"><span class="submit-question"> <input type="submit"
 						name="post">
 					</span>
+					</div>
 				</form>
 			</c:if>
 		</section>

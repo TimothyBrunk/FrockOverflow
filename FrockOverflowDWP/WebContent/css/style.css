@@ -139,6 +139,10 @@ article .content_w.transition {
 	background: transparent;
 	border-style: none;
 }
+
+.content{
+	margin-left: 150px;
+}
 .body-container{
 	margin-top:160px;
 	color: white;
