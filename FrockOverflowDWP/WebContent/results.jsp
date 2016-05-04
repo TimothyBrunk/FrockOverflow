@@ -19,9 +19,14 @@
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
+
 <!-- Custom CSS -->
-<link href="css/style.css" rel="stylesheet">
 <link href="css/textinput.css" rel="stylesheet">
+
+
+<link href="css/style.css" rel="stylesheet">
+
+
 
 <style>
 body {
@@ -39,7 +44,7 @@ body {
 <body>
 	<!-- ********************************Top Nav Bar**************************** -->
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+	 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
 		style="margin-bottom: 100px;">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -105,48 +110,45 @@ body {
 		</div>
 	</nav>
 
-
+ 
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
-
-
-	<div class="body-container">
+	 <div class= "background-container">
+	 <div class="body-container">
 		<section class="content">
 			<c:if test="${sessionScope.user.type != 0}">
-				<div class="body-container-question-post">
 					<form action="createQuestion.do" method="GET">
-						<span class="input input--ichiro"> <input
-							class="input__field input__field--ichiro" type="text"
-							id="input-25" name="body" /> <label
-							class="input__label input__label--ichiro" for="input-25">
-								<span class="input__label-content input__label-content--ichiro">Post
-									A Question</span>
-						</label>
-						</span>
-				</div>
-				<div class=body-container-answer-post>
-					<span class="input input--ichiro"> <input
-						class="input__field input__field--ichiro" type="text"
-						id="input-26" name="keywords" /> <label
-						class="input__label input__label--ichiro" for="input-26">
-							<span class="input__label-content input__label-content--ichiro">Keywords</span>
-					</label>
-					</span>
-				</div>
-				<div class=body-container-submit-post>
-					<span class="submit-question"> <input type="submit"
-						name="post">
-					</span>
-				</div>
-				</form>
-	</div>
+						<div class="body-container-question-post">
+							<span class="input input--ichiro"> 
+								<input class="input__field input__field--ichiro" type="text" id="input-25" name="body" /> 
+								<label class="input__label input__label--ichiro" for="input-25">
+									<span class="input__label-content input__label-content--ichiro">Post A Question</span>
+								</label>
+							</span>
+						</div>
+						<div class=body-container-answer-post>
+							<span class="input input--ichiro"> 
+								<input class="input__field input__field--ichiro" type="text" id="input-26" name="keywords" /> 
+								<label class="input__label input__label--ichiro" for="input-26">
+									<span class="input__label-content input__label-content--ichiro">Keywords</span>
+								</label>
+							</span>
+						</div>
+						<div class=body-container-submit-post>
+							<span class="submit-question"> 
+								<input type="submit" name="post">
+							</span>
+						</div>
+					</form>
 	</c:if>
 	</section>
-
-
+	</div>
+ 
+ 
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
-		<c:forEach var="question" items="${updatedQuestionList}">
+
+	 		<c:forEach var="question" items="${updatedQuestionList}">
 			<article id="${question.id}">
 				<div class="text-body"><h4>Q: ${question.body}</h4> 
 					<c:forEach var="tag" items="${question.tags}">
@@ -157,12 +159,12 @@ body {
 					</c:forEach>
 
 					<em>Posted By: <strong>${question.user.displayName}</strong> ${question.timestamp}<br>
-					Status: ${question.status}<br></em>
+					Status: ${question.status}<br></em> 
 
 
 
 
-					<div class="content_w">
+						<div class="content_w">
 						<div class="content">
 							<ul>
 								<c:forEach var="comment" items="${question.comments}">
@@ -227,12 +229,12 @@ body {
 										</tr>
 									</table>
 								</c:if>
-							</c:forEach>
-						</div>
-					</div>
-				</div>
-			</article>
-			<table class="question-comment-block">
+							</c:forEach> 
+	</div>
+	</div>
+	</div>
+	</article>
+ <table class="question-comment-block">
 				<c:if test="${sessionScope.user.type != 0}">
 					<tr>
 						<td><form action="postAnswer.do" method="GET">
@@ -251,7 +253,7 @@ body {
 								</span></td>
 							</form></td>
 						<td><form action="commentOnQuestion.do" method="GET">
-								<span class="input input--ichiro"> <input type="hidden"
+								<span class="input input--ichiro"> <span class="submit-question"><input type="hidden"
 									name="question_id" value="${question.id}" required> <input
 									class="input__field input__field--ichiro" type="text"
 									id="comment-${question.id}-1" name="body" required/> <label
@@ -266,60 +268,61 @@ body {
 						</span></td>
 						<td><form action="removeQuestion.do" method="GET">
 														<input type="hidden" name="id" value="${question.id}">
-														<input type="submit" name="removeQuestion"
-															value="Remove Question">
+														<span class="submit-question"><input type="submit" name="removeQuestion"
+															value="Remove Question"></span>
 													</form></td>
 						</form>
 						</td>
 					</tr>
 				</c:if>
 			</table>
-		</c:forEach>
+		</c:forEach> 
+</div>
 
 
+	<!-- jQuery Version 1.11.1 -->
+	<script src="js/jquery.js"></script>
 
-		<!-- jQuery Version 1.11.1 -->
-		<script src="js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+	<!-- This is J-Query text expand code -->
+	 <script type="text/javascript">
+		$('article').on('click', function() {
+			slide($('.content', this));
+		});
 
-		<!-- This is J-Query text expand code -->
-		<script type="text/javascript">
-			$('article').on('click', function() {
-				slide($('.content', this));
-			});
+		function slide(content) {
+			var wrapper = content.parent();
+			var contentHeight = content.outerHeight(true);
+			var wrapperHeight = wrapper.height();
 
-			function slide(content) {
-				var wrapper = content.parent();
-				var contentHeight = content.outerHeight(true);
-				var wrapperHeight = wrapper.height();
-
-				wrapper.toggleClass('open');
-				if (wrapper.hasClass('open')) {
-					setTimeout(function() {
-						wrapper.addClass('transition').css('height',
-								contentHeight);
-					}, 10);
-				} else {
-					setTimeout(function() {
-						wrapper.css('height', wrapperHeight);
-						setTimeout(function() {
-							wrapper.addClass('transition').css('height', 0);
+			wrapper.toggleClass('open');
+			if (wrapper.hasClass('open')) {
+				setTimeout(
+						function() {
+							wrapper.addClass('transition').css('height',
+									contentHeight);
 						}, 10);
+			} else {
+				setTimeout(function() {
+					wrapper.css('height', wrapperHeight);
+					setTimeout(function() {
+						wrapper.addClass('transition').css('height', 0);
 					}, 10);
-				}
-
-				wrapper
-						.one(
-								'transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd',
-								function() {
-									if (wrapper.hasClass('open')) {
-										wrapper.removeClass('transition').css(
-												'height', 'auto');
-									}
-								});
+				}, 10);
 			}
-		</script>
+
+			wrapper
+					.one(
+							'transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd',
+							function() {
+								if (wrapper.hasClass('open')) {
+									wrapper.removeClass('transition').css(
+											'height', 'auto');
+								}
+							});
+		}
+	</script>
 </body>
 </html>
