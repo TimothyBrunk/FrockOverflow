@@ -7,9 +7,7 @@
 	
 }
 
-input {
-	
-}
+
 
 .navbar-button>ul>li>input {
 	margin: 5px;
@@ -58,17 +56,8 @@ input {
     border-style: none;
 }
 #logoimage{
-	text-align:left; 
-	
+	text-align:left; 	
 }
-#searchbar{
-	
-}
-#loginandcreate{
-	
-}
-
-
 
 
 
@@ -179,14 +168,17 @@ post-container{
 }
 
 
-
+button-answer-row{
+	display: inline-block;
+}
 
 
 .content{
 	margin-left: 150px;
 }
 .question-comment-block{
-	width: 100%;
+	width: 80%;
+	margin-left: 140px;
 }
 .body-container {
 	height: 100px;
@@ -241,7 +233,6 @@ post-container{
 #divider{
 	color:white; 
 }
-
 
 
 
