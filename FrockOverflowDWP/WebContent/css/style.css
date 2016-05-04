@@ -143,6 +143,21 @@ article .content_w.transition {
 .question{
 	background-color: white;
 }
+
+.submit-question>input{
+	margin-left: 20px;
+	margin-top: 48px;
+	font-weight: bold;
+	color: gray;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+}
+
+.content{
+	margin-left: 150px;
+}
+
 .body-container{
 	margin:170px;
 	margin: 5px;

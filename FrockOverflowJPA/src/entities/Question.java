@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Question {
@@ -26,14 +27,15 @@ public class Question {
 	@JoinColumn(name="user_id")
 	private User user;
 	@OneToMany(mappedBy="question", fetch=FetchType.EAGER)
+	@OrderBy("timestamp DESC")
 	private List<Answer> answers;
 	@Enumerated(EnumType.STRING)
 	private QuestionStatus status;
-	@ManyToMany(mappedBy="questions")
+	@ManyToMany(mappedBy="questions", fetch=FetchType.EAGER)
 	private List<Tag> tags;
 	@OneToMany(mappedBy="question")
 	private List<TagAssignment> tagAssignments;
-	@OneToMany(mappedBy="question")
+	@OneToMany(mappedBy="question", fetch=FetchType.EAGER)
 	private List<QComment> comments;
 	
 	public Question(){

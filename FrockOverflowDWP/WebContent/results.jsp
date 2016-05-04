@@ -110,6 +110,7 @@ body {
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	<div class="body-container">
 		<section class="content">
+		<div class = "question-post-block">
 			<c:if test="${sessionScope.user.type != 0}">
 				<form action="createQuestion.do" method="GET">
 					<span class="input input--ichiro"> <input
@@ -119,15 +120,21 @@ body {
 							<span class="input__label-content input__label-content--ichiro">Post
 								A Question</span>
 					</label>
-					</span> <span class="input input--ichiro"> <input
+					</span> 
+					</div>
+					<div class = answer-post-block>
+					<span class="input input--ichiro"> <input
 						class="input__field input__field--ichiro" type="text"
 						id="input-26" name="keywords" /> <label
 						class="input__label input__label--ichiro" for="input-26">
 							<span class="input__label-content input__label-content--ichiro">Keywords</span>
 					</label>
-					</span> <span class="submit-question"> <input type="submit"
+					</span>
+					</div>
+					<div class = "submit-post-block"><span class="submit-question"> <input type="submit"
 						name="post">
 					</span>
+					</div>
 				</form>
 			</c:if>
 		</section>
@@ -156,16 +163,32 @@ body {
 		<article id="${question.id}">
 			<div class = "text-body">
 			<h4>Q: ${question.body}</h4>
+			<c:forEach var="tag" items="${question.tags}">
+				<form action="searchByTag.do" method="GET">
+					<input class="tagLink" type="submit" name="searchTags" value="${tag.body}">
+				</form>
+			</c:forEach>
 
 			Posted By: ${question.user.displayName} ${question.timestamp}<br>
 			Status: ${question.status}<br>
 			
 			
+			
 
 			<div class="content_w">
 				<div class="content">
+					<ul>
+					<c:forEach var="comment" items="${question.comments}">
+						<li>${comment.body} Posted by ${comment.user.displayName} On ${comment.timestamp}</li>
+					</c:forEach>
+					</ul>
 					<c:forEach var="answer" items="${question.answers}">
 					${answer}
+					<ul>
+						<c:forEach var="comment" items="${answer.comments}">
+							<li>${comment.body} Posted by ${comment.user.displayName} On ${comment.timestamp}</li>
+						</c:forEach>
+					</ul>
 					<c:if test="${sessionScope.user.type != 0}">
 							<table class="button-answer">
 								<tr class="button-answer-row">
@@ -178,9 +201,8 @@ body {
 											<input type="submit" value="Vote Down"></input>
 										</form></td>
 						</c:if>
-						<br>
-						<c:if
-							test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+						
+						<c:if test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
 							<td><form action="acceptAnswer.do" method="GET">
 									<input type="hidden" name="answer_id" value="${answer.id}">
 									<input type="submit" name="Accept Answer" value="Accept Answer">
