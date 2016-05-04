@@ -36,16 +36,19 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
-		List<Question> returnedQuestions = new ArrayList<>();
-		returnedQuestions = em
-				.createQuery("SELECT q from Question q where t.body = '" + tag + "' order by timestamp desc", Question.class)
-				.getResultList();
-		return returnedQuestions;
+//		List<Question> returnedQuestions = new ArrayList<>();
+		Tag matchTag = em
+				.createQuery("SELECT t from Tag t join fetch t.questions WHERE t.body = '" + tag + "' order by timestamp desc", Tag.class)
+				.getSingleResult();
+		return matchTag.getQuestions();
 	}
 
 	@Override
 	public List<Question> getAllQuestions() {
-		List<Question> ql = em.createQuery("Select q from Question q order by timestamp desc", Question.class).setMaxResults(20).getResultList();
+		int pageNumber = 1;
+		int pageSize = 3;
+		List<Question> ql = em.createQuery("Select q from Question q order by timestamp desc", Question.class)
+				.setFirstResult((pageNumber-1) * pageSize).setMaxResults(pageSize).getResultList();
 		return ql;
 	}
 
