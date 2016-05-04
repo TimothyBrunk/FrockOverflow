@@ -148,7 +148,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 	
 	@Override
-	public void commentOnAnswer(AComment c, int userId, int answerId) {
+	public Question commentOnAnswer(AComment c, int userId, int answerId) {
 		User u = em.find(User.class, userId);
 		Answer a = em.find(Answer.class, answerId);
 		Date date = new Date();
@@ -157,10 +157,12 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		c.setAnswer(a);
 		a.getComments().add(c);
 		em.persist(c);
+		Question q = em.find(Question.class, a.getQuestion().getId());
+		return q;
 	}
 	
 	@Override
-	public void commentOnQuestion(QComment c, int userId, int questionId){
+	public Question commentOnQuestion(QComment c, int userId, int questionId){
 		User u = em.find(User.class, userId);
 		Question q = em.find(Question.class, questionId);
 		Date date = new Date();
@@ -169,6 +171,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		c.setQuestion(q);
 		q.getComments().add(c);
 		em.persist(c);
+		return q;
 	}
 
 	@Override
@@ -190,7 +193,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	}
 	
 	@Override
-	public void removeAnswer(int id) {
+	public Question removeAnswer(int id) {
 		Answer answerToRemove = em.find(Answer.class, id);
 		for (VoteAssignment v : answerToRemove.getVoteAssignments()) {
 			em.remove(v);
@@ -198,7 +201,9 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 		for (AComment c : answerToRemove.getComments()) {
 			em.remove(c);
 		}
+		Question toReturn = em.find(Question.class, answerToRemove.getId());
 		em.remove(answerToRemove);
+		return toReturn;
 	}
 
 	@Override
@@ -284,7 +289,7 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	
 	@Override
-	public void voteUp(int answerId, int userId) {
+	public Question voteUp(int answerId, int userId) {
 		Answer a = em.find(Answer.class, answerId);
 		User u = em.find(User.class, userId);
 		Vote v = em.find(Vote.class, 1);
@@ -297,10 +302,12 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			em.persist(voteAssign);
 			a.setRating(a.getRating()+v.getValue());
 		}
+		Question q = em.find(Question.class, a.getQuestion().getId());
+		return q;
 	}
 	
 	@Override
-	public void voteDown(int answerId, int userId) {
+	public Question voteDown(int answerId, int userId) {
 		Answer a = em.find(Answer.class, answerId);
 		User u = em.find(User.class, userId);
 		Vote v = em.find(Vote.class, 2);
@@ -313,6 +320,8 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			em.persist(voteAssign);
 			a.setRating(a.getRating()+v.getValue());
 		}
+		Question q = em.find(Question.class, a.getQuestion().getId());
+		return q;
 	}
 	@Override
 	public User logOut(User u) {
