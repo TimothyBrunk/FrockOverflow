@@ -147,7 +147,7 @@ article .content_w.transition {
 		url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?crop=entropy&dpr=2&fit=crop&fm=jpg&h=600&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1275");
 	background-repeat: no-repeat;
 	background-size: cover;
-	filter: grayscale(20%) blur(20px); 
+	
 }
 
 .containerdiv {
