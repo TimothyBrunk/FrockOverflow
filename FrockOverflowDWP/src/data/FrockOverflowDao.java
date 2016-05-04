@@ -33,15 +33,15 @@ public interface FrockOverflowDao {
 	
 	List<Question> postAnswer(Answer a, User user, int q);
 	
-	void commentOnAnswer(AComment c, int userId, int answerId);
+	Question commentOnAnswer(AComment c, int userId, int answerId);
 	
-	void commentOnQuestion(QComment c, int userId, int questionId);
+	Question commentOnQuestion(QComment c, int userId, int questionId);
 
 	Question acceptAnswer(int id);
 
 	List<Answer> getAnswersByQuestionId(int questionId);
 	
-	void removeAnswer(int id);
+	Question removeAnswer(int id);
 
 	User createUser(User u);
 
@@ -53,9 +53,9 @@ public interface FrockOverflowDao {
 
 	List<Tag> getTags();
 	
-	void voteUp (int answerId, int userId); 
+	Question voteUp (int answerId, int userId); 
 	
-	void voteDown (int answerId, int userId); 
+	Question voteDown (int answerId, int userId); 
 	
 	User logOut(User u); 
 	

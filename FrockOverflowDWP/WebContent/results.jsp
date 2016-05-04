@@ -202,7 +202,7 @@ body {
 											</c:if>
 											<c:if test="${sessionScope.user.type > 1}">
 												<td><form action="removeAnswer.do" method="GET">
-														<input type="hidden" name="id" value="${answer.id}">
+														<input type="hidden" name="answer_id" value="${answer.id}">
 														<input type="submit" name="removeAnswer"
 															value="Remove Answer">
 													</form></td>
