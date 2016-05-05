@@ -109,7 +109,8 @@ article {
 
 }
 .text-body{
-	padding: 20px;;
+	padding: 20px;
+	margin-top: 1em;
 }
 
 article .content_w {
@@ -169,6 +170,7 @@ article .content_w.transition {
 	background-color: #eeeeee;
 	margin-left: 5%;
 	margin-right: 5%;
+	margin-top: 1em;
 	border-style: none;
 
 }

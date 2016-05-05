@@ -217,7 +217,8 @@ Post a Question</button>
 							</c:if>
 											 
 						<!-- **************COMMENT ON ANSWER******** -->
-						
+
+<c:if test="${sessionScope.user.type != 0}">						
 <button class="button-answer" onclick="document.getElementById('ac${answer.id}').style.display='block'">
 Comment on this Answer</button>
 
@@ -228,7 +229,8 @@ Comment on this Answer</button>
   	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
-</div>					
+</div>
+</c:if>					
 										
 								<%-- <form class="answer-function" action="commentOnAnswer.do" method="GET">
 									<span class="input input--ichiro"> 
