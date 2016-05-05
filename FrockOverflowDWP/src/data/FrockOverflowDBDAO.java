@@ -330,5 +330,17 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 				.getResultList();
 		return users;
 	}
+	@Override
+	public void deactivateUser( int userId, int userType) {
+		User u = em.find(User.class, userId);
+		u.setType(0);
+		
+	}
+	@Override
+	public void activateUser( int userId, int userType) {
+		User u = em.find(User.class, userId);
+		u.setType(1);
+		
+	}
 
 }

@@ -195,7 +195,7 @@ public class FrockOverflowController {
 		login = frockoverflowdao.getUser(email, password);
 		List<Question> userQuestions = frockoverflowdao.getQuestionsByUser(login);
 		System.out.println(login);
-		mv.setViewName("results.jsp");
+		mv.setViewName("index.do");
 		mv.addObject("user", login);
 		mv.addObject("userQuestions", userQuestions);
 		mv.addObject("updatedQuestionList", frockoverflowdao.getAllQuestions());
@@ -296,5 +296,23 @@ public class FrockOverflowController {
 		mv.addObject("users", users); 
 		return mv; 
 		
+	}
+	@RequestMapping("deactivateUser.do")
+	public ModelAndView  deactivateUser (int  id, int userType){
+		frockoverflowdao.deactivateUser(id, userType); 
+		List <User> users = frockoverflowdao.getAllUsers(); 
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("users", users); 
+		return mv;
+	}
+	@RequestMapping("activateUser.do")
+	public ModelAndView  activateUser (int  id, int userType){
+		frockoverflowdao.activateUser(id, userType); 
+		List <User> users = frockoverflowdao.getAllUsers(); 
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("users", users); 
+		return mv;
 	}
 }

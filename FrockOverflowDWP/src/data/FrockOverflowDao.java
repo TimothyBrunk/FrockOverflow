@@ -60,6 +60,10 @@ public interface FrockOverflowDao {
 	User logOut(User u); 
 	
 	List <User> getAllUsers(); 
+	
+	void deactivateUser (int userId, int userType); 
+	
+	void activateUser (int userId, int userType); 
  
 
 }
