@@ -130,6 +130,10 @@ Post a Question</button>
   </c:if>
   </div>
   
+  <c:if test="${!empty message}">
+ <h4 id="tagmessage">  ${message}</h4>
+  </c:if>
+  
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
 
@@ -343,12 +347,10 @@ Comment on this Question</button>
 		$('article').on('click', function() {
 			slide($('.content', this));
 		});
-
 		function slide(content) {
 			var wrapper = content.parent();
 			var contentHeight = content.outerHeight(true);
 			var wrapperHeight = wrapper.height();
-
 			wrapper.toggleClass('open');
 			if (wrapper.hasClass('open')) {
 				setTimeout(
@@ -364,7 +366,6 @@ Comment on this Question</button>
 					}, 10);
 				}, 10);
 			}
-
 			wrapper
 					.one(
 							'transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd',
