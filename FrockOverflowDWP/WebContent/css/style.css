@@ -232,11 +232,11 @@ button-answer-row{
 	width: 80%;
 	margin-left: 140px;
 }
-.body-container {
-	height: 100px;
-	margin-top:170px;
-	margin-left: 5px;
-	color: white;
+#body-container {
+	height: 100px; 
+	margin-top:170px; 
+	margin-left: 50px;
+	color: black;
 	font-family: "Courier New", Courier, monospace;
 	background: transparent;
 	border-style: none;
@@ -324,6 +324,21 @@ html {
 	color:red; 
 	font-weight:bold;
 }
+#body-container-profile { 
+	height: 100px; 
+	margin-top:170px; 
+	margin-left: 50px;
+	color: black;
+	font-family: "Courier New", Courier, monospace;
+	background: transparent;
+	border-style: none;
+	list-style:none; 
+	
+}
+#profile-list{
+	list-style:none; 
+}
+
 
 
 

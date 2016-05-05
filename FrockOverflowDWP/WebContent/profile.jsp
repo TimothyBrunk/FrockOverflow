@@ -81,7 +81,7 @@
 		</nav>	
 <!--**********************************************USER INFORMATION************************************-->
 
-<div class="body-container">
+<div id="body-container-profile">
 <h2>User Information</h2>
 <p>You are currently logged in as: <strong>${user.displayName}</strong></p>
 
@@ -89,7 +89,7 @@
 <!-- ***********************************NAVBAR*********************************************************-->
 
 <form action="editprofile.do">
-<ul>
+<ul id="profile-list">
 <li>First Name:<input type="text" name="firstName" value="${user.firstName}" required>
 </li>
 <li>Last Name:<input type="text" name="lastName" value="${user.lastName}" required>
