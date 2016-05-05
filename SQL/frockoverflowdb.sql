@@ -13,6 +13,9 @@ DROP SCHEMA IF EXISTS `frockoverflowdb` ;
 -- Schema frockoverflowdb
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `frockoverflowdb` DEFAULT CHARACTER SET utf8 ;
+DROP USER `nerd`@`localhost`; /* Uncomment to run script again */
+CREATE USER `nerd`@`localhost` IDENTIFIED BY 'revenge';
+GRANT ALL PRIVILEGES ON frockoverflowdb.* TO `nerd`@`localhost`;
 USE `frockoverflowdb` ;
 
 -- -----------------------------------------------------
