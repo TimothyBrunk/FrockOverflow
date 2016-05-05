@@ -113,11 +113,9 @@ body {
  
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
-	 <!-- <div class= "background-container">
-	 <div class="body-container" id="postQuestionBlock"> -->
-
-	
+	 
 	<div class="postQuestionBlock">
+	<c:if test="${sessionScope.user.type != 0}">
 	<button class="button-answer" onclick="document.getElementById('postQ').style.display='block'">
 Post a Question</button>
 
@@ -129,12 +127,9 @@ Post a Question</button>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
   </div>
+  </c:if>
   </div>
   
-<!-- </div>		
-</div> -->
- 
- 
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
 
