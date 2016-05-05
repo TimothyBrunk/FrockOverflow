@@ -113,9 +113,11 @@ body {
  
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
-	 
+	 <!-- <div class= "background-container">
+	 <div class="body-container" id="postQuestionBlock"> -->
+
+	
 	<div class="postQuestionBlock">
-	<c:if test="${sessionScope.user.type != 0}">
 	<button class="button-answer" onclick="document.getElementById('postQ').style.display='block'">
 Post a Question</button>
 
@@ -127,16 +129,46 @@ Post a Question</button>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
   </div>
-  </c:if>
   </div>
   
+<!-- </div>		
+</div> -->
+
+
+	 <%-- <div class="body-container" id="postQuestionBlock">
+			<c:if test="${sessionScope.user.type != 0}">
+					<form action="createQuestion.do" method="GET">
+						<div class="body-container-question-post">
+							<span class="input input--ichiro"> 
+								<input class="input__field input__field--ichiro" type="text" id="input-25" name="body" /> 
+								<label class="input__label input__label--ichiro" for="input-25">
+									<span class="input__label-content input__label-content--ichiro">Post A Question</span>
+								</label>
+							</span>
+						</div>
+						<div class=body-container-answer-post>
+							<span class="input input--ichiro"> 
+								<input class="input__field input__field--ichiro" type="text" id="input-26" name="keywords" /> 
+								<label class="input__label input__label--ichiro" for="input-26">
+									<span class="input__label-content input__label-content--ichiro">Keywords</span>
+								</label>
+							</span>
+						</div>
+						<div class=body-container-submit-post>
+							<span class="submit-question"> 
+								<input type="submit" name="post">
+							</span>
+						</div>
+					</form>
+	</c:if>
+	</div> --%> <!-- END OF POST A QUESTION BLOCK ******** -->
+ 
+ 
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
 
 	 		<c:forEach var="question" items="${updatedQuestionList}">
-			<div class="questionBox" id="${question.id}">
-			
-<button id="qButton" onclick="document.getElementById('expandedQuestion${question.id}').style.display='block'">
+			<article class="questionBox" id="${question.id}">
 				<div class="text-body"><h4>Q: ${question.body}</h4> 
 					<div class="tagWad">
 					<c:forEach var="tag" items="${question.tags}">
@@ -148,35 +180,27 @@ Post a Question</button>
 					</div>
 
 					<em>Posted By: <strong>${question.user.displayName}</strong> ${question.timestamp}<br>
-					Status: ${question.status}<br></em>
-				</div> 
-</button>
+					Status: ${question.status}<br></em> 
 
 
 
 
-						<!-- <div id="expandedQuestion" class="content_w" > -->
-						<div id="expandedQuestion${question.id}" class="content" style="display:none">
-						<span onclick="this.parentElement.style.display='none'" class="closeButton">
+						<div class="content_w">
+						<div class="content">
 							<ul>
 								<c:forEach var="comment" items="${question.comments}">
 									<li>${comment.body}Posted by ${comment.user.displayName}
 										On ${comment.timestamp}</li>
 								</c:forEach>
 							</ul>
-						</span>
 							
 <!-- *************************************** ANSWERS******************************************************** -->							
 							
 							<c:forEach var="answer" items="${question.answers}">
 							<div class="answerBlock">
-							<span onclick="this.parentElement.parentElement.style.display='none'" class="closeButton">
-							
 							<strong>Answer</strong> posted by <strong>${answer.user.displayName}</strong>  on ${answer.timestamp}
 							<br>Rating: <strong>${answer.rating}</strong>
 							<br>${answer.body}
-							</span>
-						
 		<!-- ******************************* ANSWER COMMENTS ****************************** -->
 								<ul>
 									<c:forEach var="comment" items="${answer.comments}">
@@ -217,8 +241,7 @@ Post a Question</button>
 							</c:if>
 											 
 						<!-- **************COMMENT ON ANSWER******** -->
-
-<c:if test="${sessionScope.user.type != 0}">						
+						
 <button class="button-answer" onclick="document.getElementById('ac${answer.id}').style.display='block'">
 Comment on this Answer</button>
 
@@ -229,8 +252,7 @@ Comment on this Answer</button>
   	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
-</div>
-</c:if>					
+</div>					
 										
 								<%-- <form class="answer-function" action="commentOnAnswer.do" method="GET">
 									<span class="input input--ichiro"> 
@@ -251,9 +273,9 @@ Comment on this Answer</button>
 				
 				
 	</div> <!-- END OF CONTENT DIV ********** -->
-	<!-- </div> --> <!-- END OF CONTENT-W ************ -->
+	</div> <!-- END OF CONTENT-W ************ -->
 	</div> <!-- END OF TEXT BODY ************ -->
-	</div>
+	</article>
 	
 	
 	
