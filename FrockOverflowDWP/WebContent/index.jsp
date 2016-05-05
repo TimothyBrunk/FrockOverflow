@@ -37,7 +37,7 @@ body {
     <![endif]-->
 
 <!-- ************************************Body Tag Begin********************************** -->
-<body id="backgroundimage" style="background-image: url('jobsandwoz.png')">
+<body id="backgroundimage" ><!-- style="background-image: url('jobsandwoz.png')" -->>
 
 <!-- 	<img src="jobsandwoz.png"/>
  -->	<div class="top"></div>
