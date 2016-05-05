@@ -131,7 +131,7 @@ Post a Question</button>
   </div>
   
   <c:if test="${!empty message}">
-  <h4>${message}</h4>
+ <h4 id="tagmessage">  ${message}</h4>
   </c:if>
   
 	<!-- *******************************************QUESTION LIST*******************************************-->
