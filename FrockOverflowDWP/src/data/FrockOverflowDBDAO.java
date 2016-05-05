@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,10 +37,13 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 
 	@Override
 	public List<Question> getQuestionByTag(String tag) {
-		Tag matchTag = em
+		List<Tag> tags = em
 				.createQuery("SELECT t from Tag t join fetch t.questions WHERE t.body = '" + tag + "' order by timestamp desc", Tag.class)
-				.getSingleResult();
-		return matchTag.getQuestions();
+				.getResultList();
+		System.out.println(tags.size());
+		if (tags.size() > 0) 
+		return tags.get(0).getQuestions();
+		else return new ArrayList<Question>();
 	}
 
 	@Override
