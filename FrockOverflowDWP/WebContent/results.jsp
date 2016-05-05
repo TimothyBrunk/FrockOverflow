@@ -66,7 +66,7 @@ body {
 					<li><span style="color: white">Search by tag:</span></li>
 					<form action="searchByTag.do">
 						<input type="text" name="searchTags" list="tags"
-							placeholder="ex... java">
+							placeholder="ex... java" required>
 						<datalist id="tags">
 							<c:forEach var="tag" items="${sessionScope.tags}">
 								<option value="${tag}"></option>
@@ -115,6 +115,7 @@ body {
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
 	 <!-- <div class= "background-container">
 	 <div class="body-container" id="postQuestionBlock"> -->
+
 	
 	<div class="postQuestionBlock">
 	<button class="button-answer" onclick="document.getElementById('postQ').style.display='block'">

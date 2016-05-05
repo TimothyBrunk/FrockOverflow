@@ -264,7 +264,7 @@ button-answer-row{
 }
 
 #backgroundimage {
-	background  : url("jobsandwoz.png");
+	background  : url("../bg.jpg");
 	background-repeat: no-repeat;
 	background-size: cover; 
 	
@@ -321,11 +321,29 @@ button-answer-row{
 #admin-user-list{
 	background:gray; 
 }
-/* #admin-user-list:nth-child(odd) { 
-	background:white; 
-} */
+ #admin-user-list:nth-child(odd) { 
+	font-size:150%; 
+} 
 #admin-user{
 	
+}
+html { 
+ background: url('./img/jobsandwoz.jpg') no-repeat center center fixed; 
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+#status {
+	font-weight:bold; 
+}
+#active-status{
+	color:green; 
+	font-weight:bold; 
+}
+#deactive-status{
+	color:red; 
+	font-weight:bold;
 }
 
 
