@@ -54,13 +54,7 @@
 	text-align: left;
 }
 
-.questionBlock {
-	margin: 5px;       
-    color: white;      
-    font-family: "Courier New", Courier, monospace;
-    background: transparent;
-    border-style: none;
-}
+
 
 
 
@@ -170,6 +164,33 @@ article .content_w.transition {
 	background-color: white;
 }
 
+.questionBox {
+	padding: 10px;
+	background-color: #eeeeee;
+	margin-left: 5%;
+	margin-right: 5%;
+	border-style: none;
+
+}
+
+#qButton {
+	text-align: left;
+	border-style: none;
+	background-color: #eeeeee;
+}
+
+#qButton-after: {
+	border-style: none;
+}
+
+.questionBlock {
+	margin: 5px;       
+    color: white;      
+    font-family: "Courier New", Courier, monospace;
+    background: transparent;
+    border-style: none;
+}
+
 .answerBlock {
 	background-color: #ddeeff;
 	margin-top: 1em;
@@ -243,7 +264,7 @@ button-answer-row{
 }
 
 #backgroundimage {
-	background  : url("jobsandwoz.png");
+	background  : url("../bg.jpg");
 	background-repeat: no-repeat;
 	background-size: cover; 
 	

@@ -37,11 +37,7 @@ body {
     <![endif]-->
 
 <!-- ************************************Body Tag Begin********************************** -->
-<body id="backgroundimage" ><!-- style="background-image: url('jobsandwoz.png')" -->>
-
-<!-- 	<img src="jobsandwoz.png"/>
- -->	<div class="top"></div>
-
+<body>
 
 
 
@@ -70,7 +66,7 @@ body {
 				<li><span style="color: white">Search by tags:</span></li>
 				<form action="searchByTag.do">
 					<input type="text" name="searchTags" list="tags"
-						placeholder="ex... java">
+						placeholder="ex... java" required>
 					<datalist id="tags">
 						<c:forEach var="tag" items="${sessionScope.tags}">
 							<option value="${tag}"></option>
@@ -163,6 +159,7 @@ body {
 	<br>
 	<!-- ********************************************** Frock Image ********************************** -->
 	<br>
+	<div id="backgroundimage">
 	<div id="imageandquestion">
 		<h3>
 			<img id="frockimage" src="FrockOF.png">
@@ -515,8 +512,7 @@ body {
 	
 	<%-- Validation Javascript --%>
 
-
+</div>
 </body>
 
 </html>
---%>
