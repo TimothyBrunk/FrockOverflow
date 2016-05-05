@@ -107,13 +107,40 @@ Last Name:<input type="text" name="lastName" readonly value="${user.lastName}">
 Email:<input type="text" name="email" readonly value="${user.email}">
 
 Display Name:<input type="text" name="displayName" readonly value="${user.displayName}">
- <form action="removeUser.do" method="POST"> 
-ID:<input type="text" name="id" readonly value="${user.id}">
-<input type="submit" value="Delete User"> </form>
+
+<input type="hidden" name="id" readonly value="${user.id}">
+<c:if test="${user.type == 2}">
+Status: <input type ="text" value="Administrator" > 
+</c:if>
+
+<c:if test="${user.type == 1}">
+Status: <input type ="text" value="Active" > 
+<form action="deactivateUser.do" Method="POST" > 
+<input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
+<input type="hidden" name="id" readonly value="${user.id}">
+<input type="hidden" name="userType" readonly value="${user.type}"> </form>
+<form action="activateUser.do" Method="POST" > 
+<input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
+<input type="hidden" name="id" readonly value="${user.id}">
+<input type="hidden" name="userType" readonly value="${user.type}"> </form>
+</c:if>
+
+<c:if test="${user.type == 0}">
+Status: <input type ="text" value="Deactive" > 
+<form action="deactivateUser.do" Method="POST" > 
+<input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
+<input type="hidden" name="id" readonly value="${user.id}">
+<input type="hidden" name="userType" readonly value="${user.type}"> </form>
+<form action="activateUser.do" Method="POST" > 
+<input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
+<input type="hidden" name="id" readonly value="${user.id}">
+<input type="hidden" name="userType" readonly value="${user.type}"> </form>
+</c:if>
+
 </li>
-
-
 </ul>
+
+
 </c:forEach>
 </div>
 
