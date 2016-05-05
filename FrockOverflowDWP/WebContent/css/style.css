@@ -54,13 +54,7 @@
 	text-align: left;
 }
 
-.questionBlock {
-	margin: 5px;       
-    color: white;      
-    font-family: "Courier New", Courier, monospace;
-    background: transparent;
-    border-style: none;
-}
+
 
 
 
@@ -168,6 +162,33 @@ article .content_w.transition {
 
 .question{
 	background-color: white;
+}
+
+.questionBox {
+	padding: 10px;
+	background-color: #eeeeee;
+	margin-left: 5%;
+	margin-right: 5%;
+	border-style: none;
+
+}
+
+#qButton {
+	text-align: left;
+	border-style: none;
+	background-color: #eeeeee;
+}
+
+#qButton-after: {
+	border-style: none;
+}
+
+.questionBlock {
+	margin: 5px;       
+    color: white;      
+    font-family: "Courier New", Courier, monospace;
+    background: transparent;
+    border-style: none;
 }
 
 .answerBlock {
