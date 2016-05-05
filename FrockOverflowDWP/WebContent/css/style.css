@@ -183,6 +183,11 @@ article .content_w.transition {
 	position:relative;
 	top:1px;
 }.question{
+	background-color: #ffaa77;
+}
+
+
+.question{
 	background-color: white;
 }
 
