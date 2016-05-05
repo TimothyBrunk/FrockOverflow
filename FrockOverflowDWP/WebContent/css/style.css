@@ -109,7 +109,6 @@ article {
 
 }
 .text-body{
-	padding: 20px;
 	margin-top: 1em;
 }
 
@@ -154,6 +153,36 @@ article .content_w.transition {
 }
 
 .singleTag {
+	font-size:12px;
+	font-family:Courier New;
+	font-weight:normal;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	border:0px solid #616161;
+	padding:3px 7px;
+	text-decoration:none;
+	background:-moz-linear-gradient( center top, #404040 48%, #0 57% );
+	background:-ms-linear-gradient( top, #404040 48%, #0 57% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#404040', endColorstr='#0');
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(48%, #404040), color-stop(57%, #0) );
+	background-color:#404040;
+	color:#ffffff;
+	display:inline-block;
+	text-shadow:1px 2px 0px #828282;
+ 	-webkit-box-shadow:inset 1px 1px 0px 0px #999999;
+ 	-moz-box-shadow:inset 1px 1px 0px 0px #999999;
+ 	box-shadow:inset 1px 1px 0px 0px #999999;
+}.singleTag:hover {
+	background:-moz-linear-gradient( center top, #0 48%, #404040 57% );
+	background:-ms-linear-gradient( top, #0 48%, #404040 57% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0', endColorstr='#404040');
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(48%, #0), color-stop(57%, #404040) );
+	background-color:#0;
+}.singleTag:active {
+	position:relative;
+	top:1px;
+}.question{
 	background-color: #ffaa77;
 }
 
@@ -191,7 +220,7 @@ article .content_w.transition {
 }
 
 .answerBlock {
-	background-color: #ddeeff;
+	background-color: #d9d9d9;
 	margin-top: 1em;
 	padding: 1em;
 }
@@ -200,7 +229,7 @@ article .content_w.transition {
 	margin: 5em;
 	margin-top: 170px;
 	margin-bottom: 1em;
-	background-color: #ddeeff;
+	background-color: #d9d9d9;
 }
 
 .pqinputblock {
