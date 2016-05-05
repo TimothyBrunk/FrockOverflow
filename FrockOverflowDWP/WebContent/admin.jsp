@@ -116,11 +116,11 @@ Status: <input type ="text" value="Administrator" >
 <c:if test="${user.type == 1}">
 Status: <input type ="text" value="Active" > 
 <form action="deactivateUser.do" Method="POST" > 
-<input type="submit" value="Deactivate User">
+<input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 <form action="activateUser.do" Method="POST" > 
-<input type="submit" value="Activate User">
+<input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 </c:if>
@@ -128,11 +128,11 @@ Status: <input type ="text" value="Active" >
 <c:if test="${user.type == 0}">
 Status: <input type ="text" value="Deactive" > 
 <form action="deactivateUser.do" Method="POST" > 
-<input type="submit" value="Deactivate User">
+<input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 <form action="activateUser.do" Method="POST" > 
-<input type="submit" value="Activate User">
+<input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 </c:if>
