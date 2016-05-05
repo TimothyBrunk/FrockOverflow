@@ -100,8 +100,8 @@
 
  <ul id="admin-list" >
 
-<li id="admin-user-list">
-
+<li>
+<div  id="admin-user-list">
 First Name: ${user.firstName}
 
 Last Name: ${user.lastName}
@@ -109,7 +109,7 @@ Last Name: ${user.lastName}
 Email: ${user.email}
 
 Display Name: ${user.displayName}
-
+</div>
 
 <input type="hidden" name="id" readonly value="${user.id}">
 <c:if test="${user.type == 2}">
@@ -117,9 +117,9 @@ Status: Administrator
 </c:if>
 
 <c:if test="${user.type == 1}">
-Status: Active 
+Status: <span id="active-status">Active </span>
 <form action="deactivateUser.do" Method="POST" > 
-<input width="48px" type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
+<input type="submit" value="Deactivate User" width="48px"  onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 <form action="activateUser.do" Method="POST" > 
@@ -129,7 +129,7 @@ Status: Active
 </c:if>
 
 <c:if test="${user.type == 0}">
-Status: Deactive 
+Status: <span id="deactive-status">Deactive</span>
 <form action="deactivateUser.do" Method="POST" > 
 <input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
