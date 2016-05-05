@@ -113,9 +113,28 @@ body {
  
 
 	<!-- ******************************POST A QUESTION FORM DIV********************************************-->
-	 <div class= "background-container">
-	 <div class="body-container">
-		<section class="content">
+	 <!-- <div class= "background-container">
+	 <div class="body-container" id="postQuestionBlock"> -->
+	
+	<div class="postQuestionBlock">
+	<button class="button-answer" onclick="document.getElementById('postQ').style.display='block'">
+Post a Question</button>
+
+<div id="postQ" style="display:none">
+  <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
+  <form action="createQuestion.do" method="GET">
+  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required></textarea>
+  	<input class="pqinputblock" type="text" name="keywords" placeholder="Add Keywords"> 
+  	<input class="button-answer" type="submit" name="post" value="Post">
+  </form>
+  </div>
+  </div>
+  
+<!-- </div>		
+</div> -->
+
+
+	 <%-- <div class="body-container" id="postQuestionBlock">
 			<c:if test="${sessionScope.user.type != 0}">
 					<form action="createQuestion.do" method="GET">
 						<div class="body-container-question-post">
@@ -141,22 +160,23 @@ body {
 						</div>
 					</form>
 	</c:if>
-	</section>
-	</div>
+	</div> --%> <!-- END OF POST A QUESTION BLOCK ******** -->
  
  
 	<!-- *******************************************QUESTION LIST*******************************************-->
 
 
 	 		<c:forEach var="question" items="${updatedQuestionList}">
-			<article id="${question.id}">
+			<article class="questionBox" id="${question.id}">
 				<div class="text-body"><h4>Q: ${question.body}</h4> 
+					<div class="tagWad">
 					<c:forEach var="tag" items="${question.tags}">
-						<form action="searchByTag.do" method="GET">
-							<input class="tagLink" type="submit" name="searchTags"
+						<form class="tagLink" action="searchByTag.do" method="GET">
+							<input class="singleTag" type="submit" name="searchTags"
 								value="${tag.body}">
 						</form>
 					</c:forEach>
+					</div>
 
 					<em>Posted By: <strong>${question.user.displayName}</strong> ${question.timestamp}<br>
 					Status: ${question.status}<br></em> 
@@ -172,113 +192,166 @@ body {
 										On ${comment.timestamp}</li>
 								</c:forEach>
 							</ul>
+							
+<!-- *************************************** ANSWERS******************************************************** -->							
+							
 							<c:forEach var="answer" items="${question.answers}">
-					${answer}
-					<ul>
+							<div class="answerBlock">
+							<strong>Answer</strong> posted by <strong>${answer.user.displayName}</strong>  on ${answer.timestamp}
+							<br>Rating: <strong>${answer.rating}</strong>
+							<br>${answer.body}
+		<!-- ******************************* ANSWER COMMENTS ****************************** -->
+								<ul>
 									<c:forEach var="comment" items="${answer.comments}">
-										<li><em>${comment.body}Posted by <strong>${comment.user.displayName}</strong>
-											On ${comment.timestamp}</em></li>
+										<li><em>${comment.body}   [Posted by <strong>${comment.user.displayName}</strong>
+											 On ${comment.timestamp}]</em></li>
 									</c:forEach>
 								</ul>
+								
+						<!-- ******** VOTE UP OR DOWN *********** -->		
+								
 								<c:if test="${sessionScope.user.type != 0}">
-									<table class="button-answer">
-										<tr class="button-answer-row">
-											<td><form action="voteUp.do" method="POST">
+											<form class="answer-function" action="voteUp.do" method="POST">
 													<input type="hidden" name="answerId" value="${answer.id}">
-													<input type="submit" value="Vote Up"></input>
-												</form></td>
-											<td><form action="voteDown.do" method="POST">
-													<input type="hidden" name="answerId" value="${answer.id}">
-													<input type="submit" value="Vote Down"></input>
-												</form></td>
-											</c:if>
-
-											<c:if
-												test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
-												<td><form action="acceptAnswer.do" method="GET">
-														<input type="hidden" name="answer_id" value="${answer.id}">
-														<input type="submit" name="Accept Answer"
-															value="Accept Answer">
-													</form></td>
-											</c:if>
-											<c:if test="${sessionScope.user.type > 1}">
-												<td><form action="removeAnswer.do" method="GET">
-														<input type="hidden" name="answer_id" value="${answer.id}">
-														<input type="submit" name="removeAnswer"
-															value="Remove Answer">
-													</form></td>
-										
-											<td>
-												<form action="commentOnAnswer.do" method="GET">
-													<span class="input input--ichiro"> <input
-														type="hidden" name="answer_id" value="${answer.id}">
-														<input class="input__field input__field--ichiro"
-														type="text" id="comment-${answer.question.id}${answer.id}"
-														name="body" required /> <label
-														class="input__label input__label--ichiro"
-														for="comment-${answer.question.id}${answer.id}"> <span
-															class="input__label-content input__label-content--ichiro">Comment
-																on Answer</span>
-													</label>
-													</span></td>
-													<td> <span class="submit-question"> <input type="submit"
-														name="post">
-													</span>
-											</td>
+													<input class="button-answer" type="submit" value="Vote Up"></input>
 												</form>
-										</tr>
-									</table>
+											<form class="answer-function" action="voteDown.do" method="POST">
+													<input type="hidden" name="answerId" value="${answer.id}">
+													<input class="button-answer" type="submit" value="Vote Down"></input>
+												</form>
 								</c:if>
-							</c:forEach> 
-	</div>
-	</div>
-	</div>
-	</article>
- <table class="question-comment-block">
-				<c:if test="${sessionScope.user.type != 0}">
-					<tr>
-						<td><form action="postAnswer.do" method="GET">
-								<span class="input input--ichiro"> <input type="hidden"
-									name="question_id" value="${question.id}" required> <input
-									class="input__field input__field--ichiro" type="text"
-									id="input-${question.id}-2" name="body" required/> <label
-									class="input__label input__label--ichiro"
-									for="input-${question.id}-2"> <span
-										class="input__label-content input__label-content--ichiro">Answer
-											Question</span>
-								</label>
-								</span>
-								<td><span class="submit-question"> <input
-										type="submit" name="post">
-								</span></td>
-							</form></td>
-						<td><form action="commentOnQuestion.do" method="GET">
-								<span class="input input--ichiro"> <span class="submit-question"><input type="hidden"
-									name="question_id" value="${question.id}" required> <input
-									class="input__field input__field--ichiro" type="text"
-									id="comment-${question.id}-1" name="body" required/> <label
-									class="input__label input__label--ichiro"
-									for="comment-${question.id}-1"> <span
-										class="input__label-content input__label-content--ichiro">Comment
-											on Question</span>
-								</label>
-								</span></td>
-						<td><span class="submit-question"> <input
-								type="submit" name="post">
-						</span></td>
-						<td><form action="removeQuestion.do" method="GET">
-														<input type="hidden" name="id" value="${question.id}">
-														<span class="submit-question"><input type="submit" name="removeQuestion"
-															value="Remove Question"></span>
-													</form></td>
-						</form>
-						</td>
-					</tr>
-				</c:if>
-			</table>
-		</c:forEach> 
-</div>
 
+						<!-- ************* ACCEPT ANSWER *********** -->
+
+								<c:if test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
+									<form class="answer-function" action="acceptAnswer.do" method="GET">
+										<input type="hidden" name="answer_id" value="${answer.id}">
+										<input class="button-answer" type="submit" name="Accept Answer" value="Accept Answer">
+									</form>
+								</c:if>
+								
+					<!-- *****************REMOVE ANSWER*********   -->		
+								
+							<c:if test="${sessionScope.user.type > 1}"> 
+								<form class="answer-function" action="removeAnswer.do" method="GET">
+									<input type="hidden" name="remove_answer_id" value="${answer.id}" id="removethis">
+									<input class="button-answer" type="submit" name="removeAnswer" value="Remove Answer">
+								</form>
+							</c:if>
+											 
+						<!-- **************COMMENT ON ANSWER******** -->
+						
+<button class="button-answer" onclick="document.getElementById('ac${answer.id}').style.display='block'">
+Comment on this Answer</button>
+
+<div id="ac${answer.id}" class="postAnswerBlock" style="display:none">
+  <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
+  <form action="commentOnAnswer.do" method="GET">
+  	<input type="hidden" name="answer_id" value="${answer.id}" required> 
+  	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
+  	<input class="button-answer" type="submit" name="post" value="Post">
+  </form>
+</div>					
+										
+								<%-- <form class="answer-function" action="commentOnAnswer.do" method="GET">
+									<span class="input input--ichiro"> 
+										<input type="hidden" name="answer_id" value="${answer.id}">
+										<input class="input__field input__field--ichiro" type="text" id="comment-${answer.question.id}${answer.id} name="body" required /> 
+										<label class="input__label input__label--ichiro" for="comment-${answer.question.id}${answer.id}"> 
+											<span class="input__label-content input__label-content--ichiro">Comment on Answer</span>
+										</label>
+									</span>
+												<!-- </form> -->
+											
+									<span class="submit-question"> 
+										<input type="submit" name="post">
+									</span>	
+								</form> --%>
+							</div> <!--  END OF ANSWER BLOCK ******** -->				
+				</c:forEach> <!--  END OF ANSWER FOR EACH ******* -->
+				
+				
+	</div> <!-- END OF CONTENT DIV ********** -->
+	</div> <!-- END OF CONTENT-W ************ -->
+	</div> <!-- END OF TEXT BODY ************ -->
+	</article>
+	
+	
+	
+ <div class="question-comment-block">
+				<c:if test="${sessionScope.user.type != 0}">
+				
+<!-- ********************************************* POST AN ANSWER ***************************************** -->				
+<button class="button-answer" onclick="document.getElementById('q${question.id}').style.display='block'">
+Answer this Question</button>
+
+<div id="q${question.id}"class="postAnswerBlock" style="display:none">
+  <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
+  <form action="postAnswer.do" method="GET">
+  	<input type="hidden" name="question_id" value="${question.id}" required> 
+  	<textarea class="answerInput" name="body" cols="100" rows="5"></textarea>
+  	<input class="button-answer" type="submit" name="post" value="Post">
+  </form>
+</div>
+	
+				
+				<%-- 	<form action="postAnswer.do" method="GET">
+						<span class="input input--ichiro"> 
+							<input type="hidden" name="question_id" value="${question.id}" required> 
+							<input class="input__field input__field--ichiro" type="text" id="input-${question.id}-2" name="body" required/> 
+							<label class="input__label input__label--ichiro" for="input-${question.id}-2"> 
+								<span class="input__label-content input__label-content--ichiro">Answer Question</span>
+							</label>
+						</span>
+						<span class="submit-question"> 
+							<input type="submit" name="post">
+						</span>
+					</form> --%>
+	
+					
+<!-- ****************************************** POST A COMMENT ******************************************** -->					
+<button class="button-answer" onclick="document.getElementById('qc${question.id}').style.display='block'">
+Comment on this Question</button>
+
+<div id="qc${question.id}"class="postAnswerBlock" style="display:none">
+  <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
+  <form action="commentOnQuestion.do" method="GET">
+  	<input type="hidden" name="question_id" value="${question.id}" required> 
+  	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
+  	<input class="button-answer" type="submit" name="post" value="Post">
+  </form>
+</div>					
+					<%-- <form action="commentOnQuestion.do" method="GET">
+						<span class="input input--ichiro"> 
+							<!-- <span class="submit-question"> -->
+							<input type="hidden" name="question_id" value="${question.id}" required> 
+							<input class="input__field input__field--ichiro" type="text" id="comment-${question.id}-1" name="body" required/> 
+							<label class="input__label input__label--ichiro" for="comment-${question.id}-1"> 
+								<span class="input__label-content input__label-content--ichiro">Comment on Question</span>
+							</label>
+						</span>
+						<span class="submit-question"> 
+							<input type="submit" name="post">
+						</span>
+					</form> --%>
+		</c:if>
+<!--  ******************************** REMOVE QUESTION *************************************************** -->					
+			<c:if test="${sessionScope.user.type > 1}">		
+					<form class="answer-function" action="removeQuestion.do" method="GET">
+						<input type="hidden" name="question_id" value="${question.id}">
+						<span class="submit-question">
+							<input type="submit" name="removeQuestion" value="Remove Question">
+						</span>
+					</form>
+						
+			
+			</c:if> <!-- END OF IF USER TYPE != 0 ********* -->
+			</div> <!-- END OF QUESTION COMMENT BLOCK ****** -->
+			</div> <!-- END OF QUESTION BLOCK ************** -->
+			</c:forEach>
+
+
+<!-- *********************************************SCRIPTS************************************************* -->
 
 	<!-- jQuery Version 1.11.1 -->
 	<script src="js/jquery.js"></script>
@@ -325,4 +398,5 @@ body {
 		}
 	</script>
 </body>
+
 </html>
