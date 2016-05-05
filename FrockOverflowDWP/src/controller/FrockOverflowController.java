@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import data.DBUtilities;
 import data.FrockOverflowDao;
 import entities.AComment;
 import entities.Answer;
@@ -105,6 +106,7 @@ public class FrockOverflowController {
 			@ModelAttribute("tags") List<Tag> tags,
 			@RequestParam("keywords") String keywords) {
 		ModelAndView mv = new ModelAndView();
+		question.setBody(DBUtilities.massageInputText(question.getBody()));
 		frockoverflowdao.createQuestion(question, user, keywords);
 		Question q = frockoverflowdao.getQuestion(question.getId());
 		List<Question> qList = new ArrayList<>();
@@ -117,7 +119,7 @@ public class FrockOverflowController {
 	}
 	
 	@RequestMapping("removeQuestion.do")
-	public ModelAndView removeQuestion(int id) {
+	public ModelAndView removeQuestion(@RequestParam("question_id") int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Question has been deleted");
 		frockoverflowdao.removeQuestion(id);
 		List<Question> questions = frockoverflowdao.getAllQuestions();
@@ -128,6 +130,7 @@ public class FrockOverflowController {
 	@RequestMapping("postAnswer.do")
 	public ModelAndView postAnswer(Answer a, @ModelAttribute("user") User user,
 			@RequestParam("question_id") int q) {
+		a.setBody(DBUtilities.massageInputText(a.getBody()));
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
 		List<Question> qList = new ArrayList<>();
@@ -158,7 +161,7 @@ public class FrockOverflowController {
 //	}
 	
 	@RequestMapping("removeAnswer.do")
-	public ModelAndView removeAnswer(@RequestParam("answer_id") int id) {
+	public ModelAndView removeAnswer(@RequestParam("remove_answer_id") int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Answer has been deleted");
 		Question q = frockoverflowdao.removeAnswer(id);
 		List<Question> questions = new ArrayList<>();
