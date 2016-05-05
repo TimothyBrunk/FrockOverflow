@@ -100,23 +100,26 @@
 
  <ul id="admin-list" >
 
-<li>First Name:<input type="text" name="firstName" readonly value="${user.firstName}">
+<li id="admin-user-list">
 
-Last Name:<input type="text" name="lastName" readonly value="${user.lastName}">
+First Name: ${user.firstName}
 
-Email:<input type="text" name="email" readonly value="${user.email}">
+Last Name: ${user.lastName}
 
-Display Name:<input type="text" name="displayName" readonly value="${user.displayName}">
+Email: ${user.email}
+
+Display Name: ${user.displayName}
+
 
 <input type="hidden" name="id" readonly value="${user.id}">
 <c:if test="${user.type == 2}">
-Status: <input type ="text" value="Administrator" > 
+Status: Administrator 
 </c:if>
 
 <c:if test="${user.type == 1}">
-Status: <input type ="text" value="Active" > 
+Status: Active 
 <form action="deactivateUser.do" Method="POST" > 
-<input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
+<input width="48px" type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 <form action="activateUser.do" Method="POST" > 
@@ -126,7 +129,7 @@ Status: <input type ="text" value="Active" >
 </c:if>
 
 <c:if test="${user.type == 0}">
-Status: <input type ="text" value="Deactive" > 
+Status: Deactive 
 <form action="deactivateUser.do" Method="POST" > 
 <input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">

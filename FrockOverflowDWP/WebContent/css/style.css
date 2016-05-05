@@ -248,7 +248,18 @@ button-answer-row{
 #main-nav-bar {
 	display:inline; 
 }
-
+#line{
+	color:white;
+}
+#admin-user-list{
+	background:gray; 
+}
+/* #admin-user-list:nth-child(odd) { 
+	background:white; 
+} */
+#admin-user{
+	
+}
 
 
 
