@@ -98,7 +98,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 				if (t2.getBody().equalsIgnoreCase(t.trim())) {
 					match = true;
 					tagId = t2.getId();
-					System.out.println(t2.getBody() + " " + t);
 					break;
 				}
 			}
@@ -184,7 +183,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	public List<Answer> getAnswersByQuestionId(int questionId) {
 		List<Answer> answers = em.createQuery("SELECT a from Answer a WHERE question.id = " + questionId, Answer.class)
 				.getResultList();
-		System.out.println(answers.size());
 		return answers;
 	}
 	
@@ -216,7 +214,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 			Date date = new Date();
 			u.setDateCreated(new Timestamp(date.getTime()));
 			u.setType(1);
-			System.out.println(u);
 			em.persist(u);
 			return u;
 		} else {
@@ -277,8 +274,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 	public Question getMostRecentQuestion() {
 		Integer mostrecent = (Integer) em.createQuery("Select max(q.id) FROM Question q").getSingleResult();
 		Question mostrecentquestion = em.find(Question.class, mostrecent);
-		System.out.println(mostrecent);
-		System.out.println("In DAO");
 		return mostrecentquestion;
 	}
 
