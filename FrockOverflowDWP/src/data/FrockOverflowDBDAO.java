@@ -237,7 +237,6 @@ public class FrockOverflowDBDAO implements FrockOverflowDao {
 				return guest;
 			}
 		} catch (javax.persistence.NoResultException e) {
-			System.out.println("No user found. Logging in as guest.");
 			return guest;
 		}
 

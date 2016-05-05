@@ -28,7 +28,7 @@ public class FrockOverflowController {
 
 	@ModelAttribute("user")
 	public User initUser() {
-		return new User();
+		return frockoverflowdao.getUser("anything", "anything"); 
 	}
 	@ModelAttribute("tags")
 	public List<Tag> initTags(){

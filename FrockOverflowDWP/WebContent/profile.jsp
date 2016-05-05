@@ -94,7 +94,7 @@
 </li>
 <li>Last Name:<input type="text" name="lastName" value="${user.lastName}" required>
 </li>
-<li>Email:<input type="email" name="email" value="${user.email}" required>
+<li>Email:    <input type="email" name="email" value="${user.email}" required>
 </li>
 <li>Display Name:<input type="text" name="displayName" value="${user.displayName}" required>
 </li>

@@ -137,7 +137,7 @@ Status: <span id="deactive-status">Deactive</span>
 <form action="activateUser.do" Method="POST" > 
 <input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
-<input type="text" name="userType" readonly value="${user.type}"> </form>
+<input type="hidden" name="userType" readonly value="${user.type}"> </form>
 </c:if>
 
 </li>
