@@ -260,7 +260,7 @@ Answer this Question</button>
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="postAnswer.do" method="POST">
   	<input type="hidden" name="question_id" value="${question.id}" required> 
-  	<textarea class="answerInput" name="body" cols="100" rows="5"></textarea>
+  	<textarea class="answerInput" name="body" cols="100" rows="5"placeholder="` `~ code snippet ~` `"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
 </div>
