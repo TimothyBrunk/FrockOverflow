@@ -98,6 +98,7 @@ body {
 		</div>
 
 		<!--**********************************************USER INFORMATION************************************-->
+		
 		<div id="floatleft">
 			<ul class="logged">
 				<li class="logged">You are currently logged in as: <strong>${sessionScope.user.displayName}</strong></li>
@@ -178,7 +179,8 @@ Post a Question</button>
 							
 							<strong>Answer</strong> posted by <strong>${answer.user.displayName}</strong>  on ${answer.timestamp}
 							<br>Rating: <strong>${answer.rating}</strong>
-							<br>${answer.body}
+							<div id="acceptedanswer">${answer.status} </div>
+							${answer.body}
 							</span>
 						
 		<!-- ******************************* ANSWER COMMENTS ****************************** -->
@@ -205,7 +207,7 @@ Post a Question</button>
 						<!-- ************* ACCEPT ANSWER *********** -->
 
 								<c:if test="${answer.status != 'Accepted' && answer.question.user.id == sessionScope.user.id}">
-									<form class="answer-function" action="acceptAnswer.do" method="GET">
+									<form class="answer-function" action="acceptAnswer.do" method="POST">
 										<input type="hidden" name="answer_id" value="${answer.id}">
 										<input class="button-answer" type="submit" name="Accept Answer" value="Accept Answer">
 									</form>
@@ -214,7 +216,7 @@ Post a Question</button>
 					<!-- *****************REMOVE ANSWER*********   -->		
 								
 							<c:if test="${sessionScope.user.type > 1}"> 
-								<form class="answer-function" action="removeAnswer.do" method="GET">
+								<form class="answer-function" action="removeAnswer.do" method="POST">
 									<input type="hidden" name="remove_answer_id" value="${answer.id}" id="removethis">
 									<input class="button-answer" type="submit" name="removeAnswer" value="Remove Answer">
 								</form>
@@ -228,28 +230,13 @@ Comment on this Answer</button>
 
 <div id="ac${answer.id}" class="postAnswerBlock" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
-  <form action="commentOnAnswer.do" method="GET">
+  <form action="commentOnAnswer.do" method="POST">
   	<input type="hidden" name="answer_id" value="${answer.id}" required> 
   	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
 </div>
-</c:if>					
-										
-								<%-- <form class="answer-function" action="commentOnAnswer.do" method="GET">
-									<span class="input input--ichiro"> 
-										<input type="hidden" name="answer_id" value="${answer.id}">
-										<input class="input__field input__field--ichiro" type="text" id="comment-${answer.question.id}${answer.id} name="body" required /> 
-										<label class="input__label input__label--ichiro" for="comment-${answer.question.id}${answer.id}"> 
-											<span class="input__label-content input__label-content--ichiro">Comment on Answer</span>
-										</label>
-									</span>
-												<!-- </form> -->
-											
-									<span class="submit-question"> 
-										<input type="submit" name="post">
-									</span>	
-								</form> --%>
+</c:if>															
 							</div> <!--  END OF ANSWER BLOCK ******** -->				
 				</c:forEach> <!--  END OF ANSWER FOR EACH ******* -->
 				
@@ -270,7 +257,7 @@ Answer this Question</button>
 
 <div id="q${question.id}"class="postAnswerBlock" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
-  <form action="postAnswer.do" method="GET">
+  <form action="postAnswer.do" method="POST">
   	<input type="hidden" name="question_id" value="${question.id}" required> 
   	<textarea class="answerInput" name="body" cols="100" rows="5"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
@@ -278,18 +265,7 @@ Answer this Question</button>
 </div>
 	
 				
-				<%-- 	<form action="postAnswer.do" method="GET">
-						<span class="input input--ichiro"> 
-							<input type="hidden" name="question_id" value="${question.id}" required> 
-							<input class="input__field input__field--ichiro" type="text" id="input-${question.id}-2" name="body" required/> 
-							<label class="input__label input__label--ichiro" for="input-${question.id}-2"> 
-								<span class="input__label-content input__label-content--ichiro">Answer Question</span>
-							</label>
-						</span>
-						<span class="submit-question"> 
-							<input type="submit" name="post">
-						</span>
-					</form> --%>
+			
 	
 					
 <!-- ****************************************** POST A COMMENT ******************************************** -->					
@@ -298,29 +274,17 @@ Comment on this Question</button>
 
 <div id="qc${question.id}"class="postAnswerBlock" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
-  <form action="commentOnQuestion.do" method="GET">
+  <form action="commentOnQuestion.do" method="POST">
   	<input type="hidden" name="question_id" value="${question.id}" required> 
   	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
 </div>					
-					<%-- <form action="commentOnQuestion.do" method="GET">
-						<span class="input input--ichiro"> 
-							<!-- <span class="submit-question"> -->
-							<input type="hidden" name="question_id" value="${question.id}" required> 
-							<input class="input__field input__field--ichiro" type="text" id="comment-${question.id}-1" name="body" required/> 
-							<label class="input__label input__label--ichiro" for="comment-${question.id}-1"> 
-								<span class="input__label-content input__label-content--ichiro">Comment on Question</span>
-							</label>
-						</span>
-						<span class="submit-question"> 
-							<input type="submit" name="post">
-						</span>
-					</form> --%>
+					
 		</c:if>
 <!--  ******************************** REMOVE QUESTION *************************************************** -->					
 			<c:if test="${sessionScope.user.type > 1}">		
-					<form class="answer-function" action="removeQuestion.do" method="GET">
+					<form class="answer-function" action="removeQuestion.do" method="POST">
 						<input type="hidden" name="question_id" value="${question.id}">
 						<span class="submit-question">
 							<input type="submit" name="removeQuestion" value="Remove Question">
@@ -334,49 +298,7 @@ Comment on this Question</button>
 			</c:forEach>
 
 
-<!-- *********************************************SCRIPTS************************************************* -->
 
-	<!-- jQuery Version 1.11.1 -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
-
-	<!-- This is J-Query text expand code -->
-	 <script type="text/javascript">
-		$('article').on('click', function() {
-			slide($('.content', this));
-		});
-		function slide(content) {
-			var wrapper = content.parent();
-			var contentHeight = content.outerHeight(true);
-			var wrapperHeight = wrapper.height();
-			wrapper.toggleClass('open');
-			if (wrapper.hasClass('open')) {
-				setTimeout(
-						function() {
-							wrapper.addClass('transition').css('height',
-									contentHeight);
-						}, 10);
-			} else {
-				setTimeout(function() {
-					wrapper.css('height', wrapperHeight);
-					setTimeout(function() {
-						wrapper.addClass('transition').css('height', 0);
-					}, 10);
-				}, 10);
-			}
-			wrapper
-					.one(
-							'transitionEnd webkitTransitionEnd transitionend oTransitionEnd msTransitionEnd',
-							function() {
-								if (wrapper.hasClass('open')) {
-									wrapper.removeClass('transition').css(
-											'height', 'auto');
-								}
-							});
-		}
-	</script>
 </body>
 
 </html>

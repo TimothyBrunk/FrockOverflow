@@ -101,6 +101,9 @@
  <ul id="admin-list" >
 
 <li>
+		<!--*************************** User List ************************************ -->
+		
+		
 <div  id="admin-user-list">
 First Name: ${user.firstName}
 
@@ -116,26 +119,42 @@ Display Name: ${user.displayName}
 Status: Administrator 
 </c:if>
 
+			<!-- ************************************* Active Status ************************************* -->
+			
 <c:if test="${user.type == 1}">
 Status: <span id="active-status">Active </span>
+
+			<!--***********************Button to Deactivate ****************  -->
+			
 <form action="deactivateUser.do" Method="POST" > 
 <input type="submit" value="Deactivate User" width="48px"  onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
+
+			<!--***********************Button to Activate ***************  -->
+
 <form action="activateUser.do" Method="POST" > 
 <input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 </c:if>
 
+            <!--************************************** Inactive Status ********************************************** -->
+
 <c:if test="${user.type == 0}">
-Status: <span id="deactive-status">Deactive</span>
+Status: <span id="deactive-status">Inactive</span>
+
+			<!--***********************Button to Deactivate ****************  -->
+			
 <form action="deactivateUser.do" Method="POST" > 
 <input type="submit" value="Deactivate User" onclick="return confirm('Are you sure you want to deactivate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
+
+			<!--***********************Button to Activate ***************  -->
+			
 <form action="activateUser.do" Method="POST" > 
-<input type="submit" value="Activate User" onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
+<input type="submit" value=" Activate User " onclick="return confirm('Are you sure you want to activate user ${user.displayName} ?')">
 <input type="hidden" name="id" readonly value="${user.id}">
 <input type="hidden" name="userType" readonly value="${user.type}"> </form>
 </c:if>

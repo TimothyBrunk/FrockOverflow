@@ -123,7 +123,7 @@ body {
 			<span id="createuserspan"
 				onclick="this.parentElement.style.display='none'"
 				class="w3-closebtn">&times;</span>
-			<form class="adduser" action="addUser.do" method=GET>
+			<form class="adduser" action="addUser.do" method=POST>
 				<input type="email" name="email" placeholder="Email" required>
 				<input type="password" name="password" placeholder="Password"
 					required> <input type="text" name="firstName"
