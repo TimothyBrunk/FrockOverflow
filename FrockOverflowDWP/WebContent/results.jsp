@@ -123,11 +123,7 @@ Post a Question</button>
 <div id="postQ" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="createQuestion.do" method="GET">
-<<<<<<< HEAD
-  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required placeholder="` `~ code snippet ~` `"></textarea>
-=======
-  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required maxlength= "2000"></textarea>
->>>>>>> adc22d1fc615321dcadd7864f974ac436b6b5c58
+  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required maxlength= "2000" placeholder="` `~ code snippet ~` `"></textarea>
   	<input class="pqinputblock" type="text" name="keywords" placeholder="Add Keywords"> 
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
