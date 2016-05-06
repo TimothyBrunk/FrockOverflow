@@ -123,7 +123,7 @@ Post a Question</button>
 <div id="postQ" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="createQuestion.do" method="GET">
-  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required></textarea>
+  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required maxlength= "2000"></textarea>
   	<input class="pqinputblock" type="text" name="keywords" placeholder="Add Keywords"> 
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
@@ -231,7 +231,7 @@ Comment on this Answer</button>
 <div id="ac${answer.id}" class="postAnswerBlock" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="commentOnAnswer.do" method="POST">
-  	<input type="hidden" name="answer_id" value="${answer.id}" required> 
+  	<input type="hidden" name="answer_id" value="${answer.id}" required maxlength= "500"> 
   	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
@@ -259,7 +259,7 @@ Answer this Question</button>
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="postAnswer.do" method="POST">
   	<input type="hidden" name="question_id" value="${question.id}" required> 
-  	<textarea class="answerInput" name="body" cols="100" rows="5"></textarea>
+  	<textarea class="answerInput" name="body" cols="100" rows="5" required maxlength= "2000"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
 </div>
@@ -276,7 +276,7 @@ Comment on this Question</button>
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="commentOnQuestion.do" method="POST">
   	<input type="hidden" name="question_id" value="${question.id}" required> 
-  	<textarea class="commentInput" name="body" cols="100" rows="2"></textarea>
+  	<textarea class="commentInput" name="body" cols="100" rows="2" required maxlength= "500"></textarea>
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
 </div>					
