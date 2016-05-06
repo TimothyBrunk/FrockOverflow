@@ -123,7 +123,7 @@ Post a Question</button>
 <div id="postQ" style="display:none">
   <span onclick="this.parentElement.style.display='none'" class="closeButton">X</span>
   <form action="createQuestion.do" method="GET">
-  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required></textarea>
+  	<textarea class="pqinputblock" name="body" cols="100" rows="5" required placeholder="` `~ code snippet ~` `"></textarea>
   	<input class="pqinputblock" type="text" name="keywords" placeholder="Add Keywords"> 
   	<input class="button-answer" type="submit" name="post" value="Post">
   </form>
@@ -179,7 +179,8 @@ Post a Question</button>
 							
 							<strong>Answer</strong> posted by <strong>${answer.user.displayName}</strong>  on ${answer.timestamp}
 							<br>Rating: <strong>${answer.rating}</strong>
-							<div id="acceptedanswer">${answer.status} </div>
+							<c:if test="${answer.status == 'Accepted'}"> <div id="acceptedanswer">${answer.status} </div></c:if>
+							<c:if test="${answer.status != 'Accepted'}"><br> Posted <br></c:if>
 							${answer.body}
 							</span>
 						
