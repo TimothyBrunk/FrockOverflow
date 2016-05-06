@@ -25,18 +25,22 @@ import entities.User;
 public class FrockOverflowController {
 	@Autowired
 	private FrockOverflowDao frockoverflowdao;
-
+	
+	//initializes a guest user upon navigating to the site
 	@ModelAttribute("user")
 	public User initUser() {
 		return frockoverflowdao.getUser("anything", "anything"); 
 	}
+	
+	//Grabs all the tags/keywords in the database
 	@ModelAttribute("tags")
 	public List<Tag> initTags(){
 		List <Tag> tags = frockoverflowdao.getTags();
 		return tags;
 	}
 	
-
+	//This is our main search by questions method. It is called by all of the "View"
+	//questions in the nav bar
 	@RequestMapping("search.do")
 	public ModelAndView searchQuestions(@ModelAttribute("user") User login, @RequestParam("submit") String searchBy) {
 		List<Question> qList = new ArrayList<>();
@@ -62,7 +66,7 @@ public class FrockOverflowController {
 		return mv;
 		
 	}
-	
+	//This method initializes the website and loads questions
 	@RequestMapping("index.do")
 	public ModelAndView initialLoad() {
 		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
@@ -72,7 +76,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 
-	
+	//This method searches the database for questions related to multiple searched tags
 	@RequestMapping("searchByTag.do")
 	public ModelAndView getQuestionsByTag(@RequestParam("searchTags") String tagString) {
 		String[] tagarr = tagString.split(" ");
@@ -82,6 +86,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
+	//This method searches the database for questions related to a searched tag
 	@RequestMapping("searchBySingleTag.do")
 	public ModelAndView getQuestionsBySingleTag(@RequestParam("tag") String tag) {
 		List<Question> qList = frockoverflowdao.getQuestionByTag(tag);
@@ -90,6 +95,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
+	//Returns question by id
 	@RequestMapping("getQuestionByID.do")
 	public ModelAndView getQuestion(@ModelAttribute("user") User user, @RequestParam("id") int id) {
 		Question q = frockoverflowdao.getQuestion(id);
@@ -99,7 +105,7 @@ public class FrockOverflowController {
 		mv.addObject("user", user);
 		return mv;
 	}
-
+	//Creates question 
 	@RequestMapping("createQuestion.do")
 	public ModelAndView getCreateQuestion(Question question, @ModelAttribute("user") User user,
 			@ModelAttribute("tags") List<Tag> tags,
@@ -117,6 +123,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
+	//Removes question from db
 	@RequestMapping("removeQuestion.do")
 	public ModelAndView removeQuestion(@RequestParam("question_id") int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Question has been deleted");
@@ -125,7 +132,8 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
-
+	
+	//Posts answer to question
 	@RequestMapping("postAnswer.do")
 	public ModelAndView postAnswer(Answer a, @ModelAttribute("user") User user,
 			@RequestParam("question_id") int q) {
@@ -140,6 +148,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
+	//Admin method to accept answer
 	@RequestMapping("acceptAnswer.do")
 	public ModelAndView acceptAnswer(@RequestParam("answer_id") int id) {
 		Question q = frockoverflowdao.acceptAnswer(id);
@@ -150,15 +159,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
-//	@RequestMapping("getAnswers.do")
-//	public ModelAndView getAnswers(int id) {
-//		List<Answer> answers = frockoverflowdao.getAnswersByQuestionId(id);
-//		Question q = frockoverflowdao.getQuestion(id);
-//		ModelAndView mv = new ModelAndView("results.jsp", "answersByQ", answers);
-//		mv.addObject("answeredQuestion", q);
-//		return mv;
-//	}
-	
+	//Admin method to remove answer
 	@RequestMapping("removeAnswer.do")
 	public ModelAndView removeAnswer(@RequestParam("remove_answer_id") int id) {
 		ModelAndView mv = new ModelAndView("results.jsp", "message", "The Answer has been deleted");
@@ -168,7 +169,8 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
-
+	
+	//Adds user to db
 	@RequestMapping("addUser.do")
 	public ModelAndView createUser(/*@Valid*/ User u/*, BindingResult result*/) {
 		User userToAdd = new User();
@@ -177,19 +179,14 @@ public class FrockOverflowController {
 		userToAdd.setFirstName(u.getFirstName());
 		userToAdd.setLastName(u.getLastName());
 		userToAdd.setDisplayName(u.getDisplayName());
-//		if(result.hasErrors()){
-//			ModelAndView mv = new ModelAndView();
-//			mv.setViewName("results.jsp");
-//			String returned = "FORM VALIDATED BRO"; 
-//			mv.addObject("create", returned);
-//			return mv;
-//		}
 		User user = frockoverflowdao.createUser(userToAdd);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
 		mv.addObject("user", user);
 		return mv;
 	}
+	
+	//Returns specific user after log-in
 	@RequestMapping("getUser.do")
 	public ModelAndView getUser(@ModelAttribute("user") User login, @RequestParam("email") String email,
 			@RequestParam("password") String password) {
@@ -202,6 +199,8 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", frockoverflowdao.getAllQuestions());
 		return mv;
 	}
+	
+	//gets the most recent question
 	@RequestMapping("getMostRecentQuestion.do")
 	public ModelAndView getMostRecentQuestion() {
 		Question mostrecent = frockoverflowdao.getMostRecentQuestion();
@@ -210,6 +209,8 @@ public class FrockOverflowController {
 		mv.addObject("question", mostrecent); 
 		return mv;
 	}
+	
+	//Edits profile
 	@RequestMapping("editprofile.do")
 	public ModelAndView editProfile(User u){
 	User user = frockoverflowdao.editUser(u);
@@ -221,11 +222,14 @@ public class FrockOverflowController {
 		mv.addObject("user", user);
 	return mv;
 }
+	//Navigates to edit profile
 	@RequestMapping("gotoeditprofile.do")
 	public ModelAndView goToEdit(@ModelAttribute("user") User u){
 		ModelAndView mv = new ModelAndView("profile.jsp", "user", u);
 		return mv;	
 	}
+	
+	//Logs out and returns guest user
 	@RequestMapping("logOut.do")
 	public ModelAndView logOut(User u){
 	User user = frockoverflowdao.logOut(u);
@@ -235,7 +239,7 @@ public class FrockOverflowController {
 	return mv;
 	}
 	
-
+	//Votes a question up
 	@RequestMapping("voteUp.do")
 	public ModelAndView  voteUp (int answerId, @ModelAttribute("user") User user){
 		Question question = frockoverflowdao.voteUp(answerId, user.getId());
@@ -246,6 +250,8 @@ public class FrockOverflowController {
 		mv.addObject("updatedQuestionList", questions);
 		return mv;
 	}
+	
+	//Votes a question down
 	@RequestMapping("voteDown.do")
 	public ModelAndView  voteDown(int answerId, @ModelAttribute("user") User user){
 		Question question = frockoverflowdao.voteDown(answerId, user.getId());
@@ -257,6 +263,7 @@ public class FrockOverflowController {
 		return mv;
 	}
 	
+	//Adds a comment to the question
 	@RequestMapping("commentOnQuestion.do")
 	public ModelAndView addCommentToQuestion (@ModelAttribute("user") User user, 
 			@RequestParam("question_id") int q, QComment c) {
@@ -268,6 +275,8 @@ public class FrockOverflowController {
 		return mv;
 		
 	}
+	
+	//Adds a comment to answers
 	@RequestMapping("commentOnAnswer.do")
 	public ModelAndView addCommentToAnswer (@ModelAttribute("user") User user, 
 			@RequestParam("answer_id") int a, AComment c) {
@@ -279,6 +288,8 @@ public class FrockOverflowController {
 		return mv;
 		
 	}
+	
+	//Removes user *METHOD DOESNT GET USED*
 	@RequestMapping("removeUser.do")
 	public ModelAndView removeUser(int id){
 	frockoverflowdao.removeUser(id);
@@ -289,6 +300,8 @@ public class FrockOverflowController {
 	return mv; 
 	
 	}
+	
+	//Returns all users
 	@RequestMapping("getAllUsers.do")
 	public ModelAndView getAllUsers(){
 		List <User> users = frockoverflowdao.getAllUsers(); 
@@ -298,6 +311,8 @@ public class FrockOverflowController {
 		return mv; 
 		
 	}
+	
+	//Deactivates User
 	@RequestMapping("deactivateUser.do")
 	public ModelAndView  deactivateUser (int  id, int userType){
 		frockoverflowdao.deactivateUser(id, userType); 
@@ -307,6 +322,8 @@ public class FrockOverflowController {
 		mv.addObject("users", users); 
 		return mv;
 	}
+	
+	//Activates User
 	@RequestMapping("activateUser.do")
 	public ModelAndView  activateUser (int  id, int userType){
 		frockoverflowdao.activateUser(id, userType); 
